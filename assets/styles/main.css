@@ -164,6 +164,73 @@ html {
   animation: float 6s ease-in-out infinite;
 }
 
+/* Section Background Utilities */
+.section-bg-animated {
+  background: linear-gradient(to right, rgb(17 24 39), rgb(31 41 55), rgb(0 0 0));
+  position: relative;
+  overflow: hidden;
+}
+
+.section-bg-animated::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), 
+    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* Floating Orb Patterns */
+.floating-orbs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-orbs::before {
+  content: '';
+  position: absolute;
+  top: 2.5rem;
+  left: 2.5rem;
+  width: 8rem;
+  height: 8rem;
+  background: linear-gradient(to bottom right, rgba(251,191,36,0.2), rgba(245,158,11,0.2));
+  border-radius: 50%;
+  filter: blur(1rem);
+  animation: float 6s ease-in-out infinite, pulse 2s ease-in-out infinite;
+}
+
+.floating-orbs::after {
+  content: '';
+  position: absolute;
+  bottom: 5rem;
+  right: 5rem;
+  width: 10rem;
+  height: 10rem;
+  background: linear-gradient(to top left, rgba(245,158,11,0.15), rgba(234,88,12,0.15));
+  border-radius: 50%;
+  filter: blur(2rem);
+  animation: float 6s ease-in-out infinite 2s, pulse 2s ease-in-out infinite 700ms;
+}
+
+.floating-orbs-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15rem;
+  height: 15rem;
+  background: linear-gradient(to bottom right, rgba(251,191,36,0.1), rgba(245,158,11,0.1));
+  border-radius: 50%;
+  filter: blur(3rem);
+  animation: float 6s ease-in-out infinite 4s, pulse 2s ease-in-out infinite 1s;
+  pointer-events: none;
+}
+
 /* Navigation progress indicator */
 .nav-progress {
   position: fixed;
@@ -185,3 +252,8 @@ html {
 .poster-3d:hover {
   transform: perspective(1000px) rotateY(-10deg) rotateX(5deg) translateZ(50px);
 }
+
+/* Animation Delay Utilities */
+.delay-1s { animation-delay: 1s; }
+.delay-2s { animation-delay: 2s; }
+.delay-4s { animation-delay: 4s; }

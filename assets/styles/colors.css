@@ -1,0 +1,251 @@
+/* Daffodil Studios Color System */
+:root {
+  /* Primary Brand Colors */
+  --daffodil-yellow: #fbbf24;
+  --daffodil-amber: #f59e0b;
+  --daffodil-orange: #ea580c;
+  
+  /* Gradient Definitions */
+  --gradient-primary: linear-gradient(to right, var(--daffodil-yellow), var(--daffodil-amber));
+  --gradient-primary-dark: linear-gradient(to right, #f59e0b, #d97706);
+  --gradient-text: linear-gradient(to right, #fbbf24, #f59e0b, #ea580c);
+  --gradient-hero-bg: linear-gradient(to right, #111827, #1f2937, #000000);
+  
+  /* Background Gradients */
+  --gradient-light-bg: linear-gradient(to right, rgba(255,255,255,0.95), rgba(254,243,199,0.9), rgba(253,230,138,0.95));
+  --gradient-orb-yellow: linear-gradient(to bottom right, rgba(251,191,36,0.2), rgba(245,158,11,0.2));
+  --gradient-orb-amber: linear-gradient(to top left, rgba(245,158,11,0.15), rgba(234,88,12,0.15));
+  
+  /* Service Icon Gradients */
+  --gradient-service-1: linear-gradient(to bottom right, #eab308, #f59e0b);
+  --gradient-service-2: linear-gradient(to bottom right, #fbbf24, #f59e0b);
+  --gradient-service-3: linear-gradient(to bottom right, #f59e0b, #ea580c);
+  
+  /* Shadow Colors */
+  --shadow-yellow: 0 0 20px rgba(251,191,36,0.5);
+  --shadow-amber: 0 0 20px rgba(245,158,11,0.5);
+  --shadow-glow: 0 0 30px rgba(251,191,36,0.8), 0 0 40px rgba(251,191,36,0.6);
+  
+  /* Text Colors */
+  --text-gradient-class: bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-500 bg-clip-text text-transparent;
+}
+
+/* Utility Classes for Gradients */
+.gradient-text {
+  background: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.gradient-primary-bg {
+  background: var(--gradient-primary);
+}
+
+.gradient-primary-dark-bg {
+  background: var(--gradient-primary-dark);
+}
+
+.gradient-hero-bg {
+  background: var(--gradient-hero-bg);
+}
+
+.gradient-light-bg {
+  background: var(--gradient-light-bg);
+}
+
+/* Button Styles */
+.btn-primary {
+  background: var(--gradient-primary);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: var(--gradient-primary-dark);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Glow Effects */
+.glow-yellow {
+  box-shadow: var(--shadow-yellow);
+}
+
+.glow-amber {
+  box-shadow: var(--shadow-amber);
+}
+
+/* Card Styles */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Icon Gradient Utilities */
+.icon-gradient-primary {
+  background: var(--gradient-service-1);
+}
+
+.icon-gradient-secondary {
+  background: var(--gradient-service-2);
+}
+
+.icon-gradient-tertiary {
+  background: var(--gradient-service-3);
+}
+
+/* Text Utilities */
+.text-shadow-glow {
+  text-shadow: 0 0 20px rgba(251,191,36,0.5);
+}
+
+/* Animation Utilities */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Section Utilities */
+.section-padding {
+  padding: 4rem 0;
+}
+
+.section-padding-lg {
+  padding: 5rem 0;
+}
+
+/* Additional Brand Gradient Utilities */
+.bg-brand-primary {
+  background: linear-gradient(to right, rgb(202 138 4), rgb(217 119 6), rgb(245 158 11));
+}
+
+.bg-brand-light {
+  background: linear-gradient(to bottom right, rgb(254 252 232), rgb(254 249 195), rgb(255 255 255), rgb(254 237 199));
+}
+
+.bg-brand-accent {
+  background: linear-gradient(to right, rgb(180 83 9), rgb(234 88 12));
+}
+
+.bg-brand-gradient-br {
+  background: linear-gradient(to bottom right, rgb(250 204 21), rgb(245 158 11));
+}
+
+.bg-brand-gradient-tr {
+  background: linear-gradient(to top right, rgb(251 191 36), rgb(250 204 21));
+}
+
+/* Tag/Badge Utilities */
+.tag-drama {
+  background: linear-gradient(to right, rgb(234 179 8), rgb(217 119 6));
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.tag-tragedy {
+  background: linear-gradient(to right, rgb(245 158 11), rgb(234 88 12));
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.tag-indie {
+  background: linear-gradient(to right, rgb(249 115 22), rgb(220 38 38));
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover Overlay Utilities */
+.hover-overlay-dark {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent, transparent);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.group:hover .hover-overlay-dark {
+  opacity: 1;
+}
+
+.hover-overlay-brand {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(234, 179, 8, 0.2), rgba(217, 119, 6, 0.2));
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.group:hover .hover-overlay-brand {
+  opacity: 1;
+}
+
+/* Navigation Underline Utility */
+.nav-underline {
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0;
+  width: 0;
+  height: 0.125rem;
+  background: linear-gradient(to right, rgb(180 83 9), rgb(234 88 12));
+  transition: width 0.3s;
+}
+
+.group:hover .nav-underline {
+  width: 100%;
+}
+
+/* Text Brand Gradient */
+.text-brand-gradient {
+  background: linear-gradient(to right, rgb(250 204 21), rgb(245 158 11), rgb(249 115 22));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Client Logo Card */
+.client-logo-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5rem;
+  width: 8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  flex-shrink: 0;
+}
+
+.client-logo-card img {
+  max-height: 3rem;
+  max-width: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}

@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-gradient-to-r from-yellow-600 via-yellow-500 to-amber-600 text-gray-900 py-12 border-t border-yellow-400">
+  <footer class="bg-brand-primary text-gray-900 py-12 border-t border-yellow-400">
     <div class="container mx-auto px-6">
       <!-- Main Footer Content -->
       <div class="grid md:grid-cols-3 gap-8 mb-8">

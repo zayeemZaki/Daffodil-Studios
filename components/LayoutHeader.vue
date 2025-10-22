@@ -1,5 +1,5 @@
 <template>
-  <header class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-yellow-600 via-yellow-500 to-amber-600 shadow-2xl backdrop-blur-sm border-b border-yellow-400">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-brand-primary shadow-2xl backdrop-blur-sm border-b border-yellow-400">
     <nav class="container mx-auto px-6 py-6 flex justify-between items-center">
       <!-- Logo -->
       <NuxtLink 
@@ -20,7 +20,7 @@
             class="relative text-lg text-gray-900 hover:text-gray-700 font-semibold transition-all duration-300 group"
           >
             Home
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-700 to-orange-600 group-hover:w-full transition-all duration-300"></span>
+            <span class="nav-underline"></span>
           </NuxtLink>
         </li>
         <li>
@@ -29,7 +29,7 @@
             class="relative text-lg text-gray-900 hover:text-gray-700 font-semibold transition-all duration-300 group"
           >
             Screenings
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-700 to-orange-600 group-hover:w-full transition-all duration-300"></span>
+            <span class="nav-underline"></span>
           </NuxtLink>
         </li>
         <li>
@@ -38,7 +38,7 @@
             class="relative text-lg text-gray-900 hover:text-gray-700 font-semibold transition-all duration-300 group"
           >
             Movies
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-700 to-orange-600 group-hover:w-full transition-all duration-300"></span>
+            <span class="nav-underline"></span>
           </NuxtLink>
         </li>
         <li>
@@ -46,15 +46,15 @@
             to="/about" 
             class="relative text-lg text-gray-900 hover:text-gray-700 font-semibold transition-all duration-300 group"
           >
-            About Us
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-700 to-orange-600 group-hover:w-full transition-all duration-300"></span>
+            About
+            <span class="nav-underline"></span>
           </NuxtLink>
         </li>
       </ul>
 
       <!-- Action Buttons -->
       <div class="flex items-center space-x-4">
-        <button class="bg-gradient-to-r from-amber-700 to-orange-600 text-white px-8 py-3 rounded-full text-lg font-bold hover:from-amber-800 hover:to-orange-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+        <button class="bg-brand-accent text-white px-8 py-3 rounded-full text-lg font-bold hover:from-amber-800 hover:to-orange-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
           <span class="flex items-center space-x-2">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
