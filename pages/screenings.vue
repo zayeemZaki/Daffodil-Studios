@@ -1,75 +1,110 @@
 <template>
-  <div>
-    <h1 class="text-4xl font-bold mb-4">Find a Screening</h1>
-    
-    <!-- Include the FilterBar component with event handlers -->
-    <FilterBar 
-      :locations="uniqueLocations"
-      @filter-change="applyFilters"
-      @search="applyFilters"
-      @clear-filters="clearAllFilters"
-    />
-    
-    <div class="mt-6 space-y-8">
-      <!-- Upcoming Screenings Section -->
-      <div v-if="filteredUpcomingScreenings.length > 0">
-        <h2 class="text-2xl font-semibold mb-4 text-gray-800">
-          {{ getUpcomingResultsText() }}
-        </h2>
-        
-        <div class="space-y-4">
-          <CardScreening
-            v-for="screening in filteredUpcomingScreenings"
-            :key="screening.id"
-            :movie-name="screening.movieName"
-            :screening-date="screening.date"
-            :screening-time="screening.time"
-            :location="screening.location"
-            :ticket-url="screening.ticketUrl"
-            :button-text="screening.buttonText"
-            :is-disabled="screening.isDisabled"
-            @buy-ticket="handleBuyTicket"
-          />
-        </div>
-      </div>
-      
-      <!-- Past Screenings Section -->
-      <div v-if="filteredPastScreenings.length > 0">
-        <h2 class="text-2xl font-semibold mb-4 text-gray-600">
-          Past Screenings ({{ filteredPastScreenings.length }})
-        </h2>
-        
-        <div class="space-y-4 opacity-75">
-          <CardScreening
-            v-for="screening in filteredPastScreenings"
-            :key="screening.id"
-            :movie-name="screening.movieName"
-            :screening-date="screening.date"
-            :screening-time="screening.time"
-            :location="screening.location"
-            :ticket-url="''"
-            :button-text="'Past Event'"
-            :is-disabled="true"
-            @buy-ticket="handleBuyTicket"
-          />
-        </div>
-      </div>
-      
-      <!-- No Results -->
-      <div v-if="filteredUpcomingScreenings.length === 0 && filteredPastScreenings.length === 0" class="text-center py-8">
-        <div class="mb-4">
-          <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.562M15 6.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
-          </svg>
-        </div>
-        <p class="text-lg text-gray-700 mb-2">
-          No screenings found matching your criteria.
-        </p>
-        <p class="text-sm text-gray-500">
-          Try adjusting your search filters or clearing them to see all available screenings.
-        </p>
+  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white relative">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 section-bg-animated">
+      <div class="floating-orbs">
+        <div class="floating-orbs-center"></div>
       </div>
     </div>
+    
+    <!-- Hero Section -->
+    <section class="relative pt-6 pb-8">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-8">
+          <h1 class="text-5xl md:text-6xl font-bold mb-4 text-brand-gradient">
+            Find a Screening
+          </h1>
+          <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Experience the untold story of Kashmir in theaters worldwide. Discover upcoming screenings in your area.
+          </p>
+        </div>
+        
+        <!-- Filter Bar -->
+        <div class="max-w-4xl mx-auto mb-8">
+          <FilterBar 
+            :locations="uniqueLocations"
+            @filter-change="applyFilters"
+            @search="applyFilters"
+            @clear-filters="clearAllFilters"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Screenings Content -->
+    <section class="pb-16">
+      <div class="container mx-auto px-6">
+        <div class="space-y-16">
+          <!-- Upcoming Screenings Section -->
+          <div v-if="filteredUpcomingScreenings.length > 0" class="space-y-8">
+            <UiSectionHeader 
+              :title="getUpcomingResultsText()"
+              size="md"
+            />
+            
+            <div class="grid gap-6 max-w-6xl mx-auto">
+              <CardScreening
+                v-for="screening in filteredUpcomingScreenings"
+                :key="screening.id"
+                :movie-name="screening.movieName"
+                :screening-date="screening.date"
+                :screening-time="screening.time"
+                :location="screening.location"
+                :ticket-url="screening.ticketUrl"
+                :button-text="screening.buttonText"
+                :is-disabled="screening.isDisabled"
+                @buy-ticket="handleBuyTicket"
+              />
+            </div>
+          </div>
+          
+          <!-- Past Screenings Section -->
+          <div v-if="filteredPastScreenings.length > 0" class="space-y-8">
+            <UiSectionHeader 
+              :title="`Past Screenings (${filteredPastScreenings.length})`"
+              size="md"
+            />
+            
+            <div class="grid gap-6 max-w-6xl mx-auto opacity-75">
+              <CardScreening
+                v-for="screening in filteredPastScreenings"
+                :key="screening.id"
+                :movie-name="screening.movieName"
+                :screening-date="screening.date"
+                :screening-time="screening.time"
+                :location="screening.location"
+                :ticket-url="''"
+                :button-text="'Past Event'"
+                :is-disabled="true"
+                @buy-ticket="handleBuyTicket"
+              />
+            </div>
+          </div>
+          
+          <!-- No Results Message -->
+          <div v-if="filteredUpcomingScreenings.length === 0 && filteredPastScreenings.length === 0" class="text-center py-16">
+            <div class="glass-card max-w-md mx-auto p-8">
+              <div class="w-16 h-16 bg-brand-gradient-br rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold mb-2 text-white">No screenings found</h3>
+              <p class="text-gray-300 mb-4">
+                Try adjusting your filters or check back later for new screenings.
+              </p>
+              <button 
+                v-if="hasActiveFilters()"
+                @click="clearAllFilters"
+                class="text-brand-gradient hover:text-yellow-400 transition-colors"
+              >
+                Clear all filters
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 

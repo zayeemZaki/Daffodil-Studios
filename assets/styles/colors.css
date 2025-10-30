@@ -127,6 +127,12 @@
   padding: 5rem 0;
 }
 
+/* Container Utility */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 /* Additional Brand Gradient Utilities */
 .bg-brand-primary {
   background: linear-gradient(to right, rgb(202 138 4), rgb(217 119 6), rgb(245 158 11));
