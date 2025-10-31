@@ -1,75 +1,77 @@
-# Nuxt Minimal Starter
+# Daffodil Studios
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Official website for Daffodil Studios - Documentary filmmakers bringing untold stories to audiences worldwide.
 
-## Setup
+## 🎬 About
 
-Make sure to install dependencies:
+Daffodil Studios creates powerful documentaries that shed light on important narratives, featuring films like "Saffron Kingdom" which explores the untold story of Kashmir.
+
+## 🚀 Quick Start
+
+### Development
 
 ```bash
-# npm
+# Install dependencies
 npm install
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+# Start development server
 npm run dev
 
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+# Open http://localhost:3000
 ```
 
-## Production
+### Environment Setup
 
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+Create a `.env` file (already exists):
+```
+NUXT_RESEND_API_KEY=your_resend_api_key_here
 ```
 
-Locally preview production build:
+Get your API key from [Resend.com](https://resend.com)
 
-```bash
-# npm
-npm run preview
+## 📦 Deployment
 
-# pnpm
-pnpm preview
+See [SIMPLE_DEPLOYMENT.md](./SIMPLE_DEPLOYMENT.md) for complete deployment instructions.
 
-# yarn
-yarn preview
+**TL;DR:**
+1. Push to GitHub
+2. Connect to Vercel (automatically deploys)
+3. Add `NUXT_RESEND_API_KEY` environment variable in Vercel
+4. Done! ✨
 
-# bun
-bun run preview
+## 🛠 Tech Stack
+
+- **Framework**: Nuxt 3
+- **Styling**: Tailwind CSS
+- **Email**: Resend API
+- **Hosting**: Vercel (recommended)
+- **Videos**: Cloudinary (recommended)
+
+## 📁 Project Structure
+
+```
+daffodil-studios/
+├── pages/           # Route pages (index, screenings, movies, press, about)
+├── components/      # Reusable Vue components
+├── assets/         # Images, styles, videos
+├── server/         # API routes (contact form)
+├── public/         # Static files
+└── layouts/        # Layout templates
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 🎯 Features
+
+- ✅ Film screenings with location filtering
+- ✅ Movies showcase with zigzag layout
+- ✅ Press & media coverage
+- ✅ Contact form with email integration
+- ✅ Responsive design
+- ✅ SEO optimized
+
+## 📧 Contact
+
+Email: contact@daffodilstudios.org
+
+## 📄 License
+
+© 2025 Daffodil Studios. All rights reserved.

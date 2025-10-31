@@ -8,16 +8,13 @@
     </div>
     
     <!-- Hero Section -->
-    <section class="relative pt-6 pb-8">
+    <section class="relative pt-16 pb-8" style="z-index: 100;">
       <div class="container mx-auto px-6">
-        <div class="text-center mb-8">
-          <h1 class="text-5xl md:text-6xl font-bold mb-4 text-brand-gradient">
-            Find a Screening
-          </h1>
-          <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Experience the untold story of Kashmir in theaters worldwide. Discover upcoming screenings in your area.
-          </p>
-        </div>
+        <UiSectionHeader 
+          title="Find a Screening" 
+          subtitle="Experience the untold story of Kashmir in theaters worldwide. Discover upcoming screenings in your area."
+          size="lg"
+        />
         
         <!-- Filter Bar -->
         <div class="max-w-4xl mx-auto mb-8">
@@ -50,6 +47,7 @@
                 :screening-date="screening.date"
                 :screening-time="screening.time"
                 :location="screening.location"
+                :country="screening.country"
                 :ticket-url="screening.ticketUrl"
                 :button-text="screening.buttonText"
                 :is-disabled="screening.isDisabled"
@@ -73,6 +71,7 @@
                 :screening-date="screening.date"
                 :screening-time="screening.time"
                 :location="screening.location"
+                :country="screening.country"
                 :ticket-url="''"
                 :button-text="'Past Event'"
                 :is-disabled="true"
@@ -112,86 +111,284 @@
 import { ref, computed } from 'vue'
 import type { FilterData } from '~/types'
 
-// Sample screenings data - including some past dates for testing
+// Saffron Kingdom screenings data
 const allScreenings = ref([
-  // Past screenings
-  {
-    id: 7,
-    movieName: "Yesterday's Echo",
-    date: "2025-10-15",
-    time: "7:00 PM",
-    location: "Downtown Cinema, New York",
-    ticketUrl: "",
-    buttonText: "Past Event",
-    isDisabled: true
-  },
-  {
-    id: 8,
-    movieName: "Shadows of Time",
-    date: "2025-10-18",
-    time: "8:30 PM",
-    location: "Arthouse Theater, Los Angeles",
-    ticketUrl: "",
-    buttonText: "Past Event",
-    isDisabled: true
-  },
-  // Upcoming screenings
+  // United States
   {
     id: 1,
-    movieName: "The Mystic Garden",
-    date: "2025-10-25",
-    time: "7:30 PM",
-    location: "Downtown Cinema, New York",
-    ticketUrl: "https://example.com/tickets/mystic-garden",
+    movieName: "Saffron Kingdom",
+    date: "2025-03-01",
+    time: "",
+    location: "Wake Forest Film Festival, Wake Forest, NC",
+    country: "United States",
+    ticketUrl: "",
     buttonText: "Buy Tickets",
     isDisabled: false
   },
   {
     id: 2,
-    movieName: "Urban Echoes",
-    date: "2025-10-27",
-    time: "8:00 PM",
-    location: "Arthouse Theater, Los Angeles",
+    movieName: "Saffron Kingdom",
+    date: "2025-04-22",
+    time: "",
+    location: "Georgia State University, Atlanta, GA",
+    country: "United States",
     ticketUrl: "",
     buttonText: "Buy Tickets",
     isDisabled: false
   },
   {
     id: 3,
-    movieName: "Silent Waters",
-    date: "2025-10-30",
-    time: "6:00 PM",
-    location: "Independent Cinema, Chicago",
-    ticketUrl: "https://example.com/tickets/silent-waters",
+    movieName: "Saffron Kingdom",
+    date: "2025-04-25",
+    time: "",
+    location: "Julien Dubuque International Film Festival, Dubuque, IA",
+    country: "United States",
+    ticketUrl: "",
     buttonText: "Buy Tickets",
     isDisabled: false
   },
   {
     id: 4,
-    movieName: "Midnight Chronicles",
-    date: "2025-11-02",
-    time: "9:00 PM",
-    location: "Metro Theater, Miami",
+    movieName: "Saffron Kingdom",
+    date: "2025-04-27",
+    time: "",
+    location: "Julien Dubuque International Film Festival, Dubuque, IA",
+    country: "United States",
     ticketUrl: "",
-    buttonText: "Sold Out",
-    isDisabled: true
+    buttonText: "Buy Tickets",
+    isDisabled: false
   },
   {
     id: 5,
-    movieName: "Garden of Dreams",
-    date: "2025-11-05",
-    time: "7:00 PM",
-    location: "Art House Cinema, New York",
-    ticketUrl: "https://example.com/tickets/garden-dreams",
+    movieName: "Saffron Kingdom",
+    date: "2025-06-29",
+    time: "",
+    location: "Tasveer Film Center, Seattle, WA",
+    country: "United States",
+    ticketUrl: "",
     buttonText: "Buy Tickets",
     isDisabled: false
   },
   {
     id: 6,
-    movieName: "Echoes of Tomorrow",
-    date: "2025-11-08",
-    time: "8:30 PM",
-    location: "Downtown Theater, Los Angeles",
+    movieName: "Saffron Kingdom",
+    date: "2025-06-30",
+    time: "",
+    location: "Johns Hopkins University, Washington, DC",
+    country: "United States",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 7,
+    movieName: "Saffron Kingdom",
+    date: "2025-07-18",
+    time: "",
+    location: "Islamic Society of Akron & Kent, Akron, OH",
+    country: "United States",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 8,
+    movieName: "Saffron Kingdom",
+    date: "2025-08-30",
+    time: "",
+    location: "Islamic Society of North America, Chicago, IL",
+    country: "United States",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 9,
+    movieName: "Saffron Kingdom",
+    date: "2025-08-31",
+    time: "",
+    location: "Islamic Society of North America, Chicago, IL",
+    country: "United States",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 10,
+    movieName: "Saffron Kingdom",
+    date: "2025-09-13",
+    time: "",
+    location: "School of Visual Arts Theatre, New York, NY",
+    country: "United States",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 11,
+    movieName: "Saffron Kingdom",
+    date: "2025-10-19",
+    time: "",
+    location: "Muslim Public Affairs Council, Los Angeles, CA",
+    country: "United States",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  // United Kingdom
+  {
+    id: 12,
+    movieName: "Saffron Kingdom",
+    date: "2025-09-20",
+    time: "",
+    location: "Genesis Cinema, London, England",
+    country: "United Kingdom",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 13,
+    movieName: "Saffron Kingdom",
+    date: "2025-10-04",
+    time: "",
+    location: "Palestine House, London, England",
+    country: "United Kingdom",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  // Australia
+  {
+    id: 14,
+    movieName: "Saffron Kingdom",
+    date: "2025-08-06",
+    time: "",
+    location: "Australian National University, Canberra, ACT",
+    country: "Australia",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 15,
+    movieName: "Saffron Kingdom",
+    date: "2025-08-09",
+    time: "",
+    location: "Bryan Brown Theatre, Sydney, NSW",
+    country: "Australia",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 16,
+    movieName: "Saffron Kingdom",
+    date: "2025-08-09",
+    time: "",
+    location: "Institute of Postcolonial Studies, Melbourne, VIC",
+    country: "Australia",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 17,
+    movieName: "Saffron Kingdom",
+    date: "2025-08-15",
+    time: "",
+    location: "Reading Cinemas Belmont, Perth, WA",
+    country: "Australia",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 18,
+    movieName: "Saffron Kingdom",
+    date: "2025-08-23",
+    time: "",
+    location: "Five Star Cinemas, Brisbane, QLD",
+    country: "Australia",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 19,
+    movieName: "Saffron Kingdom",
+    date: "2025-10-05",
+    time: "",
+    location: "Muslim Film Festival, Perth, WA",
+    country: "Australia",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 20,
+    movieName: "Saffron Kingdom",
+    date: "2025-10-18",
+    time: "",
+    location: "Cinema Nova, Melbourne, VIC",
+    country: "Australia",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  // New Zealand
+  {
+    id: 21,
+    movieName: "Saffron Kingdom",
+    date: "2025-08-08",
+    time: "",
+    location: "Penthouse Cinema & Cafe, Wellington",
+    country: "New Zealand",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 22,
+    movieName: "Saffron Kingdom",
+    date: "2025-08-09",
+    time: "",
+    location: "Event Cinemas Chartwell, Hamilton",
+    country: "New Zealand",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 23,
+    movieName: "Saffron Kingdom",
+    date: "2025-08-09",
+    time: "",
+    location: "Focal Point Cinema and Cafe, Palmerston North",
+    country: "New Zealand",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 24,
+    movieName: "Saffron Kingdom",
+    date: "2025-09-06",
+    time: "",
+    location: "Event Cinemas St. Lukes, Auckland",
+    country: "New Zealand",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  // Canada
+  {
+    id: 25,
+    movieName: "Saffron Kingdom",
+    date: "2025-10-28",
+    time: "",
+    location: "Innis Town Hall, Toronto, ON",
+    country: "Canada",
     ticketUrl: "",
     buttonText: "Buy Tickets",
     isDisabled: false
@@ -201,10 +398,18 @@ const allScreenings = ref([
 // Get today's date for comparison
 const today = new Date().toISOString().split('T')[0]
 
-// Extract unique locations for filter dropdown
+// Extract unique locations for filter dropdown (includes country)
 const uniqueLocations = computed(() => {
-  const locations = allScreenings.value.map(screening => screening.location)
+  const locations = allScreenings.value.map(screening => {
+    return `${screening.location}, ${screening.country}`
+  })
   return [...new Set(locations)].sort()
+})
+
+// Extract unique countries
+const uniqueCountries = computed(() => {
+  const countries = allScreenings.value.map(screening => screening.country)
+  return [...new Set(countries)].sort()
 })
 
 // Current filter state
@@ -217,15 +422,19 @@ const currentFilters = ref<FilterData>({
 const filterScreenings = (screenings: any[]) => {
   let result = [...screenings]
 
-  // Filter by selected locations
+  // Filter by selected locations (which now includes country)
   if (currentFilters.value.selectedLocations.length > 0) {
-    result = result.filter(screening => 
-      currentFilters.value.selectedLocations.includes(screening.location)
-    )
+    result = result.filter(screening => {
+      const fullLocation = `${screening.location}, ${screening.country}`
+      return currentFilters.value.selectedLocations.some(selected => {
+        // Match either the full location string or just the country
+        return fullLocation === selected || screening.country === selected || fullLocation.includes(selected)
+      })
+    })
   }
 
   // Sort by date if specified
-  if (currentFilters.value.sortByDate) {
+  if (currentFilters.value.sortByDate && currentFilters.value.sortByDate !== 'none') {
     result.sort((a, b) => {
       const dateA = new Date(a.date).getTime()
       const dateB = new Date(b.date).getTime()
@@ -246,9 +455,11 @@ const upcomingScreenings = computed(() =>
   allScreenings.value.filter(screening => screening.date >= today)
 )
 
-const pastScreenings = computed(() => 
-  allScreenings.value.filter(screening => screening.date < today)
-)
+const pastScreenings = computed(() => {
+  const past = allScreenings.value.filter(screening => screening.date < today)
+  // Sort past screenings by date descending (most recent first)
+  return past.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+})
 
 const filteredUpcomingScreenings = computed(() => 
   filterScreenings(upcomingScreenings.value)

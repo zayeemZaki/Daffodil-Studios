@@ -35,6 +35,7 @@
             <div>
               <p class="text-sm text-gray-400 uppercase tracking-wide font-medium">Venue</p>
               <p class="font-semibold text-white">{{ location }}</p>
+              <p v-if="country" class="text-sm text-gray-400">{{ country }}</p>
             </div>
           </div>
           
@@ -87,6 +88,7 @@ interface Props {
   movieName: string
   screeningDate: string | Date
   location: string
+  country?: string
   screeningTime?: string
   buttonText?: string
   isDisabled?: boolean
@@ -97,7 +99,8 @@ const props = withDefaults(defineProps<Props>(), {
   buttonText: 'Buy Tickets',
   isDisabled: false,
   screeningTime: '',
-  ticketUrl: ''
+  ticketUrl: '',
+  country: ''
 })
 
 // Format the date for display

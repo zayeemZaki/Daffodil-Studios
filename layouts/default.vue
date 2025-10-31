@@ -11,7 +11,7 @@
     <LayoutHeader />
 
     <!-- Page content will be injected here -->
-    <main class="flex-grow mt-[120px]">
+    <main class="flex-grow mt-[88px]">
       <slot />
     </main>
 

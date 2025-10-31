@@ -1,12 +1,12 @@
 <template>
-  <div class="glass-card rounded-2xl p-6 relative" style="overflow: visible !important; z-index: 2147483647;">
+  <div class="glass-card rounded-2xl p-6 relative" style="overflow: visible !important;">
     <!-- Decorative Background -->
     <div class="absolute -top-4 -right-4 w-32 h-32 bg-brand-gradient-br rounded-full opacity-5 blur-3xl"></div>
     
     <div class="relative z-10" style="overflow: visible !important;">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6" style="overflow: visible !important;">
         <!-- Location Filter -->
-        <div class="space-y-3 relative location-filter-container" style="overflow: visible !important; z-index: 2147483647;">
+        <div class="space-y-3 relative location-filter-container" style="overflow: visible !important;">
           <label class="block text-sm font-semibold text-gray-300 mb-3 uppercase tracking-wide">
             Filter by Location
           </label>
@@ -42,7 +42,7 @@
             <div 
               v-if="showLocationDropdown" 
               class="absolute w-80 bg-gray-800/95 backdrop-blur-md rounded-xl shadow-2xl max-h-80 overflow-hidden border border-white/20 mt-2 left-0"
-              style="z-index: 2147483647 !important;"
+              style="z-index: 9999;"
             >
               <!-- Location List -->
               <div class="p-2 max-h-60 overflow-y-auto space-y-1">

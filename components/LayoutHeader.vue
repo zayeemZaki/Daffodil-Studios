@@ -1,5 +1,5 @@
 <template>
-  <header class="fixed top-0 left-0 right-0 z-50 bg-brand-primary shadow-2xl backdrop-blur-sm border-b border-yellow-400">
+  <header class="fixed top-0 left-0 right-0 bg-brand-primary shadow-2xl backdrop-blur-sm border-b border-yellow-400" style="z-index: 10000;">
     <nav class="container mx-auto px-6 py-6 flex justify-between items-center">
       <!-- Logo -->
       <NuxtLink 
@@ -38,6 +38,15 @@
             class="relative text-lg text-gray-900 hover:text-gray-700 font-semibold transition-all duration-300 group"
           >
             Movies
+            <span class="nav-underline"></span>
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink 
+            to="/press" 
+            class="relative text-lg text-gray-900 hover:text-gray-700 font-semibold transition-all duration-300 group"
+          >
+            Press
             <span class="nav-underline"></span>
           </NuxtLink>
         </li>

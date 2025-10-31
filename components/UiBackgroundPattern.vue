@@ -1,5 +1,5 @@
 <template>
-  <div class="section-bg-animated section-padding">
+  <div class="section-bg-animated">
     <!-- Floating Orbs Background -->
     <div class="floating-orbs">
       <div class="floating-orbs-center"></div>
