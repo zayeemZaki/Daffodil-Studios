@@ -49,7 +49,7 @@ export default defineEventHandler(async (event) => {
       ],
       mode: 'payment',
       success_url: `${body.successUrl || config.public.siteUrl}/success?type=donation&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${body.cancelUrl || config.public.siteUrl}/?donation_canceled=true`,
+      cancel_url: `${body.cancelUrl || config.public.siteUrl}/canceled?type=donation`,
       metadata: {
         type: 'donation',
         amount: body.amount.toString()

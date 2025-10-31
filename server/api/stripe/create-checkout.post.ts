@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
       ],
       mode: 'payment',
       success_url: `${body.successUrl || config.public.siteUrl}/success?type=ticket&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${body.cancelUrl || config.public.siteUrl}/screenings?canceled=true`,
+      cancel_url: `${body.cancelUrl || config.public.siteUrl}/canceled?type=ticket`,
       metadata: {
         screeningId: body.screeningId.toString(),
         type: 'ticket_purchase'
