@@ -57,7 +57,7 @@
       <!-- Buy Ticket Button -->
       <div class="flex-shrink-0">
         <UiActionButton 
-          v-if="ticketUrl"
+          v-if="ticketUrl && ticketUrl !== 'stripe'"
           :text="buttonText"
           :href="ticketUrl"
           :variant="isDisabled ? 'secondary' : 'gradient'"
@@ -69,10 +69,10 @@
         />
         <UiActionButton 
           v-else
-          :text="buttonText"
+          :text="isProcessing ? 'Processing...' : buttonText"
           @click="handleBuyTicket"
           :variant="isDisabled ? 'secondary' : 'gradient'"
-          :disabled="isDisabled"
+          :disabled="isDisabled || isProcessing"
           size="lg"
           class="w-full lg:w-auto"
         />
@@ -82,7 +82,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 interface Props {
   movieName: string
@@ -93,6 +93,8 @@ interface Props {
   buttonText?: string
   isDisabled?: boolean
   ticketUrl?: string
+  ticketPrice?: number
+  screeningId?: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -100,14 +102,24 @@ const props = withDefaults(defineProps<Props>(), {
   isDisabled: false,
   screeningTime: '',
   ticketUrl: '',
-  country: ''
+  country: '',
+  ticketPrice: 0,
+  screeningId: 0
 })
+
+const isProcessing = ref(false)
 
 // Format the date for display
 const formattedDate = computed(() => {
-  const date = typeof props.screeningDate === 'string' 
-    ? new Date(props.screeningDate) 
-    : props.screeningDate
+  let date: Date
+  
+  if (typeof props.screeningDate === 'string') {
+    // Parse the date string as local time to avoid timezone issues
+    const [year, month, day] = props.screeningDate.split('-').map(Number)
+    date = new Date(year, month - 1, day) // month is 0-indexed
+  } else {
+    date = props.screeningDate
+  }
     
   return date.toLocaleDateString('en-US', {
     weekday: 'long',
@@ -118,16 +130,44 @@ const formattedDate = computed(() => {
 })
 
 // Handle buy ticket button click
-const handleBuyTicket = () => {
-  if (props.isDisabled) return
+const handleBuyTicket = async () => {
+  if (props.isDisabled || isProcessing.value) return
   
-  // Emit an event for parent component to handle
-  emit('buy-ticket', {
-    movieName: props.movieName,
-    screeningDate: props.screeningDate,
-    location: props.location,
-    screeningTime: props.screeningTime
-  })
+  // If ticketUrl is 'stripe', handle Stripe checkout
+  if (props.ticketUrl === 'stripe' && props.ticketPrice && props.ticketPrice > 0) {
+    isProcessing.value = true
+    
+    try {
+      const response = await $fetch('/api/stripe/create-checkout', {
+        method: 'POST',
+        body: {
+          screeningId: props.screeningId,
+          screeningName: `${props.movieName} - ${formattedDate.value}`,
+          location: `${props.location}, ${props.country}`,
+          amount: props.ticketPrice,
+          quantity: 1
+        }
+      })
+
+      if (response.url) {
+        // Redirect to Stripe Checkout
+        window.location.href = response.url
+      }
+    } catch (error) {
+      console.error('Checkout error:', error)
+      alert('Sorry, there was an error processing your request. Please try again.')
+    } finally {
+      isProcessing.value = false
+    }
+  } else {
+    // Emit an event for parent component to handle
+    emit('buy-ticket', {
+      movieName: props.movieName,
+      screeningDate: props.screeningDate,
+      location: props.location,
+      screeningTime: props.screeningTime
+    })
+  }
 }
 
 // Define emits

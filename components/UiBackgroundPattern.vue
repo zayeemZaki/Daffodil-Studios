@@ -1,5 +1,5 @@
 <template>
-  <div class="section-bg-animated">
+  <div class="section-bg-animated py-16 md:py-24">
     <!-- Floating Orbs Background -->
     <div class="floating-orbs">
       <div class="floating-orbs-center"></div>

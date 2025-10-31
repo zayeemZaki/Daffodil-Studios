@@ -63,13 +63,17 @@
 
       <!-- Action Buttons -->
       <div class="flex items-center space-x-4">
-        <button class="bg-brand-accent text-white px-8 py-3 rounded-full text-lg font-bold hover:from-amber-800 hover:to-orange-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+        <button 
+          @click="handleDonateClick"
+          :disabled="isProcessingDonation"
+          class="bg-brand-accent text-white px-8 py-3 rounded-full text-lg font-bold hover:from-amber-800 hover:to-orange-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+        >
           <span class="flex items-center space-x-2">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 6.5a.5.5 0 11-1 0 .5.5 0 011 0zm-2.5.5a.5.5 0 100 1 .5.5 0 000-1zm6.5.5a.5.5 0 11-1 0 .5.5 0 011 0z" clip-rule="evenodd"/>
             </svg>
-            <span>Donate</span>
+            <span>{{ isProcessingDonation ? 'Processing...' : 'Donate' }}</span>
           </span>
         </button>
         
@@ -89,3 +93,37 @@
     </nav>
   </header>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const isProcessingDonation = ref(false)
+
+// Default donation amount (can be customized)
+const DONATION_AMOUNT = 25
+
+const handleDonateClick = async () => {
+  if (isProcessingDonation.value) return
+  
+  isProcessingDonation.value = true
+  
+  try {
+    const response = await $fetch('/api/stripe/create-donation', {
+      method: 'POST',
+      body: {
+        amount: DONATION_AMOUNT
+      }
+    })
+
+    if (response.url) {
+      // Redirect to Stripe Checkout
+      window.location.href = response.url
+    }
+  } catch (error) {
+    console.error('Donation error:', error)
+    alert('Sorry, there was an error processing your donation. Please try again.')
+  } finally {
+    isProcessingDonation.value = false
+  }
+}
+</script>
