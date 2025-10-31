@@ -25,5 +25,19 @@ export default defineNuxtConfig({
         { name: 'description', content: 'Daffodil Studios Official Website.' }
       ],
     }
+  },
+
+  // Runtime configuration for environment variables
+  runtimeConfig: {
+    // Private keys (only available on server-side)
+    resendApiKey: '',
+    stripeSecretKey: '',
+    // Public keys (available on both client and server)
+    public: {
+      stripePublishableKey: '',
+      siteUrl: process.env.NODE_ENV === 'production' 
+        ? 'https://daffodilstudios.org' 
+        : 'http://localhost:3000'
+    }
   }
 })
