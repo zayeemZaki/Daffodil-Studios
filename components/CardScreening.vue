@@ -1,16 +1,16 @@
 <template>
-  <div class="group glass-card rounded-2xl p-6 hover-lift relative overflow-hidden">
+  <div class="group glass-card rounded-2xl p-4 sm:p-6 hover-lift relative overflow-hidden">
     <!-- Decorative Gradient Orb -->
     <div class="absolute -top-2 -right-2 w-20 h-20 bg-brand-gradient-br rounded-full opacity-10 blur-xl float-animation"></div>
     
-    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-6 relative z-10">
       <!-- Movie Information -->
-      <div class="flex-1 space-y-4">
-        <h3 class="text-2xl font-bold text-white group-hover:text-brand-gradient transition-colors duration-300">
+      <div class="flex-1 space-y-3 sm:space-y-4">
+        <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-brand-gradient transition-colors duration-300">
           {{ movieName }}
         </h3>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-gray-300">
           <!-- Screening Date -->
           <div class="flex items-center space-x-3">
             <div class="w-10 h-10 bg-brand-gradient-br rounded-full flex items-center justify-center flex-shrink-0">
@@ -55,7 +55,7 @@
       </div>
       
       <!-- Buy Ticket Button -->
-      <div class="flex-shrink-0">
+      <div class="flex-shrink-0 w-full lg:w-auto">
         <UiActionButton 
           v-if="ticketUrl && ticketUrl !== 'stripe'"
           :text="buttonText"
@@ -65,17 +65,28 @@
           target="_blank"
           rel="noopener noreferrer"
           size="lg"
-          class="w-full lg:w-auto"
+          class="w-full lg:w-auto min-h-[48px]"
         />
-        <UiActionButton 
+        <button
           v-else
-          :text="isProcessing ? 'Processing...' : buttonText"
           @click="handleBuyTicket"
-          :variant="isDisabled ? 'secondary' : 'gradient'"
           :disabled="isDisabled || isProcessing"
-          size="lg"
-          class="w-full lg:w-auto"
-        />
+          :class="[
+            'w-full lg:w-auto px-6 py-3 rounded-full font-bold text-base sm:text-lg transition-all duration-300 shadow-lg min-h-[48px]',
+            isDisabled ? 'bg-gray-600 text-gray-300 cursor-not-allowed' : 
+            isProcessing ? 'bg-brand-accent/70 text-white cursor-wait' :
+            'bg-brand-accent text-white hover:scale-105 hover:shadow-xl'
+          ]"
+        >
+          <span v-if="isProcessing" class="flex items-center justify-center gap-2">
+            <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Processing...
+          </span>
+          <span v-else>{{ buttonText }}</span>
+        </button>
       </div>
     </div>
   </div>

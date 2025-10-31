@@ -20,10 +20,41 @@ export default defineNuxtConfig({
   // Define app-wide metadata
   app: {
     head: {
-      title: 'Daffodil Studios',
+      title: 'Daffodil Studios - Documentary Filmmaking | Saffron Kingdom',
+      htmlAttrs: {
+        lang: 'en'
+      },
       meta: [
-        { name: 'description', content: 'Daffodil Studios Official Website.' }
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=5' },
+        { name: 'description', content: 'Daffodil Studios creates powerful documentary films exploring untold stories. Watch Saffron Kingdom, our award-winning documentary about Kashmir.' },
+        { name: 'keywords', content: 'Daffodil Studios, Saffron Kingdom, documentary film, Kashmir, independent cinema, film screenings, Arfat Sheikh' },
+        { name: 'author', content: 'Daffodil Studios' },
+        
+        // Open Graph / Facebook
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: 'https://daffodilstudios.org' },
+        { property: 'og:title', content: 'Daffodil Studios - Documentary Filmmaking | Saffron Kingdom' },
+        { property: 'og:description', content: 'Creating powerful documentary films that tell untold stories. Watch Saffron Kingdom, our award-winning documentary about Kashmir.' },
+        { property: 'og:image', content: 'https://daffodilstudios.org/og-image.jpg' },
+        { property: 'og:site_name', content: 'Daffodil Studios' },
+        
+        // Twitter
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:url', content: 'https://daffodilstudios.org' },
+        { name: 'twitter:title', content: 'Daffodil Studios - Documentary Filmmaking' },
+        { name: 'twitter:description', content: 'Creating powerful documentary films that tell untold stories. Watch Saffron Kingdom.' },
+        { name: 'twitter:image', content: 'https://daffodilstudios.org/og-image.jpg' },
+        
+        // Additional
+        { name: 'theme-color', content: '#fbbf24' },
+        { name: 'format-detection', content: 'telephone=no' }
       ],
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/logo.png' },
+        { rel: 'apple-touch-icon', href: '/logo.png' },
+        { rel: 'canonical', href: 'https://daffodilstudios.org' }
+      ]
     }
   },
 

@@ -4,15 +4,15 @@
     <div class="nav-progress" :style="{ width: scrollProgress + '%' }"></div>
     
     <!-- Hero Section with Background Video -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden w-screen ml-[calc(-50vw+50%)] -mt-[120px]">
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden -mt-20 sm:-mt-24 md:-mt-[120px]">
       <!-- Background Video -->
       <video 
         autoplay 
         muted 
         loop 
         playsinline
+        poster="~/assets/images/pages/home/movie-poster.jpg"
         class="absolute inset-0 w-full h-full object-cover object-center blur-sm parallax-element"
-        style="width: 100vw; height: 100vh;"
       >
         <source src="https://res.cloudinary.com/doellzqg2/video/upload/hero-video_1_joqnej.mp4" type="video/mp4">
         <!-- Fallback image if video doesn't load -->
@@ -31,25 +31,25 @@
       </div>
       
       <!-- Hero home-page -->
-      <div class="relative z-10 text-center text-white px-4">
-        <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">
+      <div class="relative z-10 text-center text-white px-4 sm:px-6 py-20">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
           <span class="text-brand-gradient typewriter-text">Daffodil Studios</span>
           <span class="typewriter-cursor">|</span>
         </h1>
-        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-0 fade-in-delay">
+        <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-0 fade-in-delay px-4">
           Where stories come to life through the art of cinema. We create compelling narratives 
           that inspire, entertain, and connect audiences across the globe.
         </p>
-        <div class="space-x-4 opacity-0 fade-in-delay-2">
+        <div class="flex flex-col sm:flex-row gap-4 sm:space-x-4 justify-center opacity-0 fade-in-delay-2 px-4">
           <NuxtLink 
             to="/movies" 
-            class="btn-primary text-white px-8 py-3 rounded-lg text-lg font-semibold"
+            class="btn-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold inline-block text-center min-h-[48px] flex items-center justify-center"
           >
             Saffron Kingdom
           </NuxtLink>
           <NuxtLink 
             to="/about" 
-            class="border-2 border-white hover:bg-white hover:text-black text-white px-8 py-3 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+            class="border-2 border-white hover:bg-white hover:text-black text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 inline-block text-center min-h-[48px] flex items-center justify-center"
           >
             Our Story
           </NuxtLink>

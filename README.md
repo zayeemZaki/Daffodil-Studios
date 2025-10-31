@@ -22,12 +22,21 @@ npm run dev
 
 ### Environment Setup
 
-Create a `.env` file (already exists):
-```
+Create a `.env` file with your API keys:
+```env
+# Email API
 NUXT_RESEND_API_KEY=your_resend_api_key_here
+
+# Stripe Payment Keys
+NUXT_STRIPE_SECRET_KEY=sk_test_your_key_here
+NUXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_key_here
 ```
 
-Get your API key from [Resend.com](https://resend.com)
+Get API keys from:
+- Resend: [resend.com](https://resend.com)
+- Stripe: [dashboard.stripe.com/apikeys](https://dashboard.stripe.com/apikeys)
+
+See [STRIPE_SETUP.md](./STRIPE_SETUP.md) for detailed Stripe integration guide.
 
 ## 📦 Deployment
 
@@ -44,6 +53,7 @@ See [SIMPLE_DEPLOYMENT.md](./SIMPLE_DEPLOYMENT.md) for complete deployment instr
 - **Framework**: Nuxt 3
 - **Styling**: Tailwind CSS
 - **Email**: Resend API
+- **Payments**: Stripe
 - **Hosting**: Vercel (recommended)
 - **Videos**: Cloudinary (recommended)
 
@@ -61,9 +71,11 @@ daffodil-studios/
 
 ## 🎯 Features
 
-- ✅ Film screenings with location filtering
+- ✅ Film screenings with location & country filtering
+- ✅ Stripe payment integration for ticket purchases
+- ✅ Donation button with Stripe
 - ✅ Movies showcase with zigzag layout
-- ✅ Press & media coverage
+- ✅ Press & media coverage (22 articles)
 - ✅ Contact form with email integration
 - ✅ Responsive design
 - ✅ SEO optimized

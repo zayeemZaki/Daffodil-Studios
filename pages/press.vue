@@ -18,53 +18,58 @@
         <div class="container mx-auto px-6">
           <div class="max-w-5xl mx-auto space-y-6">
             <!-- Press Item -->
-            <div 
+            <a 
               v-for="article in pressArticles" 
               :key="article.id"
-              class="glass-card rounded-xl p-6 hover:scale-[1.02] transition-transform duration-300"
+              :href="article.url || '#'"
+              :target="article.url ? '_blank' : '_self'"
+              :rel="article.url ? 'noopener noreferrer' : ''"
+              class="block glass-card rounded-xl overflow-hidden hover:scale-[1.02] transition-all duration-300 group"
+              :class="{ 'cursor-default': !article.url }"
             >
-              <div class="flex flex-col md:flex-row md:items-start gap-4">
-                <!-- Publication Badge -->
-                <div class="flex-shrink-0">
-                  <span class="inline-block px-4 py-2 bg-brand-accent rounded-lg text-sm font-semibold whitespace-nowrap">
-                    {{ article.publication }}
-                  </span>
+              <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6">
+                <!-- Preview Image with fallback -->
+                <div class="flex-shrink-0 w-full sm:w-40 md:w-48 h-40 sm:h-32 md:h-48 bg-gradient-to-br from-brand-primary to-brand-accent rounded-lg overflow-hidden relative shadow-xl group-hover:shadow-2xl transition-shadow flex items-center justify-center">
+                  <!-- Screenshot preview using API -->
+                  <img 
+                    v-if="article.url"
+                    :src="`https://api.microlink.io/?url=${encodeURIComponent(article.url)}&screenshot=true&meta=false&embed=screenshot.url`"
+                    :alt="`Preview of ${article.title}`"
+                    class="w-full h-full object-cover absolute inset-0 z-10"
+                    loading="lazy"
+                  />
+                  <!-- Fallback text shown behind image (visible only if image fails to load) -->
+                  <span class="text-base sm:text-lg font-bold text-gray-900 text-center leading-tight p-3 sm:p-4 z-0">{{ article.publication }}</span>
                 </div>
                 
                 <!-- Content -->
-                <div class="flex-grow">
-                  <h3 class="text-xl font-bold text-white mb-2 hover:text-brand-gradient transition-colors">
-                    <a 
-                      v-if="article.url" 
-                      :href="article.url" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      class="hover:underline"
-                    >
-                      {{ article.title }}
-                    </a>
-                    <span v-else>{{ article.title }}</span>
+                <div class="flex-grow min-w-0">
+                  <!-- Publication Badge -->
+                  <span class="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-brand-accent rounded-lg text-xs sm:text-sm font-semibold mb-2 sm:mb-3">
+                    {{ article.publication }}
+                  </span>
+                  
+                  <h3 class="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-brand-gradient transition-colors line-clamp-2">
+                    {{ article.title }}
                   </h3>
-                  <p class="text-gray-300 leading-relaxed">
+                  
+                  <p class="text-sm sm:text-base text-gray-300 leading-relaxed line-clamp-2 sm:line-clamp-3 mb-3 sm:mb-4">
                     {{ article.description }}
                   </p>
                   
                   <!-- Read More Link -->
-                  <a 
+                  <div 
                     v-if="article.url"
-                    :href="article.url" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2 mt-3 text-brand-gradient hover:text-yellow-400 transition-colors font-semibold text-sm"
+                    class="inline-flex items-center gap-2 text-brand-gradient group-hover:text-yellow-400 transition-colors font-semibold text-sm"
                   >
-                    Read Article
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {{ article.url?.includes('youtube.com') || article.url?.includes('spotify.com') || article.url?.includes('apple.com') ? 'Watch/Listen' : 'Read Article' }}
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                     </svg>
-                  </a>
+                  </div>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </section>
@@ -79,6 +84,7 @@ interface PressArticle {
   title: string
   description: string
   url?: string
+  image?: string
 }
 
 const pressArticles: PressArticle[] = [
