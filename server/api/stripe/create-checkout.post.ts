@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
         }
       ],
       mode: 'payment',
-      success_url: `${body.successUrl || config.public.siteUrl}/screenings?success=true&session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${body.successUrl || config.public.siteUrl}/success?type=ticket&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${body.cancelUrl || config.public.siteUrl}/screenings?canceled=true`,
       metadata: {
         screeningId: body.screeningId.toString(),

@@ -48,7 +48,7 @@ export default defineEventHandler(async (event) => {
         }
       ],
       mode: 'payment',
-      success_url: `${body.successUrl || config.public.siteUrl}/?donation_success=true&session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${body.successUrl || config.public.siteUrl}/success?type=donation&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${body.cancelUrl || config.public.siteUrl}/?donation_canceled=true`,
       metadata: {
         type: 'donation',
