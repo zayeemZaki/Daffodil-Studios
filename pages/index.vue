@@ -10,10 +10,11 @@
         autoplay 
         muted 
         loop 
+        playsinline
         class="absolute inset-0 w-full h-full object-cover object-center blur-sm parallax-element"
         style="width: 100vw; height: 100vh;"
       >
-        <source src="~/assets/images/pages/home/hero-video.mov" type="video/mp4">
+        <source src="https://res.cloudinary.com/doellzqg2/video/upload/hero-video_1_joqnej.mp4" type="video/mp4">
         <!-- Fallback image if video doesn't load -->
         <img src="~/assets/images/pages/home/movie-poster.jpg" alt="Daffodil Studios" class="w-full h-full object-cover object-center">
       </video>

@@ -3,7 +3,7 @@
     <!-- Background Pattern -->
     <UiBackgroundPattern>
       <!-- Hero Section -->
-      <section class="relative pt-16 pb-16">
+      <section class="relative pb-16">
         <div class="container mx-auto px-6">
           <UiSectionHeader 
             title="Press & Media Coverage" 

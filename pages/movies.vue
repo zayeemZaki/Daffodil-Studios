@@ -3,7 +3,7 @@
     <!-- Background Pattern -->
     <UiBackgroundPattern>
       <!-- Hero Section -->
-      <section class="relative pt-16 pb-16">
+      <section class="relative pb-16">
         <div class="container mx-auto px-6">
           <UiSectionHeader 
             title="Our Films" 
@@ -33,15 +33,14 @@
                 >
                   <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl" :style="movie.videoSrc ? 'pointer-events: auto;' : ''">
                     <!-- Video Player -->
-                    <video 
+                    <iframe
                       v-if="movie.videoSrc"
-                      controls
+                      src="https://www.youtube.com/embed/Mcz-Ke_W4ow?rel=0&modestbranding=1"
                       class="w-full h-full object-cover"
-                      style="pointer-events: auto;"
-                    >
-                      <source src="~/assets/images/pages/home/hero-video.mov" type="video/mp4">
-                      Your browser does not support the video tag.
-                    </video>
+                      frameborder="0"
+                      allow="autoplay; encrypted-media"
+                      allowfullscreen
+                    ></iframe>
                     
                     <!-- Image -->
                     <img 
@@ -146,7 +145,7 @@ const movies: Movie[] = [
     year: "2025",
     tags: ["Documentary", "Kashmir"],
     badge: "Documentary",
-    videoSrc: "~/assets/images/pages/home/hero-video.mov",
+    videoSrc: "https://www.youtube.com/embed/Mcz-Ke_W4ow",
     videoPoster: "~/assets/images/pages/home/movie-poster.jpg",
     buttonText: "Find Screenings",
     buttonAction: "/screenings",
