@@ -90,7 +90,7 @@ interface PressArticle {
 const pressArticles: PressArticle[] = [
   {
     id: 1,
-    publication: "BBC Urdu",
+    publication: "BBC",
     title: "'Saffron Kingdom': Filmmaker talks about why he couldn't cast Kashmiris in his film",
     description: "An Urdu-language interview with Saffron Kingdom director Arfat Sheikh with the BBC discussing the process of making the film as well as its impact.",
     url: "https://www.youtube.com/watch?v=BBWLEyzuMbU"
