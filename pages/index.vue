@@ -7,12 +7,16 @@
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden -mt-20 sm:-mt-24 md:-mt-[120px]">
       <!-- Background Video -->
       <video 
+        ref="heroVideo"
         autoplay 
         muted 
         loop 
         playsinline
+        preload="auto"
         poster="~/assets/images/pages/home/movie-poster.jpg"
         class="absolute inset-0 w-full h-full object-cover object-center blur-sm parallax-element"
+        style="will-change: transform;"
+        @loadeddata="onVideoLoaded"
       >
         <source src="https://res.cloudinary.com/doellzqg2/video/upload/hero-video_1_joqnej.mp4" type="video/mp4">
         <!-- Fallback image if video doesn't load -->
@@ -149,12 +153,14 @@
             </UiActionButton>
             <UiActionButton 
               text="Watch Trailer"
+              to="/movies"
               variant="outline"
               size="lg"
             >
               <template #icon-left>
                 <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h8m-9 3V7a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 01-2 2H9a2 2 0 01-2-2z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </template>
             </UiActionButton>
@@ -332,6 +338,8 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const scrollProgress = ref(0)
 const isScrolling = ref(true)
+const heroVideo = ref(null)
+const videoLoaded = ref(false)
 
 const updateScrollProgress = () => {
   const scrollTop = window.pageYOffset
@@ -345,6 +353,16 @@ const toggleScrolling = () => {
   const scrollElement = document.querySelector('.animate-scroll')
   if (scrollElement) {
     scrollElement.style.animationPlayState = isScrolling.value ? 'running' : 'paused'
+  }
+}
+
+const onVideoLoaded = () => {
+  videoLoaded.value = true
+  // Ensure video plays smoothly
+  if (heroVideo.value) {
+    heroVideo.value.play().catch(() => {
+      // Autoplay was prevented, video will show poster instead
+    })
   }
 }
 
@@ -374,11 +392,16 @@ const scrollToSection = (sectionId) => {
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', updateScrollProgress)
+  window.addEventListener('scroll', updateScrollProgress, { passive: true })
   updateScrollProgress()
   
   // Add intersection observer for scroll animations
   setTimeout(observeElements, 100)
+  
+  // Ensure video is ready
+  if (heroVideo.value && heroVideo.value.readyState >= 3) {
+    onVideoLoaded()
+  }
 })
 
 onUnmounted(() => {

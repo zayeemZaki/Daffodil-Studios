@@ -26,6 +26,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+
 interface Props {
   text: string
   variant?: 'primary' | 'secondary' | 'gradient' | 'outline'
@@ -49,7 +51,7 @@ const emit = defineEmits<{
 }>()
 
 const tag = computed(() => {
-  if (props.to) return 'NuxtLink'
+  if (props.to) return resolveComponent('NuxtLink')
   if (props.href) return 'a'
   return 'button'
 })
