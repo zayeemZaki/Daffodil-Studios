@@ -101,11 +101,8 @@
               >
                 <!-- Header -->
                 <div class="text-center mb-8">
-                  <div class="w-16 h-16 bg-brand-gradient-br rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16z" clip-rule="evenodd"/>
-                    </svg>
+                  <div class="w-20 h-20 bg-brand-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg border-4 border-brand-accent">
+                    <img src="~/public/logo.webp" alt="Daffodil Studios" class="w-16 h-16 object-contain">
                   </div>
                   <h3 class="text-3xl font-bold text-gray-900 mb-2">Support Our Mission</h3>
                   <p class="text-gray-600">Choose an amount to donate</p>
@@ -167,12 +164,6 @@
             </div>
           </Transition>
         </div>
-        
-        <button class="text-gray-900 hover:text-gray-700 p-2 rounded-full hover:bg-yellow-400 hover:bg-opacity-30 transition-all duration-300 transform hover:scale-110">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-        </button>
 
         <!-- Mobile Menu Button -->
         <button class="md:hidden text-gray-900 hover:text-gray-700 p-2 rounded-full hover:bg-yellow-400 hover:bg-opacity-30 transition-all duration-300">
