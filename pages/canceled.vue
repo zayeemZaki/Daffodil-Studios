@@ -125,9 +125,22 @@ const route = useRoute()
 const router = useRouter()
 const isTicket = ref(false)
 
+// Set page metadata
+useHead({
+  title: 'Payment Canceled - Daffodil Studios',
+  meta: [
+    { name: 'robots', content: 'noindex, nofollow' }
+  ]
+})
+
 onMounted(() => {
   // Check if this is a ticket purchase or donation
-  isTicket.value = route.query.type === 'ticket' || route.path.includes('ticket')
+  isTicket.value = route.query.type === 'ticket'
+  
+  // Optional: Log canceled transaction (you can send this to analytics)
+  console.log('Transaction canceled:', {
+    type: isTicket.value ? 'ticket' : 'donation'
+  })
 })
 
 const showDonateModal = () => {

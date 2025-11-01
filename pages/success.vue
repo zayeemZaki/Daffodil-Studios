@@ -128,18 +128,32 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const sessionId = ref('')
 const isTicket = ref(false)
 
+// Set page metadata
+useHead({
+  title: 'Payment Successful - Daffodil Studios',
+  meta: [
+    { name: 'robots', content: 'noindex, nofollow' }
+  ]
+})
+
 onMounted(() => {
   // Get session ID from URL query params
   sessionId.value = route.query.session_id as string || ''
   
   // Check if this is a ticket purchase or donation based on URL or query param
-  isTicket.value = route.query.type === 'ticket' || route.path.includes('ticket')
+  isTicket.value = route.query.type === 'ticket'
+  
+  // Optional: Log successful transaction (you can send this to analytics)
+  console.log('Transaction successful:', {
+    sessionId: sessionId.value,
+    type: isTicket.value ? 'ticket' : 'donation'
+  })
 })
 </script>

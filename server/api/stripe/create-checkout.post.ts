@@ -18,6 +18,9 @@ export default defineEventHandler(async (event) => {
       apiVersion: '2025-10-29.clover'
     })
 
+    // Get the origin from the request headers for proper URL construction
+    const origin = getRequestHeader(event, 'origin') || config.public.siteUrl
+    
     // Create Checkout Session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -40,8 +43,8 @@ export default defineEventHandler(async (event) => {
         }
       ],
       mode: 'payment',
-      success_url: `${body.successUrl || config.public.siteUrl}/success?type=ticket&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${body.cancelUrl || config.public.siteUrl}/canceled?type=ticket`,
+      success_url: `${origin}/success?type=ticket&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/canceled?type=ticket`,
       metadata: {
         screeningId: body.screeningId.toString(),
         type: 'ticket_purchase'
