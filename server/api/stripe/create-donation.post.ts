@@ -53,6 +53,13 @@ export default defineEventHandler(async (event) => {
       mode: 'payment',
       success_url: `${origin}/success?type=donation&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/canceled?type=donation`,
+      // Collect customer email for receipt
+      customer_email: body.email || undefined,
+      billing_address_collection: 'auto',
+      // Enable Stripe to send receipt emails automatically
+      payment_intent_data: {
+        receipt_email: body.email || undefined
+      },
       metadata: {
         type: 'donation',
         amount: body.amount.toString()

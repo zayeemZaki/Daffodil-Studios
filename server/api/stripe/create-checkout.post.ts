@@ -45,6 +45,13 @@ export default defineEventHandler(async (event) => {
       mode: 'payment',
       success_url: `${origin}/success?type=ticket&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/canceled?type=ticket`,
+      // Collect customer email for receipt and tickets
+      customer_email: body.email || undefined,
+      billing_address_collection: 'auto',
+      // Enable Stripe to send receipt emails automatically
+      payment_intent_data: {
+        receipt_email: body.email || undefined
+      },
       metadata: {
         screeningId: body.screeningId.toString(),
         type: 'ticket_purchase'
