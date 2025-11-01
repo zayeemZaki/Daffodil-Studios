@@ -127,7 +127,7 @@
                 </div>
                 
                 <!-- Custom Amount -->
-                <div class="mb-6 sm:mb-8">
+                <div class="mb-4 sm:mb-6">
                   <label class="block text-sm font-bold text-gray-700 mb-2 sm:mb-3">
                     Or enter a custom amount
                   </label>
@@ -145,6 +145,21 @@
                   <p class="text-xs text-gray-500 mt-2">Minimum donation: $1</p>
                 </div>
                 
+                <!-- Email Address -->
+                <div class="mb-6 sm:mb-8">
+                  <label class="block text-sm font-bold text-gray-700 mb-2 sm:mb-3">
+                    Email Address (for receipt)
+                  </label>
+                  <input
+                    v-model="donorEmail"
+                    type="email"
+                    placeholder="your@email.com"
+                    required
+                    class="w-full px-3 sm:px-4 py-3 sm:py-4 border-2 border-gray-300 rounded-xl focus:border-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent/20 text-gray-900 text-base sm:text-lg transition-all min-h-[48px]"
+                  >
+                  <p class="text-xs text-gray-500 mt-2">You'll receive a receipt from Stripe after your donation</p>
+                </div>
+                
                 <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <button
@@ -155,7 +170,7 @@
                   </button>
                   <button
                     @click="processDonation"
-                    :disabled="!selectedAmount && !customAmount"
+                    :disabled="(!selectedAmount && !customAmount) || !donorEmail"
                     class="flex-1 py-3 sm:py-4 px-4 sm:px-6 bg-brand-accent text-white rounded-full font-bold hover:scale-105 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 min-h-[48px]"
                   >
                     Donate ${{ customAmount || selectedAmount || 0 }}
@@ -252,6 +267,7 @@ const showDonationModal = ref(false)
 const showMobileMenu = ref(false)
 const selectedAmount = ref<number | null>(25)
 const customAmount = ref('')
+const donorEmail = ref('')
 
 // Preset donation amounts
 const presetAmounts = [10, 25, 50, 100, 250, 500]
@@ -264,13 +280,21 @@ const processDonation = async () => {
     return
   }
   
+  if (!donorEmail.value || !donorEmail.value.includes('@')) {
+    alert('Please enter a valid email address to receive your receipt')
+    return
+  }
+  
   isProcessingDonation.value = true
   showDonationModal.value = false
   
   try {
     const response = await $fetch('/api/stripe/create-donation', {
       method: 'POST',
-      body: { amount }
+      body: { 
+        amount,
+        email: donorEmail.value
+      }
     })
 
     if (response.url) {
@@ -280,6 +304,7 @@ const processDonation = async () => {
   } catch (error) {
     console.error('Donation error:', error)
     alert('Sorry, there was an error processing your donation. Please try again.')
+    showDonationModal.value = true
   } finally {
     isProcessingDonation.value = false
   }
