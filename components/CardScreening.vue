@@ -7,7 +7,7 @@
       <!-- Movie Information -->
       <div class="flex-1 space-y-3 sm:space-y-4">
         <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-brand-gradient transition-colors duration-300">
-          {{ movieName }}
+          {{ displayTitle }}
         </h3>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-gray-300">
@@ -119,6 +119,38 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const isProcessing = ref(false)
+
+// Generate display title based on location
+// For USA: City, State
+// For other countries: State/Region, Country
+const displayTitle = computed(() => {
+  // Extract city and state/region from location string
+  // Location format is typically: "Venue Name, City, State" or "Venue Name, City"
+  const locationParts = props.location.split(',').map(part => part.trim())
+  
+  if (props.country === 'United States') {
+    // For USA, show City, State
+    if (locationParts.length >= 3) {
+      // Format: "Venue, City, State" -> "City, State"
+      const city = locationParts[locationParts.length - 2]
+      const state = locationParts[locationParts.length - 1]
+      return `${city}, ${state}`
+    } else if (locationParts.length === 2) {
+      // Format: "Venue, City" -> just show the city part
+      return locationParts[locationParts.length - 1]
+    }
+  } else {
+    // For other countries, show State/Region, Country
+    if (locationParts.length >= 2) {
+      // Get the state/region (last part of location)
+      const region = locationParts[locationParts.length - 1]
+      return `${region}, ${props.country}`
+    }
+    return props.country || props.location
+  }
+  
+  return props.location
+})
 
 // Format the date for display
 const formattedDate = computed(() => {

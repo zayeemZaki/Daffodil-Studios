@@ -207,17 +207,27 @@ const allScreenings = ref([
   {
     id: 9,
     movieName: "Saffron Kingdom",
-    date: "2025-11-16",
-    time: "7:00 PM",
-    location: "AMC River East 21, Chicago, IL",
+    date: "2025-11-09",
+    time: "3:00 PM",
+    location: "Teaneck Cinemas, Teaneck, NJ",
     country: "United States",
-    ticketUrl: "stripe",
-    ticketPrice: 20,
-    buttonText: "Buy Tickets - $20",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
     isDisabled: false
   },
   {
     id: 10,
+    movieName: "Saffron Kingdom",
+    date: "2025-11-16",
+    time: "3:00 PM",
+    location: "The Nightlight Cinema, Akron, OH",
+    country: "United States",
+    ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 11,
     movieName: "Saffron Kingdom",
     date: "2025-08-31",
     time: "",
@@ -228,7 +238,7 @@ const allScreenings = ref([
     isDisabled: false
   },
   {
-    id: 11,
+    id: 12,
     movieName: "Saffron Kingdom",
     date: "2025-09-13",
     time: "",
@@ -239,7 +249,7 @@ const allScreenings = ref([
     isDisabled: false
   },
   {
-    id: 12,
+    id: 13,
     movieName: "Saffron Kingdom",
     date: "2025-10-19",
     time: "",
@@ -251,7 +261,7 @@ const allScreenings = ref([
   },
   // United Kingdom
   {
-    id: 13,
+    id: 14,
     movieName: "Saffron Kingdom",
     date: "2025-09-20",
     time: "",
@@ -262,7 +272,7 @@ const allScreenings = ref([
     isDisabled: false
   },
   {
-    id: 14,
+    id: 15,
     movieName: "Saffron Kingdom",
     date: "2025-10-04",
     time: "",
@@ -274,7 +284,7 @@ const allScreenings = ref([
   },
   // Australia
   {
-    id: 15,
+    id: 16,
     movieName: "Saffron Kingdom",
     date: "2025-08-06",
     time: "",
@@ -285,7 +295,7 @@ const allScreenings = ref([
     isDisabled: false
   },
   {
-    id: 16,
+    id: 17,
     movieName: "Saffron Kingdom",
     date: "2025-08-09",
     time: "",
@@ -296,7 +306,7 @@ const allScreenings = ref([
     isDisabled: false
   },
   {
-    id: 17,
+    id: 18,
     movieName: "Saffron Kingdom",
     date: "2025-08-09",
     time: "",
@@ -307,7 +317,7 @@ const allScreenings = ref([
     isDisabled: false
   },
   {
-    id: 18,
+    id: 19,
     movieName: "Saffron Kingdom",
     date: "2025-08-15",
     time: "",
@@ -318,7 +328,7 @@ const allScreenings = ref([
     isDisabled: false
   },
   {
-    id: 19,
+    id: 20,
     movieName: "Saffron Kingdom",
     date: "2025-08-23",
     time: "",
@@ -329,7 +339,7 @@ const allScreenings = ref([
     isDisabled: false
   },
   {
-    id: 20,
+    id: 21,
     movieName: "Saffron Kingdom",
     date: "2025-10-05",
     time: "",
@@ -340,7 +350,7 @@ const allScreenings = ref([
     isDisabled: false
   },
   {
-    id: 21,
+    id: 22,
     movieName: "Saffron Kingdom",
     date: "2025-10-18",
     time: "",
@@ -352,7 +362,7 @@ const allScreenings = ref([
   },
   // New Zealand
   {
-    id: 22,
+    id: 23,
     movieName: "Saffron Kingdom",
     date: "2025-08-08",
     time: "",
@@ -363,7 +373,7 @@ const allScreenings = ref([
     isDisabled: false
   },
   {
-    id: 23,
+    id: 24,
     movieName: "Saffron Kingdom",
     date: "2025-08-09",
     time: "",
@@ -374,7 +384,7 @@ const allScreenings = ref([
     isDisabled: false
   },
   {
-    id: 24,
+    id: 25,
     movieName: "Saffron Kingdom",
     date: "2025-08-09",
     time: "",
@@ -385,7 +395,7 @@ const allScreenings = ref([
     isDisabled: false
   },
   {
-    id: 25,
+    id: 26,
     movieName: "Saffron Kingdom",
     date: "2025-09-06",
     time: "",
@@ -397,7 +407,7 @@ const allScreenings = ref([
   },
   // Canada
   {
-    id: 26,
+    id: 27,
     movieName: "Saffron Kingdom",
     date: "2025-10-28",
     time: "",

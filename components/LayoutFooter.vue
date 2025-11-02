@@ -49,7 +49,7 @@
               <span class="font-semibold">Email:</span> contact@daffodilstudios.org
             </p>
             <p class="text-gray-800 text-sm sm:text-lg">
-              <span class="font-semibold">Phone:</span> +1 (703) 387-8287
+              <span class="font-semibold">Phone:</span> +1 (703) 879-4555
             </p>
             <div class="flex justify-center md:justify-end space-x-3 sm:space-x-4 mt-3 sm:mt-4">
               <a href="https://www.linkedin.com/company/daffodil-studios" target="_blank" rel="noopener noreferrer" class="text-gray-800 hover:text-gray-600 transform hover:scale-110 transition-all duration-300 p-2 rounded-full hover:bg-yellow-400 hover:bg-opacity-20 inline-block min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="LinkedIn">
