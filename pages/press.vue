@@ -30,16 +30,25 @@
               <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 sm:p-6">
                 <!-- Preview Image with fallback -->
                 <div class="flex-shrink-0 w-full sm:w-40 md:w-48 h-40 sm:h-32 md:h-48 bg-gradient-to-br from-brand-primary to-brand-accent rounded-lg overflow-hidden relative shadow-xl group-hover:shadow-2xl transition-shadow flex items-center justify-center">
-                  <!-- Screenshot preview using API -->
+                  <!-- Custom image if available, otherwise use screenshot API -->
                   <img 
-                    v-if="article.url"
+                    v-if="getCustomPreviewImage(article.id)"
+                    :src="getCustomPreviewImage(article.id)!"
+                    :alt="`Preview of ${article.title}`"
+                    class="w-full h-full object-cover absolute inset-0 z-10"
+                    loading="lazy"
+                    @error="(e) => (e.target as HTMLImageElement).style.display = 'none'"
+                  />
+                  <img 
+                    v-else-if="article.url"
                     :src="`https://api.microlink.io/?url=${encodeURIComponent(article.url)}&screenshot=true&meta=false&embed=screenshot.url`"
                     :alt="`Preview of ${article.title}`"
                     class="w-full h-full object-cover absolute inset-0 z-10"
                     loading="lazy"
+                    @error="(e) => (e.target as HTMLImageElement).style.display = 'none'"
                   />
                   <!-- Fallback text shown behind image (visible only if image fails to load) -->
-                  <span class="text-base sm:text-lg font-bold text-gray-900 text-center leading-tight p-3 sm:p-4 z-0">{{ article.publication }}</span>
+                  <span class="text-base sm:text-lg font-bold text-white text-center leading-tight p-3 sm:p-4 z-0">{{ article.publication }}</span>
                 </div>
                 
                 <!-- Content -->
@@ -78,6 +87,10 @@
 </template>
 
 <script setup lang="ts">
+// Import custom thumbnails from assets
+import bbcUrduThumb from '@/assets/images/pages/press/bbc-urdu-thumbnail.jpeg'
+import asianSundayThumb from '@/assets/images/pages/press/asian-sunday-thumbnail.jpeg'
+
 interface PressArticle {
   id: number
   publication: string
@@ -85,6 +98,15 @@ interface PressArticle {
   description: string
   url?: string
   image?: string
+}
+
+// Helper function to get custom preview image for specific articles
+const getCustomPreviewImage = (articleId: number): string | null => {
+  const customImages: Record<number, string> = {
+    1: bbcUrduThumb, // BBC Urdu
+    5: asianSundayThumb // Asian Sunday
+  }
+  return customImages[articleId] || null
 }
 
 const pressArticles: PressArticle[] = [
