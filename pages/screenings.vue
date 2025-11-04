@@ -211,7 +211,7 @@ const allScreenings = ref([
     time: "3:00 PM",
     location: "Teaneck Cinemas, Teaneck, NJ",
     country: "United States",
-    ticketUrl: "",
+    ticketUrl: "https://www.eventbrite.com/e/teaneck-international-film-festival-2025-tickets-1689684946159",
     buttonText: "Buy Tickets",
     isDisabled: false
   },
@@ -222,7 +222,7 @@ const allScreenings = ref([
     time: "3:00 PM",
     location: "The Nightlight Cinema, Akron, OH",
     country: "United States",
-    ticketUrl: "",
+    ticketUrl: "https://nightlightcinema.com/movie/saffron-kingdom",
     buttonText: "Buy Tickets",
     isDisabled: false
   },
