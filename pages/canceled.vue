@@ -58,7 +58,7 @@
 
           <!-- Help Text -->
           <p class="text-gray-400 mb-8">
-            Need help? Contact us at <a href="mailto:contact@daffodilstudios.org" class="text-brand-accent hover:text-yellow-400">contact@daffodilstudios.org</a>
+            Need help? Contact us at <a href="mailto:contact@daffodilstudios.org" class="text-brand-accent hover:text-gray-400">contact@daffodilstudios.org</a>
           </p>
 
           <!-- Action Buttons -->
@@ -87,25 +87,25 @@
 
           <!-- Alternative Options -->
           <div class="mt-8 pt-8 border-t border-white/10">
-            <p class="text-gray-400 mb-4">Or explore:</p>
-            <div class="flex flex-wrap gap-3 justify-center">
+            <p class="text-gray-400 mb-3">Or explore:</p>
+            <div class="flex flex-wrap gap-2 justify-center">
               <NuxtLink 
                 to="/screenings"
-                class="text-brand-accent hover:text-yellow-400 transition-colors font-semibold"
+                class="text-gray-400 hover:text-white transition-colors font-semibold text-sm"
               >
                 View All Screenings
               </NuxtLink>
               <span class="text-gray-600">•</span>
               <NuxtLink 
                 to="/movies"
-                class="text-brand-accent hover:text-yellow-400 transition-colors font-semibold"
+                class="text-gray-400 hover:text-white transition-colors font-semibold text-sm"
               >
                 Our Films
               </NuxtLink>
               <span class="text-gray-600">•</span>
               <NuxtLink 
                 to="/about"
-                class="text-brand-accent hover:text-yellow-400 transition-colors font-semibold"
+                class="text-gray-400 hover:text-white transition-colors font-semibold text-sm"
               >
                 About Us
               </NuxtLink>

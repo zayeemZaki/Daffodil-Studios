@@ -56,7 +56,7 @@ export default defineNuxtConfig({
         { name: 'twitter:image', content: 'https://daffodilstudios.org/og-image.jpg' },
         
         // Additional
-        { name: 'theme-color', content: '#fbbf24' },
+        { name: 'theme-color', content: '#4b5563' },
         { name: 'format-detection', content: 'telephone=no' }
       ]
     }

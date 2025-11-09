@@ -1,7 +1,8 @@
 <template>
   <div class="glass-card rounded-2xl p-6 relative" style="overflow: visible !important;">
-    <!-- Decorative Background -->
-    <div class="absolute -top-4 -right-4 w-32 h-32 bg-brand-gradient-br rounded-full opacity-5 blur-3xl"></div>
+    <!-- Decorative Background - Yellow Theme -->
+    <div class="absolute -top-4 -right-4 w-32 h-32 bg-gradient-to-br from-brand-yellow/15 to-brand-yellow-light/10 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-gradient-to-tr from-brand-yellow-dark/10 to-brand-yellow/8 rounded-full blur-2xl"></div>
     
     <div class="relative z-10" style="overflow: visible !important;">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6" style="overflow: visible !important;">
@@ -21,14 +22,14 @@
               @focus="openLocationDropdown"
               @input="onInputChange"
               :placeholder="getSearchPlaceholder()"
-              class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 pr-12 text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300"
+              class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-3 pr-10 text-white placeholder-gray-400 focus:ring-2 focus:ring-brand-yellow/50 focus:border-brand-yellow transition-all duration-300 text-sm"
             >
             <button
               @click="toggleLocationDropdown"
               class="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 hover:bg-white/10 rounded-lg transition-colors"
             >
               <svg 
-                class="w-5 h-5 text-gray-400 hover:text-yellow-400 transition-all duration-300" 
+                class="w-4 h-4 text-gray-400 hover:text-gray-300 transition-all duration-300" 
                 :class="{ 'rotate-180': showLocationDropdown }"
                 fill="none" 
                 stroke="currentColor" 
@@ -56,13 +57,13 @@
                       type="checkbox"
                       :value="location"
                       v-model="filters.selectedLocations"
-                      class="h-4 w-4 text-yellow-500 focus:ring-yellow-500 border-gray-300 rounded bg-white/20 border-white/30"
+                      class="h-4 w-4 text-gray-500 focus:ring-gray-500 border-gray-300 rounded bg-white/20 border-white/30"
                     >
                     <div 
                       v-if="filters.selectedLocations.includes(location)"
                       class="absolute inset-0 flex items-center justify-center pointer-events-none"
                     >
-                      <svg class="w-3 h-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg class="w-3 h-3 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                       </svg>
                     </div>
@@ -84,10 +85,10 @@
               </div>
               
               <!-- Clear location filters -->
-              <div v-if="filters.selectedLocations.length > 0" class="p-4 border-t border-white/10">
+              <div v-if="filters.selectedLocations.length > 0" class="p-3 border-t border-white/10">
                 <button
                   @click="clearLocationFilters"
-                  class="w-full text-sm text-yellow-400 hover:text-yellow-300 transition-colors flex items-center justify-center space-x-1"
+                  class="w-full text-xs text-gray-400 hover:text-gray-300 transition-colors flex items-center justify-center space-x-1"
                 >
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
@@ -108,7 +109,7 @@
           <div class="relative">
             <select
               v-model="filters.sortByDate"
-              class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 text-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 appearance-none cursor-pointer hover:bg-white/15"
+              class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-3 text-white focus:ring-2 focus:ring-brand-yellow/50 focus:border-brand-yellow transition-all duration-300 appearance-none cursor-pointer hover:bg-white/15 text-sm"
             >
               <option value="none" class="bg-gray-800 text-white">Default Order</option>
               <option value="asc" class="bg-gray-800 text-white">Earliest First</option>
@@ -124,10 +125,10 @@
       </div>
       
       <!-- Clear All Filters -->
-      <div v-if="hasActiveFilters" class="flex justify-center mt-6">
+      <div v-if="hasActiveFilters" class="flex justify-center mt-5">
         <button
           @click="clearFilters"
-          class="text-sm text-yellow-400 hover:text-yellow-300 transition-colors flex items-center space-x-1"
+          class="text-xs text-gray-400 hover:text-gray-300 transition-colors flex items-center space-x-1"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>

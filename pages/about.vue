@@ -56,7 +56,7 @@
                     v-model="formData.name"
                     type="text"
                     required
-                    class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300"
+                    class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 text-white placeholder-gray-400 focus:ring-2 focus:ring-brand-yellow/50 focus:border-brand-yellow transition-all duration-300"
                     placeholder="Your name"
                   >
                 </div>
@@ -71,7 +71,7 @@
                     v-model="formData.email"
                     type="email"
                     required
-                    class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300"
+                    class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 text-white placeholder-gray-400 focus:ring-2 focus:ring-brand-yellow/50 focus:border-brand-yellow transition-all duration-300"
                     placeholder="your.email@example.com"
                   >
                 </div>
@@ -85,7 +85,7 @@
                     id="subject"
                     v-model="formData.subject"
                     required
-                    class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 text-white focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 appearance-none cursor-pointer"
+                    class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 text-white focus:ring-2 focus:ring-brand-yellow/50 focus:border-brand-yellow transition-all duration-300 appearance-none cursor-pointer"
                   >
                     <option value="" disabled class="bg-gray-800">Select a subject</option>
                     <option value="screening-request" class="bg-gray-800">Request a Screening</option>
@@ -105,7 +105,7 @@
                     id="organization"
                     v-model="formData.organization"
                     type="text"
-                    class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300"
+                    class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 text-white placeholder-gray-400 focus:ring-2 focus:ring-brand-yellow/50 focus:border-brand-yellow transition-all duration-300"
                     placeholder="Your organization or venue name"
                   >
                 </div>
@@ -120,7 +120,7 @@
                     v-model="formData.message"
                     required
                     rows="6"
-                    class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 resize-none"
+                    class="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 text-white placeholder-gray-400 focus:ring-2 focus:ring-brand-yellow/50 focus:border-brand-yellow transition-all duration-300 resize-none"
                     placeholder="Tell us about your screening request or inquiry..."
                   ></textarea>
                 </div>
@@ -130,7 +130,7 @@
                   <button
                     type="submit"
                     :disabled="isSubmitting"
-                    class="bg-brand-accent text-white px-12 py-4 rounded-full text-lg font-bold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                    class="bg-gradient-to-br from-brand-yellow via-brand-yellow-light to-brand-yellow text-gray-900 px-12 py-4 rounded-full text-lg font-bold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-glow-yellow disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {{ isSubmitting ? 'Sending...' : 'Send Message' }}
                   </button>
@@ -149,7 +149,7 @@
             <div class="text-center mt-12">
               <p class="text-gray-300 text-lg">
                 Or email us directly at 
-                <a href="mailto:contact@daffodilstudios.org" class="text-brand-gradient hover:text-yellow-400 transition-colors font-semibold">
+                <a href="mailto:contact@daffodilstudios.org" class="text-brand-yellow hover:text-brand-yellow-light transition-colors font-bold">
                   contact@daffodilstudios.org
                 </a>
               </p>

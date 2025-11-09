@@ -23,37 +23,42 @@
         <img src="~/assets/images/pages/home/movie-poster.jpg" alt="Daffodil Studios" class="w-full h-full object-cover object-center">
       </video>
       
-      <!-- Overlay -->
-      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+      <!-- Cinematic Overlay with Warm Grade -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
+      
+      <!-- Film Grain Texture -->
+      <div class="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" 
+           style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');"></div>
       
       <!-- Floating particles -->
       <div class="absolute inset-0 overflow-hidden">
-        <div class="absolute top-20 left-20 w-2 h-2 bg-yellow-400/30 rounded-full float-animation"></div>
-        <div class="absolute top-40 right-32 w-1 h-1 bg-amber-300/40 rounded-full float-animation delay-2s"></div>
-        <div class="absolute bottom-32 left-1/4 w-1.5 h-1.5 bg-orange-400/20 rounded-full float-animation delay-4s"></div>
-        <div class="absolute top-1/3 right-1/4 w-1 h-1 bg-yellow-300/50 rounded-full float-animation delay-1s"></div>
+        <div class="absolute top-20 left-20 w-1.5 h-1.5 bg-gray-400/20 rounded-full float-animation"></div>
+        <div class="absolute top-40 right-32 w-1 h-1 bg-gray-300/25 rounded-full float-animation delay-2s"></div>
+        <div class="absolute bottom-32 left-1/4 w-1 h-1 bg-gray-400/15 rounded-full float-animation delay-4s"></div>
+        <div class="absolute top-1/3 right-1/4 w-1 h-1 bg-gray-300/30 rounded-full float-animation delay-1s"></div>
       </div>
       
       <!-- Hero home-page -->
-      <div class="relative z-10 text-center text-white px-4 sm:px-6 py-20">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+      <div class="relative z-10 text-center text-white px-4 sm:px-6 py-16">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight">
           <span class="text-brand-gradient typewriter-text">Daffodil Studios</span>
           <span class="typewriter-cursor">|</span>
         </h1>
-        <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed opacity-0 fade-in-delay px-4">
+        <p class="text-base sm:text-lg md:text-xl mb-6 max-w-2xl mx-auto leading-relaxed opacity-0 fade-in-delay px-4">
           Where stories come to life through the art of cinema. We create compelling narratives 
           that inspire, entertain, and connect audiences across the globe.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 sm:space-x-4 justify-center opacity-0 fade-in-delay-2 px-4">
+        <div class="flex flex-col sm:flex-row gap-3 sm:space-x-3 justify-center opacity-0 fade-in-delay-2 px-4">
           <NuxtLink 
             to="/movies" 
-            class="btn-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold inline-block text-center min-h-[48px] flex items-center justify-center"
+            class="bg-gradient-to-br from-brand-yellow via-brand-yellow-light to-brand-yellow text-gray-900 hover:text-black px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-bold inline-block text-center min-h-[44px] flex items-center justify-center transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-glow-yellow relative overflow-hidden group"
           >
-            Saffron Kingdom
+            <span class="relative z-10">Saffron Kingdom</span>
+            <div class="absolute inset-0 bg-gradient-to-br from-brand-yellow-light to-brand-yellow opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </NuxtLink>
           <NuxtLink 
             to="/about" 
-            class="border-2 border-white hover:bg-white hover:text-black text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 transform hover:scale-105 inline-block text-center min-h-[48px] flex items-center justify-center"
+            class="border-2 border-brand-yellow hover:bg-brand-yellow hover:text-gray-900 text-brand-yellow px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-bold transition-all duration-300 transform hover:scale-105 inline-block text-center min-h-[44px] flex items-center justify-center backdrop-blur-sm bg-brand-yellow/5"
           >
             Our Story
           </NuxtLink>
@@ -172,23 +177,23 @@
     <!-- Services Section -->
     <UiBackgroundPattern
       :gradient="'from-gray-900 via-gray-800 to-black'"
-      :primary-orb="'from-yellow-400/20 to-amber-500/20'"
-      :secondary-orb="'from-amber-400/15 to-orange-400/15'"
-      :center-orb="'from-yellow-300/10 to-amber-400/10'"
+      :primary-orb="'from-gray-600/15 to-gray-500/15'"
+      :secondary-orb="'from-gray-500/10 to-gray-600/10'"
+      :center-orb="'from-gray-600/8 to-gray-500/8'"
     >
       <div class="container mx-auto px-4">
         <UiSectionHeader
           title="What We Do"
           subtitle="From concept to screen, we provide comprehensive film production services that bring your vision to life."
-          :divider-gradient="'from-yellow-400 to-amber-500'"
+          :divider-gradient="'from-gray-500 to-gray-400'"
         />
         
         <!-- Services Grid -->
         <div class="grid md:grid-cols-3 gap-8 mb-12">
           <CardService variant="primary">
             <template #icon>
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+              <svg class="w-10 h-10 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
               </svg>
             </template>
             <template #title>Film Production</template>
@@ -197,8 +202,8 @@
           
           <CardService variant="secondary">
             <template #icon>
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
+              <svg class="w-10 h-10 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
               </svg>
             </template>
             <template #title>Creative Direction</template>
@@ -207,8 +212,8 @@
           
           <CardService variant="tertiary">
             <template #icon>
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+              <svg class="w-10 h-10 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
               </svg>
             </template>
             <template #title>Distribution</template>

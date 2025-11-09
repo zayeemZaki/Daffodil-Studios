@@ -57,18 +57,18 @@ const tag = computed(() => {
 })
 
 const buttonClasses = computed(() => {
-  const baseClasses = 'inline-flex items-center justify-center font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl'
+  const baseClasses = 'inline-flex items-center justify-center font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl relative overflow-hidden'
   
   const variants = {
-    primary: 'btn-primary text-white',
-    secondary: 'bg-gray-600 hover:bg-gray-700 text-white',
-    gradient: 'bg-brand-accent hover:from-amber-800 hover:to-orange-700 text-white',
-    outline: 'border-2 border-amber-600 text-amber-700 hover:bg-amber-600 hover:text-white'
+    primary: 'btn-primary text-gray-900',
+    secondary: 'bg-gradient-to-br from-brand-grey-700 to-brand-grey-800 hover:from-brand-grey-600 hover:to-brand-grey-700 text-white border border-brand-grey-600',
+    gradient: 'bg-gradient-to-br from-brand-yellow via-brand-yellow-light to-brand-yellow text-gray-900 hover:shadow-glow-yellow-lg',
+    outline: 'border-2 border-brand-yellow text-brand-yellow hover:bg-brand-yellow hover:text-gray-900 backdrop-blur-sm bg-brand-yellow/5'
   }
   
   const sizes = {
     sm: 'px-4 py-2 text-sm rounded-lg',
-    md: 'px-8 py-3 text-lg rounded-lg',
+    md: 'px-7 py-3 text-base rounded-xl',
     lg: 'px-8 py-4 text-lg rounded-xl'
   }
   

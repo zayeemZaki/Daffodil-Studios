@@ -5,16 +5,27 @@
       <div class="floating-orbs">
         <div class="floating-orbs-center"></div>
       </div>
+      
+      <!-- Film Grain Texture for Cinematic Feel -->
+      <div class="absolute inset-0 opacity-[0.02] mix-blend-overlay pointer-events-none" 
+           style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');"></div>
     </div>
     
     <!-- Hero Section -->
-    <section class="relative pt-16 pb-8" style="z-index: 100;">
+    <section class="relative pt-20 pb-12" style="z-index: 100;">
       <div class="container mx-auto px-6">
-        <UiSectionHeader 
-          title="Find a Screening" 
-          subtitle="Experience the untold story of Kashmir in theaters worldwide. Discover upcoming screenings in your area."
-          size="lg"
-        />
+        <div class="text-center mb-16">
+          <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight gradient-text animate-fade-in">
+            Find a Screening
+          </h1>
+          <div 
+            class="bg-gradient-to-r from-brand-yellow via-brand-yellow-light to-brand-yellow mx-auto rounded-full w-56 h-2.5"
+            style="box-shadow: 0 0 25px rgba(253, 185, 19, 0.6), 0 4px 15px rgba(253, 185, 19, 0.4);"
+          ></div>
+          <p class="text-gray-300 mx-auto mt-8 leading-relaxed text-xl md:text-2xl max-w-4xl">
+            Experience the untold story of Kashmir in theaters worldwide. Discover upcoming screenings in your area.
+          </p>
+        </div>
         
         <!-- Filter Bar -->
         <div class="max-w-4xl mx-auto mb-8">
@@ -85,19 +96,19 @@
           <!-- No Results Message -->
           <div v-if="filteredUpcomingScreenings.length === 0 && filteredPastScreenings.length === 0" class="text-center py-16">
             <div class="glass-card max-w-md mx-auto p-8">
-              <div class="w-16 h-16 bg-brand-gradient-br rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              <div class="w-16 h-16 bg-gradient-to-br from-brand-yellow to-brand-yellow-dark rounded-full flex items-center justify-center mx-auto mb-4 shadow-glow-yellow">
+                <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                 </svg>
               </div>
-              <h3 class="text-xl font-semibold mb-2 text-white">No screenings found</h3>
-              <p class="text-gray-300 mb-4">
+              <h3 class="text-2xl font-bold mb-3 text-white">No screenings found</h3>
+              <p class="text-gray-300 mb-6 text-base leading-relaxed">
                 Try adjusting your filters or check back later for new screenings.
               </p>
               <button 
                 v-if="hasActiveFilters()"
                 @click="clearAllFilters"
-                class="text-brand-gradient hover:text-yellow-400 transition-colors"
+                class="text-brand-yellow hover:text-brand-yellow-light transition-colors font-bold text-base"
               >
                 Clear all filters
               </button>

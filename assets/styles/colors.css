@@ -1,96 +1,163 @@
-/* Daffodil Studios Color System */
+/* Daffodil Studios Color System - REFACTORED WITH WARM YELLOW ACCENT */
 :root {
-  /* Primary Brand Colors */
-  --daffodil-yellow: #fbbf24;
-  --daffodil-amber: #f59e0b;
-  --daffodil-orange: #ea580c;
+  /* Primary Brand Colors - Daffodil Yellow */
+  --daffodil-yellow: #FDB913;
+  --daffodil-yellow-light: #FDC94A;
+  --daffodil-yellow-dark: #E5A712;
   
-  /* Gradient Definitions */
-  --gradient-primary: linear-gradient(to right, var(--daffodil-yellow), var(--daffodil-amber));
-  --gradient-primary-dark: linear-gradient(to right, #f59e0b, #d97706);
-  --gradient-text: linear-gradient(to right, #fbbf24, #f59e0b, #ea580c);
-  --gradient-hero-bg: linear-gradient(to right, #111827, #1f2937, #000000);
+  /* Professional Dark Bases */
+  --dark-primary: #0A0E14;
+  --dark-secondary: #141822;
+  --dark-tertiary: #1A1F2E;
   
-  /* Background Gradients */
-  --gradient-light-bg: linear-gradient(to right, rgba(255,255,255,0.95), rgba(254,243,199,0.9), rgba(253,230,138,0.95));
-  --gradient-orb-yellow: linear-gradient(to bottom right, rgba(251,191,36,0.2), rgba(245,158,11,0.2));
-  --gradient-orb-amber: linear-gradient(to top left, rgba(245,158,11,0.15), rgba(234,88,12,0.15));
+  /* Modern Greys */
+  --grey-primary: #64748B;
+  --grey-light: #94A3B8;
+  --grey-dark: #475569;
   
-  /* Service Icon Gradients */
-  --gradient-service-1: linear-gradient(to bottom right, #eab308, #f59e0b);
-  --gradient-service-2: linear-gradient(to bottom right, #fbbf24, #f59e0b);
-  --gradient-service-3: linear-gradient(to bottom right, #f59e0b, #ea580c);
+  /* Gradient Definitions - WITH YELLOW ACCENTS */
+  --gradient-yellow-primary: linear-gradient(135deg, #FDB913 0%, #FDC94A 100%);
+  --gradient-yellow-glow: linear-gradient(135deg, #FDB913 0%, #E5A712 100%);
+  --gradient-dark-warm: linear-gradient(135deg, #0A0E14 0%, #1A1F2E 50%, #0F1218 100%);
+  --gradient-text-yellow: linear-gradient(90deg, #FDB913 0%, #FDC94A 50%, #FDB913 100%);
+  --gradient-hero-cinematic: linear-gradient(135deg, rgba(10,14,20,0.95) 0%, rgba(20,24,34,0.9) 50%, rgba(10,14,20,0.95) 100%);
   
-  /* Shadow Colors */
-  --shadow-yellow: 0 0 20px rgba(251,191,36,0.5);
-  --shadow-amber: 0 0 20px rgba(245,158,11,0.5);
-  --shadow-glow: 0 0 30px rgba(251,191,36,0.8), 0 0 40px rgba(251,191,36,0.6);
+  /* Background Gradients with Warmth */
+  --gradient-orb-yellow: linear-gradient(to bottom right, rgba(253,185,19,0.2), rgba(253,201,74,0.15));
+  --gradient-orb-yellow-secondary: linear-gradient(to top left, rgba(253,185,19,0.1), rgba(229,167,18,0.08));
+  --gradient-orb-dark: linear-gradient(to bottom right, rgba(100,116,139,0.08), rgba(71,85,105,0.05));
+  
+  /* Service Icon Gradients - Enhanced with Yellow */
+  --gradient-service-1: linear-gradient(135deg, #FDB913 0%, #E5A712 100%);
+  --gradient-service-2: linear-gradient(135deg, #FDC94A 0%, #FDB913 100%);
+  --gradient-service-3: linear-gradient(135deg, #E5A712 0%, #B38310 100%);
+  
+  /* Shadow Colors - Yellow Glows */
+  --shadow-yellow-sm: 0 0 15px rgba(253,185,19,0.3);
+  --shadow-yellow: 0 0 20px rgba(253,185,19,0.3), 0 0 40px rgba(253,185,19,0.15);
+  --shadow-yellow-lg: 0 0 30px rgba(253,185,19,0.4), 0 0 60px rgba(253,185,19,0.2);
+  --shadow-cinematic: 0 20px 60px rgba(0,0,0,0.5), 0 10px 30px rgba(0,0,0,0.3);
   
   /* Text Colors */
-  --text-gradient-class: bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-500 bg-clip-text text-transparent;
+  --text-gradient-class: bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent;
 }
 
-/* Utility Classes for Gradients */
+/* Utility Classes for Gradients - REFACTORED */
 .gradient-text {
-  background: var(--gradient-text);
+  background: var(--gradient-text-yellow);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  font-weight: 700;
+  padding-bottom: 0.1em;
+  display: inline-block;
 }
 
-.gradient-primary-bg {
-  background: var(--gradient-primary);
+.gradient-yellow-bg {
+  background: var(--gradient-yellow-primary);
 }
 
-.gradient-primary-dark-bg {
-  background: var(--gradient-primary-dark);
+.gradient-yellow-glow-bg {
+  background: var(--gradient-yellow-glow);
 }
 
-.gradient-hero-bg {
-  background: var(--gradient-hero-bg);
+.gradient-dark-warm-bg {
+  background: var(--gradient-dark-warm);
 }
 
-.gradient-light-bg {
-  background: var(--gradient-light-bg);
+.gradient-hero-cinematic {
+  background: var(--gradient-hero-cinematic);
 }
 
-/* Button Styles */
+/* Button Styles - DAFFODIL YELLOW PRIMARY */
 .btn-primary {
-  background: var(--gradient-primary);
-  transition: all 0.3s ease;
+  background: var(--gradient-yellow-primary);
+  color: #0A0E14;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #FDC94A 0%, #FDB913 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
 }
 
 .btn-primary:hover {
-  background: var(--gradient-primary-dark);
-  transform: scale(1.05);
-  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-yellow-lg);
 }
 
-/* Glow Effects */
+.btn-primary > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Glow Effects - YELLOW THEME */
 .glow-yellow {
   box-shadow: var(--shadow-yellow);
 }
 
-.glow-amber {
-  box-shadow: var(--shadow-amber);
+.glow-yellow-lg {
+  box-shadow: var(--shadow-yellow-lg);
 }
 
-/* Card Styles */
+/* Card Styles - ENHANCED GLASSMORPHISM WITH YELLOW GLOW */
 .glass-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.75rem;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, background 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(253, 185, 19, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.4s ease, 
+              background 0.4s ease,
+              border-color 0.4s ease;
+  position: relative;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  padding: 1px;
+  background: linear-gradient(135deg, 
+    rgba(253, 185, 19, 0.2) 0%, 
+    rgba(253, 185, 19, 0) 50%, 
+    rgba(253, 185, 19, 0.1) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .glass-card:hover {
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(253, 185, 19, 0.3);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(253, 185, 19, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-6px);
+  }
+  
+  .glass-card:hover::before {
+    opacity: 1;
   }
 }
 
@@ -109,7 +176,7 @@
 
 /* Text Utilities */
 .text-shadow-glow {
-  text-shadow: 0 0 20px rgba(251,191,36,0.5);
+  text-shadow: 0 0 20px rgba(75,85,99,0.4);
 }
 
 /* Animation Utilities */
@@ -138,56 +205,81 @@
   margin: 0 auto;
 }
 
-/* Additional Brand Gradient Utilities */
+/* Additional Brand Gradient Utilities - YELLOW THEMED */
 .bg-brand-primary {
-  background: linear-gradient(to right, rgb(202 138 4), rgb(217 119 6), rgb(245 158 11));
+  background: linear-gradient(135deg, #FDB913 0%, #FDC94A 100%);
 }
 
 .bg-brand-light {
-  background: linear-gradient(to bottom right, rgb(254 252 232), rgb(254 249 195), rgb(255 255 255), rgb(254 237 199));
+  background: linear-gradient(135deg, #FEF7E6 0%, #FDEFCD 100%);
 }
 
 .bg-brand-accent {
-  background: linear-gradient(to right, rgb(180 83 9), rgb(234 88 12));
+  background: linear-gradient(135deg, #E5A712 0%, #FDB913 100%);
 }
 
 .bg-brand-gradient-br {
-  background: linear-gradient(to bottom right, rgb(250 204 21), rgb(245 158 11));
+  background: linear-gradient(to bottom right, #FDB913 0%, #E5A712 100%);
 }
 
 .bg-brand-gradient-tr {
-  background: linear-gradient(to top right, rgb(251 191 36), rgb(250 204 21));
+  background: linear-gradient(to top right, #FDC94A 0%, #FDB913 100%);
 }
 
-/* Tag/Badge Utilities */
+.bg-brand-dark {
+  background: linear-gradient(135deg, #0A0E14 0%, #1A1F2E 100%);
+}
+
+/* Tag/Badge Utilities - YELLOW ACCENT THEME */
 .tag-drama {
-  background: linear-gradient(to right, rgb(234 179 8), rgb(217 119 6));
-  color: white;
+  background: linear-gradient(135deg, #FDB913 0%, #E5A712 100%);
+  color: #0A0E14;
   padding: 0.5rem 1rem;
   border-radius: 9999px;
   font-size: 0.875rem;
-  font-weight: 600;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(253, 185, 19, 0.3);
+  transition: all 0.3s ease;
+}
+
+.tag-drama:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(253, 185, 19, 0.4);
 }
 
 .tag-tragedy {
-  background: linear-gradient(to right, rgb(245 158 11), rgb(234 88 12));
-  color: white;
+  background: linear-gradient(135deg, rgba(253, 185, 19, 0.2) 0%, rgba(229, 167, 18, 0.2) 100%);
+  color: #FDB913;
+  border: 1px solid rgba(253, 185, 19, 0.4);
   padding: 0.5rem 1rem;
   border-radius: 9999px;
   font-size: 0.875rem;
-  font-weight: 600;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.tag-tragedy:hover {
+  background: linear-gradient(135deg, rgba(253, 185, 19, 0.3) 0%, rgba(229, 167, 18, 0.3) 100%);
+  transform: translateY(-2px);
 }
 
 .tag-indie {
-  background: linear-gradient(to right, rgb(249 115 22), rgb(220 38 38));
-  color: white;
+  background: rgba(100, 116, 139, 0.2);
+  color: #FDC94A;
+  border: 1px solid rgba(253, 185, 19, 0.2);
   padding: 0.5rem 1rem;
   border-radius: 9999px;
   font-size: 0.875rem;
-  font-weight: 600;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.tag-indie:hover {
+  background: rgba(100, 116, 139, 0.3);
+  border-color: rgba(253, 185, 19, 0.4);
+  transform: translateY(-2px);
 }
 
 /* Hover Overlay Utilities */
@@ -206,7 +298,7 @@
 .hover-overlay-brand {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(234, 179, 8, 0.2), rgba(217, 119, 6, 0.2));
+  background: linear-gradient(to right, rgba(75, 85, 99, 0.2), rgba(107, 114, 128, 0.2));
   opacity: 0;
   transition: opacity 0.5s;
 }
@@ -215,28 +307,36 @@
   opacity: 1;
 }
 
-/* Navigation Underline Utility */
+/* Navigation Underline Utility - YELLOW ACCENT */
 .nav-underline {
   position: absolute;
   bottom: -0.25rem;
   left: 0;
   width: 0;
-  height: 0.125rem;
-  background: linear-gradient(to right, rgb(180 83 9), rgb(234 88 12));
-  transition: width 0.3s;
+  height: 0.1875rem;
+  background: linear-gradient(90deg, #FDB913 0%, #FDC94A 100%);
+  border-radius: 2px;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(253, 185, 19, 0.4);
 }
 
 .group:hover .nav-underline {
   width: 100%;
 }
 
-/* Text Brand Gradient */
+/* Text Brand Gradient - YELLOW THEME */
 .text-brand-gradient {
-  background: linear-gradient(to right, rgb(250 204 21), rgb(245 158 11), rgb(249 115 22));
+  background: linear-gradient(90deg, #FDB913 0%, #FDC94A 50%, #FDB913 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  font-weight: 700;
+}
+
+.text-yellow-glow {
+  color: #FDB913;
+  text-shadow: 0 0 20px rgba(253, 185, 19, 0.5);
 }
 
 /* Client Logo Card */

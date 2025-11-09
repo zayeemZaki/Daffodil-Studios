@@ -1,13 +1,13 @@
 <template>
-  <header class="fixed top-0 left-0 right-0 bg-brand-primary shadow-2xl backdrop-blur-sm border-b border-yellow-400" style="z-index: 10000;">
-    <nav class="container mx-auto px-4 sm:px-6 py-4 sm:py-6 flex justify-between items-center">
+  <header class="fixed top-0 left-0 right-0 bg-gray-900 shadow-2xl backdrop-blur-sm border-b border-gray-700" style="z-index: 10000;">
+    <nav class="container mx-auto px-6 sm:px-8 py-4 sm:py-5 flex justify-between items-center">
       <!-- Logo -->
       <NuxtLink 
         to="/" 
-        class="flex items-center space-x-3 text-2xl font-bold text-gray-900 hover:text-gray-700 transition-all duration-300 transform hover:scale-105"
+        class="flex items-center space-x-2 text-xl font-bold text-white hover:text-gray-300 transition-all duration-300 transform hover:scale-105"
       >
         <div class="relative">
-          <img src="~/public/logo.webp" alt="Daffodil Studios Logo" class="h-12 sm:h-16 w-auto filter drop-shadow-lg">
+          <img src="~/public/logo.webp" alt="Daffodil Studios Logo" class="h-10 sm:h-12 w-auto filter drop-shadow-lg">
           <div class="absolute inset-0 bg-white opacity-0 hover:opacity-20 rounded-full transition-opacity duration-300"></div>
         </div>
       </NuxtLink>
@@ -17,7 +17,7 @@
         <li>
           <NuxtLink 
             to="/" 
-            class="relative text-lg text-gray-900 hover:text-gray-700 font-semibold transition-all duration-300 group"
+            class="relative text-base text-gray-300 hover:text-brand-yellow font-semibold transition-all duration-300 group"
           >
             Home
             <span class="nav-underline"></span>
@@ -26,7 +26,7 @@
         <li>
           <NuxtLink 
             to="/screenings" 
-            class="relative text-lg text-gray-900 hover:text-gray-700 font-semibold transition-all duration-300 group"
+            class="relative text-base text-gray-300 hover:text-brand-yellow font-semibold transition-all duration-300 group"
           >
             Screenings
             <span class="nav-underline"></span>
@@ -35,7 +35,7 @@
         <li>
           <NuxtLink 
             to="/movies" 
-            class="relative text-lg text-gray-900 hover:text-gray-700 font-semibold transition-all duration-300 group"
+            class="relative text-base text-gray-300 hover:text-brand-yellow font-semibold transition-all duration-300 group"
           >
             Movies
             <span class="nav-underline"></span>
@@ -44,7 +44,7 @@
         <li>
           <NuxtLink 
             to="/press" 
-            class="relative text-lg text-gray-900 hover:text-gray-700 font-semibold transition-all duration-300 group"
+            class="relative text-base text-gray-300 hover:text-brand-yellow font-semibold transition-all duration-300 group"
           >
             Press
             <span class="nav-underline"></span>
@@ -53,7 +53,7 @@
         <li>
           <NuxtLink 
             to="/about" 
-            class="relative text-lg text-gray-900 hover:text-gray-700 font-semibold transition-all duration-300 group"
+            class="relative text-base text-gray-300 hover:text-brand-yellow font-semibold transition-all duration-300 group"
           >
             About
             <span class="nav-underline"></span>
@@ -68,10 +68,10 @@
           <button 
             @click="showDonationModal = true"
             :disabled="isProcessingDonation"
-            class="bg-brand-accent text-white px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-lg font-bold hover:from-amber-800 hover:to-orange-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+            class="bg-gradient-to-br from-brand-yellow via-brand-yellow-light to-brand-yellow hover:from-brand-yellow-light hover:to-brand-yellow text-gray-900 px-3 sm:px-6 py-1.5 sm:py-2 rounded-full text-sm sm:text-base font-bold transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-glow-yellow disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <span class="flex items-center space-x-1 sm:space-x-2">
-              <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 20 20">
+            <span class="flex items-center space-x-1">
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 6.5a.5.5 0 11-1 0 .5.5 0 011 0zm-2.5.5a.5.5 0 100 1 .5.5 0 000-1zm6.5.5a.5.5 0 11-1 0 .5.5 0 011 0z" clip-rule="evenodd"/>
               </svg>
@@ -118,8 +118,8 @@
                     :class="[
                       'py-3 sm:py-4 px-2 sm:px-4 rounded-xl font-bold text-base sm:text-lg transition-all transform active:scale-95 min-h-[48px]',
                       selectedAmount === amount 
-                        ? 'bg-brand-accent text-white shadow-lg scale-105' 
-                        : 'bg-white text-gray-900 hover:bg-gray-100 border-2 border-gray-200'
+                        ? 'bg-gradient-to-br from-brand-yellow to-brand-yellow-dark text-gray-900 shadow-glow-yellow scale-105' 
+                        : 'bg-white text-gray-900 hover:bg-brand-yellow-50 border-2 border-gray-200 hover:border-brand-yellow-300'
                     ]"
                   >
                     ${{ amount }}
@@ -139,7 +139,7 @@
                       type="number"
                       min="1"
                       placeholder="0"
-                      class="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-3 sm:py-4 border-2 border-gray-300 rounded-xl focus:border-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent/20 text-gray-900 text-lg sm:text-xl font-semibold transition-all min-h-[48px]"
+                      class="w-full pl-8 sm:pl-10 pr-3 sm:pr-4 py-3 sm:py-4 border-2 border-gray-300 rounded-xl focus:border-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow/30 text-gray-900 text-lg sm:text-xl font-semibold transition-all min-h-[48px]"
                     >
                   </div>
                   <p class="text-xs text-gray-500 mt-2">Minimum donation: $1</p>
@@ -155,7 +155,7 @@
                     type="email"
                     placeholder="your@email.com"
                     required
-                    class="w-full px-3 sm:px-4 py-3 sm:py-4 border-2 border-gray-300 rounded-xl focus:border-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent/20 text-gray-900 text-base sm:text-lg transition-all min-h-[48px]"
+                    class="w-full px-3 sm:px-4 py-3 sm:py-4 border-2 border-gray-300 rounded-xl focus:border-brand-yellow focus:outline-none focus:ring-2 focus:ring-brand-yellow/30 text-gray-900 text-base sm:text-lg transition-all min-h-[48px]"
                   >
                   <p class="text-xs text-gray-500 mt-2">You'll receive a receipt from Stripe after your donation</p>
                 </div>
@@ -171,7 +171,7 @@
                   <button
                     @click="processDonation"
                     :disabled="(!selectedAmount && !customAmount) || !donorEmail"
-                    class="flex-1 py-3 sm:py-4 px-4 sm:px-6 bg-brand-accent text-white rounded-full font-bold hover:scale-105 transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 min-h-[48px]"
+                    class="flex-1 py-3 sm:py-4 px-4 sm:px-6 bg-gradient-to-br from-brand-yellow via-brand-yellow-light to-brand-yellow text-gray-900 rounded-full font-bold hover:scale-105 transition-all shadow-lg hover:shadow-glow-yellow disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 min-h-[48px]"
                   >
                     Donate ${{ customAmount || selectedAmount || 0 }}
                   </button>
@@ -184,13 +184,13 @@
         <!-- Mobile Menu Button -->
         <button 
           @click="showMobileMenu = !showMobileMenu"
-          class="md:hidden text-gray-900 p-3 rounded-lg active:bg-yellow-400 active:bg-opacity-30 transition-colors duration-200 min-w-[48px] min-h-[48px] flex items-center justify-center"
+          class="md:hidden text-gray-300 p-2 rounded-lg active:bg-gray-700 active:bg-opacity-50 transition-colors duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
           aria-label="Toggle mobile menu"
         >
-          <svg v-if="!showMobileMenu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg v-if="!showMobileMenu" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
-          <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg v-else class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
@@ -206,13 +206,13 @@
       leave-from-class="opacity-100 translate-y-0"
       leave-to-class="opacity-0 -translate-y-2"
     >
-      <div v-if="showMobileMenu" class="md:hidden bg-brand-primary border-t border-yellow-400 shadow-lg">
-        <ul class="container mx-auto px-4 py-4 space-y-1">
+      <div v-if="showMobileMenu" class="md:hidden bg-gray-900 border-t border-gray-700 shadow-lg">
+        <ul class="container mx-auto px-4 py-3 space-y-1">
           <li>
             <NuxtLink 
               to="/" 
               @click="showMobileMenu = false"
-              class="block text-base text-gray-900 font-semibold py-4 px-4 rounded-lg active:bg-yellow-400 active:bg-opacity-30 transition-colors duration-200 min-h-[56px] flex items-center"
+              class="block text-sm text-gray-300 font-semibold py-3 px-3 rounded-lg active:bg-gray-700 active:bg-opacity-50 transition-colors duration-200 min-h-[48px] flex items-center"
             >
               Home
             </NuxtLink>
@@ -221,7 +221,7 @@
             <NuxtLink 
               to="/screenings" 
               @click="showMobileMenu = false"
-              class="block text-base text-gray-900 font-semibold py-4 px-4 rounded-lg active:bg-yellow-400 active:bg-opacity-30 transition-colors duration-200 min-h-[56px] flex items-center"
+              class="block text-sm text-gray-300 font-semibold py-3 px-3 rounded-lg active:bg-gray-700 active:bg-opacity-50 transition-colors duration-200 min-h-[48px] flex items-center"
             >
               Screenings
             </NuxtLink>
@@ -230,7 +230,7 @@
             <NuxtLink 
               to="/movies" 
               @click="showMobileMenu = false"
-              class="block text-base text-gray-900 font-semibold py-4 px-4 rounded-lg active:bg-yellow-400 active:bg-opacity-30 transition-colors duration-200 min-h-[56px] flex items-center"
+              class="block text-sm text-gray-300 font-semibold py-3 px-3 rounded-lg active:bg-gray-700 active:bg-opacity-50 transition-colors duration-200 min-h-[48px] flex items-center"
             >
               Movies
             </NuxtLink>
@@ -239,7 +239,7 @@
             <NuxtLink 
               to="/press" 
               @click="showMobileMenu = false"
-              class="block text-base text-gray-900 font-semibold py-4 px-4 rounded-lg active:bg-yellow-400 active:bg-opacity-30 transition-colors duration-200 min-h-[56px] flex items-center"
+              class="block text-sm text-gray-300 font-semibold py-3 px-3 rounded-lg active:bg-gray-700 active:bg-opacity-50 transition-colors duration-200 min-h-[48px] flex items-center"
             >
               Press
             </NuxtLink>
@@ -248,7 +248,7 @@
             <NuxtLink 
               to="/about" 
               @click="showMobileMenu = false"
-              class="block text-base text-gray-900 font-semibold py-4 px-4 rounded-lg active:bg-yellow-400 active:bg-opacity-30 transition-colors duration-200 min-h-[56px] flex items-center"
+              class="block text-sm text-gray-300 font-semibold py-3 px-3 rounded-lg active:bg-gray-700 active:bg-opacity-50 transition-colors duration-200 min-h-[48px] flex items-center"
             >
               About
             </NuxtLink>

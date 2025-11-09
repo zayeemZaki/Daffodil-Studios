@@ -29,7 +29,7 @@
                 
                 <button
                   @click="showPressRelease = !showPressRelease"
-                  class="inline-flex items-center gap-2 text-brand-gradient active:text-yellow-400 transition-colors font-semibold text-sm min-h-[44px]"
+                  class="inline-flex items-center gap-2 text-brand-gradient active:text-gray-400 transition-colors font-semibold text-xs min-h-[40px]"
                 >
                   {{ showPressRelease ? 'Hide' : 'Read' }} Full Press Release
                   <svg 
@@ -81,12 +81,12 @@
                   <div class="pt-4 space-y-2">
                     <p>
                       Daffodil Studios is a nonprofit film studio focused on impact-driven storytelling: 
-                      <a href="https://www.daffodilstudios.org/" target="_blank" rel="noopener noreferrer" class="text-brand-gradient hover:text-yellow-400 underline">
+                      <a href="https://www.daffodilstudios.org/" target="_blank" rel="noopener noreferrer" class="text-brand-gradient hover:text-gray-400 underline">
                         https://www.daffodilstudios.org/
                       </a>
                     </p>
                     <p>
-                      <a href="https://www.saffronkingdomfilm.com/" target="_blank" rel="noopener noreferrer" class="text-brand-gradient hover:text-yellow-400 underline">
+                      <a href="https://www.saffronkingdomfilm.com/" target="_blank" rel="noopener noreferrer" class="text-brand-gradient hover:text-gray-400 underline">
                         https://www.saffronkingdomfilm.com/
                       </a>
                     </p>
@@ -157,7 +157,7 @@
                 <!-- Read More Link -->
                 <div 
                   v-if="article.url && article.url !== '#'"
-                  class="inline-flex items-center gap-1.5 text-brand-gradient group-hover:text-yellow-400 transition-colors font-semibold text-xs mt-auto"
+                  class="inline-flex items-center gap-1 text-brand-gradient group-hover:text-gray-400 transition-colors font-semibold text-xs mt-auto"
                 >
                   <span>Read Article</span>
                   <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -172,7 +172,7 @@
           <div v-if="hasMoreArticles" class="text-center mt-6 sm:mt-8">
             <button
               @click="showAllArticles = !showAllArticles"
-              class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-brand-primary to-brand-accent active:from-yellow-500 active:to-amber-600 text-white rounded-lg font-semibold text-sm sm:text-base transition-all duration-200 shadow-lg min-h-[48px] min-w-[200px]"
+              class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-gray-700 to-gray-600 active:from-gray-800 active:to-gray-700 text-white rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 shadow-lg min-h-[44px] min-w-[180px]"
             >
               <span>{{ showAllArticles ? 'Show Less' : `See More Articles (${articles.length - 3} more)` }}</span>
               <svg 
@@ -240,7 +240,7 @@
                 <!-- Listen Link -->
                 <div 
                   v-if="podcast.url"
-                  class="inline-flex items-center gap-1.5 text-brand-gradient group-hover:text-yellow-400 transition-colors font-semibold text-xs mt-auto"
+                  class="inline-flex items-center gap-1 text-brand-gradient group-hover:text-gray-400 transition-colors font-semibold text-xs mt-auto"
                 >
                   <span>Listen</span>
                   <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -255,7 +255,7 @@
           <div v-if="hasMorePodcasts" class="text-center mt-6 sm:mt-8">
             <button
               @click="showAllPodcasts = !showAllPodcasts"
-              class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-600 to-pink-600 active:from-purple-700 active:to-pink-700 text-white rounded-lg font-semibold text-sm sm:text-base transition-all duration-200 shadow-lg min-h-[48px] min-w-[200px]"
+              class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-gray-700 to-gray-600 active:from-gray-800 active:to-gray-700 text-white rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 shadow-lg min-h-[44px] min-w-[180px]"
             >
               <span>{{ showAllPodcasts ? 'Show Less' : `See More Podcasts (${podcasts.length - 3} more)` }}</span>
               <svg 
