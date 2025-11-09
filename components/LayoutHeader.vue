@@ -184,14 +184,14 @@
         <!-- Mobile Menu Button -->
         <button 
           @click="showMobileMenu = !showMobileMenu"
-          class="md:hidden text-gray-900 hover:text-gray-700 p-2 rounded-full hover:bg-yellow-400 hover:bg-opacity-30 transition-all duration-300"
+          class="md:hidden text-gray-900 p-3 rounded-lg active:bg-yellow-400 active:bg-opacity-30 transition-colors duration-200 min-w-[48px] min-h-[48px] flex items-center justify-center"
           aria-label="Toggle mobile menu"
         >
           <svg v-if="!showMobileMenu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
           <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
       </div>
@@ -200,19 +200,19 @@
     <!-- Mobile Menu -->
     <Transition
       enter-active-class="transition-all duration-300 ease-out"
-      enter-from-class="opacity-0 max-h-0"
-      enter-to-class="opacity-100 max-h-96"
+      enter-from-class="opacity-0 -translate-y-2"
+      enter-to-class="opacity-100 translate-y-0"
       leave-active-class="transition-all duration-200 ease-in"
-      leave-from-class="opacity-100 max-h-96"
-      leave-to-class="opacity-0 max-h-0"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 -translate-y-2"
     >
-      <div v-if="showMobileMenu" class="md:hidden bg-brand-primary border-t border-yellow-400 overflow-hidden">
-        <ul class="container mx-auto px-4 py-4 space-y-2">
+      <div v-if="showMobileMenu" class="md:hidden bg-brand-primary border-t border-yellow-400 shadow-lg">
+        <ul class="container mx-auto px-4 py-4 space-y-1">
           <li>
             <NuxtLink 
               to="/" 
               @click="showMobileMenu = false"
-              class="block text-lg text-gray-900 hover:text-gray-700 font-semibold py-3 px-4 rounded-lg hover:bg-yellow-400 hover:bg-opacity-20 transition-all duration-300"
+              class="block text-base text-gray-900 font-semibold py-4 px-4 rounded-lg active:bg-yellow-400 active:bg-opacity-30 transition-colors duration-200 min-h-[56px] flex items-center"
             >
               Home
             </NuxtLink>
@@ -221,7 +221,7 @@
             <NuxtLink 
               to="/screenings" 
               @click="showMobileMenu = false"
-              class="block text-lg text-gray-900 hover:text-gray-700 font-semibold py-3 px-4 rounded-lg hover:bg-yellow-400 hover:bg-opacity-20 transition-all duration-300"
+              class="block text-base text-gray-900 font-semibold py-4 px-4 rounded-lg active:bg-yellow-400 active:bg-opacity-30 transition-colors duration-200 min-h-[56px] flex items-center"
             >
               Screenings
             </NuxtLink>
@@ -230,7 +230,7 @@
             <NuxtLink 
               to="/movies" 
               @click="showMobileMenu = false"
-              class="block text-lg text-gray-900 hover:text-gray-700 font-semibold py-3 px-4 rounded-lg hover:bg-yellow-400 hover:bg-opacity-20 transition-all duration-300"
+              class="block text-base text-gray-900 font-semibold py-4 px-4 rounded-lg active:bg-yellow-400 active:bg-opacity-30 transition-colors duration-200 min-h-[56px] flex items-center"
             >
               Movies
             </NuxtLink>
@@ -239,7 +239,7 @@
             <NuxtLink 
               to="/press" 
               @click="showMobileMenu = false"
-              class="block text-lg text-gray-900 hover:text-gray-700 font-semibold py-3 px-4 rounded-lg hover:bg-yellow-400 hover:bg-opacity-20 transition-all duration-300"
+              class="block text-base text-gray-900 font-semibold py-4 px-4 rounded-lg active:bg-yellow-400 active:bg-opacity-30 transition-colors duration-200 min-h-[56px] flex items-center"
             >
               Press
             </NuxtLink>
@@ -248,7 +248,7 @@
             <NuxtLink 
               to="/about" 
               @click="showMobileMenu = false"
-              class="block text-lg text-gray-900 hover:text-gray-700 font-semibold py-3 px-4 rounded-lg hover:bg-yellow-400 hover:bg-opacity-20 transition-all duration-300"
+              class="block text-base text-gray-900 font-semibold py-4 px-4 rounded-lg active:bg-yellow-400 active:bg-opacity-30 transition-colors duration-200 min-h-[56px] flex items-center"
             >
               About
             </NuxtLink>

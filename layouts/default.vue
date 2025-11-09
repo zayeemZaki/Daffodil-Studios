@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-brand-light font-sans relative">
+  <div class="flex flex-col min-h-screen bg-brand-light relative">
     <!-- Background Pattern Overlay -->
     <div class="fixed inset-0 opacity-[0.02] pointer-events-none">
       <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25px 25px, rgba(255,193,7,0.8) 2px, transparent 2px); background-size: 50px 50px;"></div>
