@@ -293,6 +293,28 @@ const allScreenings = ref([
     buttonText: "Buy Tickets",
     isDisabled: false
   },
+  {
+    id: 28,
+    movieName: "Saffron Kingdom",
+    date: "2025-11-20",
+    time: "6:00 PM",
+    location: "SOAS, University of London, London, England",
+    country: "United Kingdom",
+    ticketUrl: "https://tinyurl.com/SKSOAS",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 29,
+    movieName: "Saffron Kingdom",
+    date: "2025-12-06",
+    time: "5:00 PM",
+    location: "SAN LA Office, 154 S. Vermont Ave, Los Angeles, CA",
+    country: "United States",
+    ticketUrl: "https://tinyurl.com/saffronkingdom",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
   // Australia
   {
     id: 16,
