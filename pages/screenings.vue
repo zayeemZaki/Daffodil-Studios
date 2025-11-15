@@ -298,7 +298,7 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-11-20",
     time: "6:00 PM",
-    location: "SOAS, University of London, London, UK",
+    location: "SOAS, University of London, London",
     country: "UK",
     ticketUrl: "https://tinyurl.com/SKSOAS",
     buttonText: "Buy Tickets",
