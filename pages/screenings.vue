@@ -305,6 +305,17 @@ const allScreenings = ref([
     isDisabled: false
   },
   {
+    id: 30,
+    movieName: "Saffron Kingdom",
+    date: "2025-11-22",
+    time: "6:00 PM",
+    location: "Refuge Worldwide, Niemetzstraße 1, Berlin",
+    country: "Germany",
+    ticketUrl: "https://www.theleftberlin.com/events/the-left-berlin-film-club-the-saffron-kingdom/",
+    buttonText: "Register",
+    isDisabled: false
+  },
+  {
     id: 29,
     movieName: "Saffron Kingdom",
     date: "2025-12-06",
