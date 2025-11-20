@@ -2,11 +2,20 @@
 
 Official website for Daffodil Studios - Documentary filmmakers bringing untold stories to audiences worldwide.
 
-## 🎬 About
+**Live Site:** [https://www.daffodilstudios.org/](https://www.daffodilstudios.org/)
+
+## Demo
+
+![Homepage](assets/website_screenshot/1.png)
+![Screenings](assets/website_screenshot/2.png)
+![Movies](assets/website_screenshot/3.png)
+![Press](assets/website_screenshot/4.png)
+
+## About
 
 Daffodil Studios creates powerful documentaries that shed light on important narratives, featuring films like "Saffron Kingdom" which explores the untold story of Kashmir.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Development
 
@@ -38,17 +47,17 @@ Get API keys from:
 
 See [STRIPE_SETUP.md](./STRIPE_SETUP.md) for detailed Stripe integration guide.
 
-## 📦 Deployment
+## Deployment
 
 See [SIMPLE_DEPLOYMENT.md](./SIMPLE_DEPLOYMENT.md) for complete deployment instructions.
 
-**TL;DR:**
+**Summary:**
 1. Push to GitHub
 2. Connect to Vercel (automatically deploys)
 3. Add `NUXT_RESEND_API_KEY` environment variable in Vercel
-4. Done! ✨
+4. Done
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Framework**: Nuxt 3
 - **Styling**: Tailwind CSS
@@ -57,7 +66,7 @@ See [SIMPLE_DEPLOYMENT.md](./SIMPLE_DEPLOYMENT.md) for complete deployment instr
 - **Hosting**: Vercel (recommended)
 - **Videos**: Cloudinary (recommended)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 daffodil-studios/
@@ -69,21 +78,21 @@ daffodil-studios/
 └── layouts/        # Layout templates
 ```
 
-## 🎯 Features
+## Features
 
-- ✅ Film screenings with location & country filtering
-- ✅ Stripe payment integration for ticket purchases
-- ✅ Donation button with Stripe
-- ✅ Movies showcase with zigzag layout
-- ✅ Press & media coverage (22 articles)
-- ✅ Contact form with email integration
-- ✅ Responsive design
-- ✅ SEO optimized
+- Film screenings with location and country filtering
+- Stripe payment integration for ticket purchases
+- Donation button with Stripe
+- Movies showcase with zigzag layout
+- Press and media coverage (22 articles)
+- Contact form with email integration
+- Responsive design
+- SEO optimized
 
-## 📧 Contact
+## Contact
 
 Email: contact@daffodilstudios.org
 
-## 📄 License
+## License
 
 © 2025 Daffodil Studios. All rights reserved.
