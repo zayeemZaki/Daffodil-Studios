@@ -326,6 +326,17 @@ const allScreenings = ref([
     buttonText: "Buy Tickets",
     isDisabled: false
   },
+  {
+    id: 31,
+    movieName: "Saffron Kingdom",
+    date: "2026-01-17",
+    time: "6:00 PM",
+    location: "Reva and David Logan Center for the Arts, 915 E 60th St",
+    country: "United States",
+    ticketUrl: "https://www.eventbookings.com/b/event/saffron-kingdom-chicago",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
   // Australia
   {
     id: 16,
