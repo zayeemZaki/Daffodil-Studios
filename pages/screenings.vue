@@ -331,7 +331,7 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2026-01-17",
     time: "6:00 PM",
-    location: "Reva and David Logan Center for the Arts, 915 E 60th St",
+    location: "Reva and David Logan Center for the Arts, 915 E 60th St, Chicago, IL",
     country: "United States",
     ticketUrl: "https://www.eventbookings.com/b/event/saffron-kingdom-chicago",
     buttonText: "Buy Tickets",
