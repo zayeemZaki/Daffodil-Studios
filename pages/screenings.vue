@@ -58,7 +58,9 @@
                 :movie-name="screening.movieName"
                 :screening-date="screening.date"
                 :screening-time="screening.time"
-                :location="screening.location"
+                :venue="screening.venue"
+                :city="screening.city"
+                :state="screening.state"
                 :country="screening.country"
                 :ticket-url="screening.ticketUrl"
                 :ticket-price="screening.ticketPrice"
@@ -83,7 +85,9 @@
                 :movie-name="screening.movieName"
                 :screening-date="screening.date"
                 :screening-time="screening.time"
-                :location="screening.location"
+                :venue="screening.venue"
+                :city="screening.city"
+                :state="screening.state"
                 :country="screening.country"
                 :ticket-url="''"
                 :button-text="'Past Event'"
@@ -132,7 +136,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-03-01",
     time: "",
-    location: "Wake Forest Film Festival, Wake Forest, NC",
+    venue: "Wake Forest Film Festival",
+    city: "Wake Forest",
+    state: "NC",
     country: "United States",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -143,7 +149,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-04-22",
     time: "",
-    location: "Georgia State University, Atlanta, GA",
+    venue: "Georgia State University",
+    city: "Atlanta",
+    state: "GA",
     country: "United States",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -154,7 +162,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-04-25",
     time: "",
-    location: "Julien Dubuque International Film Festival, Dubuque, IA",
+    venue: "Julien Dubuque International Film Festival",
+    city: "Dubuque",
+    state: "IA",
     country: "United States",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -165,7 +175,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-04-27",
     time: "",
-    location: "Julien Dubuque International Film Festival, Dubuque, IA",
+    venue: "Julien Dubuque International Film Festival",
+    city: "Dubuque",
+    state: "IA",
     country: "United States",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -176,7 +188,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-06-29",
     time: "",
-    location: "Tasveer Film Center, Seattle, WA",
+    venue: "Tasveer Film Center",
+    city: "Seattle",
+    state: "WA",
     country: "United States",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -187,7 +201,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-06-30",
     time: "",
-    location: "Johns Hopkins University, Washington, DC",
+    venue: "Johns Hopkins University",
+    city: "Washington",
+    state: "DC",
     country: "United States",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -198,7 +214,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-07-18",
     time: "",
-    location: "Islamic Society of Akron & Kent, Akron, OH",
+    venue: "Islamic Society of Akron & Kent",
+    city: "Akron",
+    state: "OH",
     country: "United States",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -209,7 +227,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-08-30",
     time: "",
-    location: "Islamic Society of North America, Chicago, IL",
+    venue: "Islamic Society of North America",
+    city: "Chicago",
+    state: "IL",
     country: "United States",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -220,7 +240,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-11-09",
     time: "3:00 PM",
-    location: "Teaneck Cinemas, Teaneck, NJ",
+    venue: "Teaneck Cinemas",
+    city: "Teaneck",
+    state: "NJ",
     country: "United States",
     ticketUrl: "https://www.eventbrite.com/e/teaneck-international-film-festival-2025-tickets-1689684946159",
     buttonText: "Buy Tickets",
@@ -231,7 +253,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-11-16",
     time: "3:00 PM",
-    location: "The Nightlight Cinema, Akron, OH",
+    venue: "The Nightlight Cinema",
+    city: "Akron",
+    state: "OH",
     country: "United States",
     ticketUrl: "https://nightlightcinema.com/movie/saffron-kingdom",
     buttonText: "Buy Tickets",
@@ -242,7 +266,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-08-31",
     time: "",
-    location: "Islamic Society of North America, Chicago, IL",
+    venue: "Islamic Society of North America",
+    city: "Chicago",
+    state: "IL",
     country: "United States",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -253,7 +279,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-09-13",
     time: "",
-    location: "School of Visual Arts Theatre, New York, NY",
+    venue: "School of Visual Arts Theatre",
+    city: "New York",
+    state: "NY",
     country: "United States",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -264,7 +292,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-10-19",
     time: "",
-    location: "Muslim Public Affairs Council, Los Angeles, CA",
+    venue: "Muslim Public Affairs Council",
+    city: "Los Angeles",
+    state: "CA",
     country: "United States",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -276,7 +306,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-09-20",
     time: "",
-    location: "Genesis Cinema, London, England",
+    venue: "Genesis Cinema",
+    city: "London",
+    state: "",
     country: "United Kingdom",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -287,7 +319,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-10-04",
     time: "",
-    location: "Palestine House, London, England",
+    venue: "Palestine House",
+    city: "London",
+    state: "",
     country: "United Kingdom",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -298,7 +332,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-11-20",
     time: "6:00 PM",
-    location: "SOAS, University of London, London",
+    venue: "SOAS, University of London",
+    city: "London",
+    state: "",
     country: "UK",
     ticketUrl: "https://tinyurl.com/SKSOAS",
     buttonText: "Buy Tickets",
@@ -309,7 +345,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-11-22",
     time: "6:00 PM",
-    location: "Refuge Worldwide, Niemetzstraße 1, Berlin",
+    venue: "Refuge Worldwide",
+    city: "Berlin",
+    state: "",
     country: "Germany",
     ticketUrl: "https://www.theleftberlin.com/events/the-left-berlin-film-club-the-saffron-kingdom/",
     buttonText: "Register",
@@ -320,7 +358,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-12-06",
     time: "5:00 PM",
-    location: "SAN LA Office, 154 S. Vermont Ave, Los Angeles, CA",
+    venue: "SAN LA Office",
+    city: "Los Angeles",
+    state: "CA",
     country: "United States",
     ticketUrl: "https://tinyurl.com/saffronkingdom",
     buttonText: "Buy Tickets",
@@ -331,7 +371,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2026-01-17",
     time: "6:00 PM",
-    location: "Reva and David Logan Center for the Arts, 915 E 60th St, Chicago, IL",
+    venue: "Reva and David Logan Center for the Arts",
+    city: "Chicago",
+    state: "IL",
     country: "United States",
     ticketUrl: "https://www.eventbookings.com/b/event/saffron-kingdom-chicago",
     buttonText: "Buy Tickets",
@@ -343,7 +385,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-08-06",
     time: "",
-    location: "Australian National University, Canberra, ACT",
+    venue: "Australian National University",
+    city: "Canberra",
+    state: "ACT",
     country: "Australia",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -354,7 +398,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-08-09",
     time: "",
-    location: "Bryan Brown Theatre, Sydney, NSW",
+    venue: "Bryan Brown Theatre",
+    city: "Sydney",
+    state: "NSW",
     country: "Australia",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -365,7 +411,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-08-09",
     time: "",
-    location: "Institute of Postcolonial Studies, Melbourne, VIC",
+    venue: "Institute of Postcolonial Studies",
+    city: "Melbourne",
+    state: "VIC",
     country: "Australia",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -376,7 +424,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-08-15",
     time: "",
-    location: "Reading Cinemas Belmont, Perth, WA",
+    venue: "Reading Cinemas Belmont",
+    city: "Perth",
+    state: "WA",
     country: "Australia",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -387,7 +437,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-08-23",
     time: "",
-    location: "Five Star Cinemas, Brisbane, QLD",
+    venue: "Five Star Cinemas",
+    city: "Brisbane",
+    state: "QLD",
     country: "Australia",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -398,7 +450,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-10-05",
     time: "",
-    location: "Muslim Film Festival, Perth, WA",
+    venue: "Muslim Film Festival",
+    city: "Perth",
+    state: "WA",
     country: "Australia",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -409,7 +463,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-10-18",
     time: "",
-    location: "Cinema Nova, Melbourne, VIC",
+    venue: "Cinema Nova",
+    city: "Melbourne",
+    state: "VIC",
     country: "Australia",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -421,7 +477,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-08-08",
     time: "",
-    location: "Penthouse Cinema & Cafe, Wellington",
+    venue: "Penthouse Cinema & Cafe",
+    city: "Wellington",
+    state: "",
     country: "New Zealand",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -432,7 +490,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-08-09",
     time: "",
-    location: "Event Cinemas Chartwell, Hamilton",
+    venue: "Event Cinemas Chartwell",
+    city: "Hamilton",
+    state: "",
     country: "New Zealand",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -443,7 +503,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-08-09",
     time: "",
-    location: "Focal Point Cinema and Cafe, Palmerston North",
+    venue: "Focal Point Cinema and Cafe",
+    city: "Palmerston North",
+    state: "",
     country: "New Zealand",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -454,7 +516,9 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-09-06",
     time: "",
-    location: "Event Cinemas St. Lukes, Auckland",
+    venue: "Event Cinemas St. Lukes",
+    city: "Auckland",
+    state: "",
     country: "New Zealand",
     ticketUrl: "",
     buttonText: "Buy Tickets",
@@ -466,9 +530,24 @@ const allScreenings = ref([
     movieName: "Saffron Kingdom",
     date: "2025-10-28",
     time: "",
-    location: "Innis Town Hall, Toronto, ON",
+    venue: "Innis Town Hall",
+    city: "Toronto",
+    state: "ON",
     country: "Canada",
     ticketUrl: "",
+    buttonText: "Buy Tickets",
+    isDisabled: false
+  },
+  {
+    id: 32,
+    movieName: "Saffron Kingdom",
+    date: "2026-01-10",
+    time: "6:00 PM",
+    venue: "Cineworld Solihull, 47 Homer Rd, England, B91 3QW",
+    city: "Solihull",
+    state: "",
+    country: "UK",
+    ticketUrl: "https://www.eventbookings.com/b/event/saffron-kingdom-cineworld-solihull",
     buttonText: "Buy Tickets",
     isDisabled: false
   }
@@ -480,7 +559,8 @@ const today = new Date().toISOString().split('T')[0]
 // Extract unique locations for filter dropdown (includes country)
 const uniqueLocations = computed(() => {
   const locations = allScreenings.value.map(screening => {
-    return `${screening.location}, ${screening.country}`
+    const cityState = screening.state ? `${screening.city}, ${screening.state}` : `${screening.city}`
+    return `${cityState}, ${screening.country}`
   })
   return [...new Set(locations)].sort()
 })
@@ -501,10 +581,11 @@ const currentFilters = ref<FilterData>({
 const filterScreenings = (screenings: any[]) => {
   let result = [...screenings]
 
-  // Filter by selected locations (which now includes country)
+  // Filter by selected locations (reconstructed from city/state/country)
   if (currentFilters.value.selectedLocations.length > 0) {
     result = result.filter(screening => {
-      const fullLocation = `${screening.location}, ${screening.country}`
+      const cityState = screening.state ? `${screening.city}, ${screening.state}` : `${screening.city}`
+      const fullLocation = `${cityState}, ${screening.country}`
       return currentFilters.value.selectedLocations.some(selected => {
         // Match either the full location string or just the country
         return fullLocation === selected || screening.country === selected || fullLocation.includes(selected)

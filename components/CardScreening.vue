@@ -35,8 +35,8 @@
             </div>
             <div>
               <p class="text-sm text-brand-yellow-light uppercase tracking-wide font-semibold">Venue</p>
-              <p class="font-bold text-white">{{ location }}</p>
-              <p v-if="country" class="text-sm text-gray-400">{{ country }}</p>
+              <p class="font-bold text-white">{{ venue }}</p>
+              <p v-if="country" class="text-sm text-gray-400">{{ venueSubtitle }}</p>
             </div>
           </div>
           
@@ -99,7 +99,9 @@ import { computed, ref } from 'vue'
 interface Props {
   movieName: string
   screeningDate: string | Date
-  location: string
+  venue: string
+  city: string
+  state: string
   country?: string
   screeningTime?: string
   buttonText?: string
@@ -121,36 +123,19 @@ const props = withDefaults(defineProps<Props>(), {
 
 const isProcessing = ref(false)
 
-// Generate display title based on location
-// For USA: City, State
-// For other countries: State/Region, Country
+// Generate display title based on structured fields
+// United States: "City, State"; International: "City, Country"
 const displayTitle = computed(() => {
-  // Extract city and state/region from location string
-  // Location format is typically: "Venue Name, City, State" or "Venue Name, City"
-  const locationParts = props.location.split(',').map(part => part.trim())
-  
   if (props.country === 'United States') {
-    // For USA, show City, State
-    if (locationParts.length >= 3) {
-      // Format: "Venue, City, State" -> "City, State"
-      const city = locationParts[locationParts.length - 2]
-      const state = locationParts[locationParts.length - 1]
-      return `${city}, ${state}`
-    } else if (locationParts.length === 2) {
-      // Format: "Venue, City" -> just show the city part
-      return locationParts[locationParts.length - 1]
-    }
-  } else {
-    // For other countries, show State/Region, Country
-    if (locationParts.length >= 2) {
-      // Get the state/region (last part of location)
-      const region = locationParts[locationParts.length - 1]
-      return `${region}, ${props.country}`
-    }
-    return props.country || props.location
+    return props.state ? `${props.city}, ${props.state}` : props.city
   }
-  
-  return props.location
+  return props.country ? `${props.city}, ${props.country}` : props.city
+})
+
+// Venue subtitle line beneath venue name
+const venueSubtitle = computed(() => {
+  const cityState = props.state ? `${props.city}, ${props.state}` : props.city
+  return props.country ? `${cityState} • ${props.country}` : cityState
 })
 
 // Format the date for display
@@ -187,7 +172,7 @@ const handleBuyTicket = async () => {
         body: {
           screeningId: props.screeningId,
           screeningName: `${props.movieName} - ${formattedDate.value}`,
-          location: `${props.location}, ${props.country}`,
+          location: `${props.venue}, ${props.city}${props.state ? ', ' + props.state : ''}${props.country ? ', ' + props.country : ''}`,
           amount: props.ticketPrice,
           quantity: 1
         }
@@ -208,7 +193,7 @@ const handleBuyTicket = async () => {
     emit('buy-ticket', {
       movieName: props.movieName,
       screeningDate: props.screeningDate,
-      location: props.location,
+      location: `${props.venue}, ${props.city}${props.state ? ', ' + props.state : ''}${props.country ? ', ' + props.country : ''}`,
       screeningTime: props.screeningTime
     })
   }
