@@ -59,6 +59,11 @@ export default defineNuxtConfig({
         { name: 'theme-color', content: '#4b5563' },
         { name: 'format-detection', content: 'telephone=no' }
       ]
+    },
+
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in'
     }
   },
 

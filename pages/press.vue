@@ -8,7 +8,7 @@
           <UiSectionHeader 
             title="Press & Media Coverage" 
             subtitle="Saffron Kingdom and Daffodil Studios have been covered in a number of media outlets since the film's premiere at Wake Forest International Film Festival. Here is a list outlining that coverage."
-            size="lg"
+            size="md"
           />
         </div>
       </section>
@@ -17,7 +17,10 @@
       <section class="relative pb-12 sm:pb-16">
         <div class="container mx-auto px-4 sm:px-6">
           <div class="max-w-7xl mx-auto">
-            <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-brand-gradient">Daffodil Studios Press Release</h2>
+            <UiSubHeader 
+              title="Daffodil Studios Press Release"
+              size="md"
+            />
             
             <div class="glass-card rounded-xl overflow-hidden p-4 sm:p-6 lg:p-8">
               <div class="space-y-3 sm:space-y-4">
@@ -105,7 +108,11 @@
       <section class="relative pb-12">
         <div class="container mx-auto px-4 sm:px-6">
           <div class="max-w-7xl mx-auto">
-            <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-brand-gradient">Articles</h2>
+            <UiSubHeader 
+              title="Articles"
+              size="md"
+              align="center"
+            />
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <!-- Article Item -->
             <a 
@@ -194,7 +201,11 @@
       <section class="relative pb-16 sm:pb-24">
         <div class="container mx-auto px-4 sm:px-6">
           <div class="max-w-7xl mx-auto">
-            <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-brand-gradient">Podcasts</h2>
+            <UiSubHeader 
+              title="Podcasts"
+              size="md"
+              align="center"
+            />
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <!-- Podcast Item -->
             <a 

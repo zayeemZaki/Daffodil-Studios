@@ -10,6 +10,9 @@
     <!-- Header Component -->
     <LayoutHeader />
 
+    <!-- Floating Donate Button -->
+    <FloatingDonateButton />
+
     <!-- Page content will be injected here -->
     <main class="flex-grow mt-[88px]">
       <slot />

@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <!-- This tells Nuxt to use the default layout for all pages -->
+  <div class="app-shell">
+    <NuxtLoadingIndicator color="#FDB913" height="3" />
+
     <NuxtLayout>
-      <!-- This is where Nuxt will render the current page -->
       <NuxtPage />
     </NuxtLayout>
   </div>

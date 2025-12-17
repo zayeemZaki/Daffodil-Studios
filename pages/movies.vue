@@ -8,7 +8,7 @@
           <UiSectionHeader 
             title="Our Films" 
             subtitle="Discover our collection of powerful documentaries exploring untold stories and important narratives."
-            size="lg"
+            size="md"
           />
         </div>
       </section>

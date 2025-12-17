@@ -14,18 +14,11 @@
     <!-- Hero Section -->
     <section class="relative pt-20 pb-12" style="z-index: 100;">
       <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-          <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight gradient-text animate-fade-in">
-            Find a Screening
-          </h1>
-          <div 
-            class="bg-gradient-to-r from-brand-yellow via-brand-yellow-light to-brand-yellow mx-auto rounded-full w-56 h-2.5"
-            style="box-shadow: 0 0 25px rgba(253, 185, 19, 0.6), 0 4px 15px rgba(253, 185, 19, 0.4);"
-          ></div>
-          <p class="text-gray-300 mx-auto mt-8 leading-relaxed text-xl md:text-2xl max-w-4xl">
-            Experience the untold story of Kashmir in theaters worldwide. Discover upcoming screenings in your area.
-          </p>
-        </div>
+        <UiSectionHeader 
+          title="Find a Screening"
+          subtitle="Experience the untold story of Kashmir in theaters worldwide. Discover upcoming screenings in your area."
+          size="md"
+        />
         
         <!-- Filter Bar -->
         <div class="max-w-4xl mx-auto mb-8">
@@ -45,9 +38,10 @@
         <div class="space-y-16">
           <!-- Upcoming Screenings Section -->
           <div v-if="filteredUpcomingScreenings.length > 0" class="space-y-8">
-            <UiSectionHeader 
+            <UiSubHeader 
               :title="getUpcomingResultsText()"
               size="md"
+              align="center"
             />
             
             <div class="grid gap-6 max-w-6xl mx-auto">
@@ -73,9 +67,10 @@
           
           <!-- Past Screenings Section -->
           <div v-if="filteredPastScreenings.length > 0" class="space-y-8">
-            <UiSectionHeader 
+            <UiSubHeader 
               :title="`Past Screenings (${filteredPastScreenings.length})`"
               size="md"
+              align="center"
             />
             
             <div class="grid gap-6 max-w-6xl mx-auto opacity-75">

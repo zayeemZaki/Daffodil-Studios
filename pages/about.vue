@@ -8,7 +8,7 @@
           <UiSectionHeader 
             title="About Daffodil Studios" 
             subtitle="We are passionate storytellers dedicated to bringing important narratives to audiences worldwide through powerful documentary filmmaking."
-            size="lg"
+            size="md"
           />
         </div>
       </section>
@@ -18,7 +18,7 @@
         <div class="container mx-auto px-6">
           <div class="max-w-4xl mx-auto">
             <div class="glass-card rounded-2xl p-8 md:p-12 mb-16">
-              <h2 class="text-3xl font-bold text-brand-gradient mb-6">Our Mission</h2>
+              <UiSubHeader title="Our Mission" size="sm" align="center" />
               <p class="text-lg text-gray-300 leading-relaxed mb-6">
                 Daffodil Studios is committed to creating documentaries that shed light on untold stories and 
                 amplify voices that need to be heard. Through our films, we strive to educate, inspire, and 
@@ -38,10 +38,13 @@
         <div class="container mx-auto px-6">
           <div class="max-w-4xl mx-auto">
             <div class="text-center mb-12">
-              <h2 class="text-4xl font-bold text-brand-gradient mb-4">Get In Touch</h2>
-              <p class="text-xl text-gray-300">
-                Request a screening or send us a message
-              </p>
+              <UiSubHeader 
+                title="Get In Touch" 
+                subtitle="Request a screening or send us a message"
+                size="md" 
+                align="center"
+                :divider="false"
+              />
             </div>
 
             <div class="glass-card rounded-2xl p-8 md:p-12">

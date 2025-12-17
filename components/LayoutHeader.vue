@@ -63,30 +63,6 @@
 
       <!-- Action Buttons -->
       <div class="flex items-center space-x-2 sm:space-x-4">
-        <ClientOnly>
-          <dbox-widget
-            class="donorbox-popup-button"
-            interval="1 M"
-            campaign="daffodil"
-            type="popup"
-            button-label="Donate"
-            button-type="regular"
-            button-color="#1299ed"
-            button-size="medium"
-            show-icon=""
-          />
-          <template #fallback>
-            <a
-              href="https://donorbox.org/daffodil"
-              target="_blank"
-              rel="noopener"
-              class="donorbox-popup-button donorbox-fallback"
-            >
-              Donate
-            </a>
-          </template>
-        </ClientOnly>
-
         <!-- Mobile Menu Button -->
         <button 
           @click="showMobileMenu = !showMobileMenu"
@@ -166,69 +142,23 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 
 const showMobileMenu = ref(false)
-
-onMounted(() => {
-  const scriptId = 'donorbox-widget-js'
-  if (!document.getElementById(scriptId)) {
-    const script = document.createElement('script')
-    script.id = scriptId
-    script.src = 'https://donorbox.org/widgets.js'
-    script.type = 'module'
-    script.async = true
-    document.head.appendChild(script)
-  }
-})
 </script>
 
 <style scoped>
-.donorbox-popup-button {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
+.nav-underline {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #FDB913, #FDC94A);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.donorbox-popup-button :deep(button),
-.donorbox-popup-button :deep(a) {
-  background-image: linear-gradient(135deg, #FDB913, #FDC94A, #FDB913);
-  color: #111827;
-  padding: 0.4rem 1.25rem;
-  border-radius: 9999px;
-  font-weight: 800;
-  font-size: 0.95rem;
-  border: none;
-  box-shadow: 0 10px 25px rgba(253, 185, 19, 0.35), 0 5px 15px rgba(0, 0, 0, 0.15);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  cursor: pointer;
-}
-
-.donorbox-popup-button :deep(button:hover),
-.donorbox-popup-button :deep(a:hover) {
-  transform: scale(1.05);
-  box-shadow: 0 14px 28px rgba(253, 185, 19, 0.45), 0 6px 20px rgba(0, 0, 0, 0.18);
-  filter: brightness(1.02);
-}
-
-.donorbox-popup-button :deep(button:focus-visible),
-.donorbox-popup-button :deep(a:focus-visible) {
-  outline: 2px solid #FDC94A;
-  outline-offset: 2px;
-}
-
-.donorbox-popup-button :deep(button:disabled),
-.donorbox-popup-button :deep(a:disabled) {
-  opacity: 0.65;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-}
-
-.donorbox-fallback {
-  text-decoration: none;
+.group:hover .nav-underline {
+  width: 100%;
 }
 </style>
