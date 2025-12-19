@@ -55,7 +55,7 @@
 
           <div class="donation-form-wrapper">
             <div class="donation-form-card">
-              <div v-if="!iframeLoaded" class="donorbox-skeleton" aria-hidden="true">
+              <div v-if="!iframeLoaded" class="donorbox-skeleton" aria-hidden="true" :style="{ height: `${skeletonHeight}px` }">
                 <div class="donorbox-skeleton-inner">
                   <div class="skeleton-line w-2/3"></div>
                   <div class="skeleton-line w-full"></div>
@@ -72,7 +72,7 @@
                 allowpaymentrequest="allowpaymentrequest"
                 frameborder="0"
                 scrolling="no"
-                height="650"
+                :style="{ height: `${iframeHeight}px` }"
                 loading="eager"
                 @load="handleIframeLoad"
               ></iframe>
@@ -85,13 +85,59 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+
+const MIN_IFRAME_HEIGHT = 720
+const MAX_IFRAME_HEIGHT = 2000
 
 const iframeLoaded = ref(false)
+const iframeHeight = ref(MIN_IFRAME_HEIGHT)
 
 const handleIframeLoad = () => {
   iframeLoaded.value = true
 }
+
+
+const handleHeightMessage = (event: MessageEvent) => {
+  if (!event.origin.includes('donorbox.org')) return
+
+  const data = event.data
+  let nextHeight: number | undefined
+
+  if (typeof data === 'string') {
+    let parsedJson: any = null
+    if (data.trim().startsWith('{')) {
+      try {
+        parsedJson = JSON.parse(data)
+      } catch (err) {
+        parsedJson = null
+      }
+    }
+    if (parsedJson && typeof parsedJson.height === 'number') nextHeight = parsedJson.height
+    if (!nextHeight) {
+      const match = data.match(/height\s*=?\s*(\d{3,4})/i) || data.match(/(\d{3,4})/)
+      nextHeight = match ? Number(match[1]) : undefined
+    }
+  } else if (typeof data === 'object' && data && 'height' in data && typeof (data as any).height === 'number') {
+    nextHeight = (data as any).height
+  }
+
+  if (!nextHeight) return
+
+  const buffered = Math.round(nextHeight) + 20 // small buffer for focus outlines
+  const clamped = Math.max(MIN_IFRAME_HEIGHT, Math.min(MAX_IFRAME_HEIGHT, buffered))
+  if (clamped !== iframeHeight.value) iframeHeight.value = clamped
+}
+
+const skeletonHeight = computed(() => Math.max(iframeHeight.value, MIN_IFRAME_HEIGHT))
+
+onMounted(() => {
+  window.addEventListener('message', handleHeightMessage)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('message', handleHeightMessage)
+})
 
 // SEO Meta tags
 useHead({
