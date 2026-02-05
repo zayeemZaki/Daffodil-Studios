@@ -1,5 +1,9 @@
 <template>
-  <div class="floating-donate-wrapper">
+  <div
+    ref="buttonRef"
+    class="floating-donate-wrapper"
+    :class="isInView ? 'animations-running' : 'animations-paused'"
+  >
     <Transition
       enter-active-class="transition-all duration-[400ms] ease-out"
       enter-from-class="opacity-0 translate-y-2"
@@ -25,8 +29,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
-import { useRoute } from 'vue-router'
+const buttonRef = ref<HTMLElement | null>(null)
+const isInView = ref(true)
+let observer: IntersectionObserver | null = null
 
 const route = useRoute()
 const isDonationPage = ref(false)
@@ -38,6 +43,21 @@ const checkIfDonationPage = () => {
 
 onMounted(() => {
   checkIfDonationPage()
+
+  observer = new IntersectionObserver(
+    ([entry]) => {
+      isInView.value = entry.isIntersecting
+    },
+    { threshold: 0.1 }
+  )
+
+  if (buttonRef.value) {
+    observer.observe(buttonRef.value)
+  }
+})
+
+onBeforeUnmount(() => {
+  observer?.disconnect()
 })
 
 // Watch for route changes

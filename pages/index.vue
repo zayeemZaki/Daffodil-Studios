@@ -12,23 +12,21 @@
         muted 
         loop 
         playsinline
-        preload="auto"
-        poster="~/assets/images/pages/home/movie-poster.jpg"
-        class="absolute inset-0 w-full h-full object-cover object-center blur-sm parallax-element"
-        style="will-change: transform;"
+        preload="metadata"
+        :poster="heroPoster"
+        class="absolute inset-0 w-full h-full object-cover object-center parallax-element"
         @loadeddata="onVideoLoaded"
       >
-        <source src="https://res.cloudinary.com/doellzqg2/video/upload/hero-video_1_joqnej.mp4" type="video/mp4">
+        <source src="https://res.cloudinary.com/doellzqg2/video/upload/f_auto,q_auto,w_1920/hero-video_1_joqnej.mp4" type="video/mp4">
         <!-- Fallback image if video doesn't load -->
-        <img src="~/assets/images/pages/home/movie-poster.jpg" alt="Daffodil Studios" class="w-full h-full object-cover object-center">
+        <img :src="heroPoster" alt="Daffodil Studios" class="w-full h-full object-cover object-center blur-sm">
       </video>
       
       <!-- Cinematic Overlay with Warm Grade -->
       <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
       
       <!-- Film Grain Texture -->
-      <div class="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" 
-           style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');"></div>
+      <div class="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none film-grain"></div>
       
       <!-- Floating particles -->
       <div class="absolute inset-0 overflow-hidden">
@@ -49,19 +47,20 @@
           that inspire, entertain, and connect audiences across the globe.
         </p>
         <div class="flex flex-col sm:flex-row gap-3 sm:space-x-3 justify-center opacity-0 fade-in-delay-2 px-4">
-          <NuxtLink 
-            to="/movies" 
-            class="bg-gradient-to-br from-brand-yellow via-brand-yellow-light to-brand-yellow text-gray-900 hover:text-black px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-bold inline-block text-center min-h-[44px] flex items-center justify-center transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-glow-yellow relative overflow-hidden group"
-          >
-            <span class="relative z-10">Saffron Kingdom</span>
-            <div class="absolute inset-0 bg-gradient-to-br from-brand-yellow-light to-brand-yellow opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </NuxtLink>
-          <NuxtLink 
-            to="/about" 
-            class="border-2 border-brand-yellow hover:bg-brand-yellow hover:text-gray-900 text-brand-yellow px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-bold transition-all duration-300 transform hover:scale-105 inline-block text-center min-h-[44px] flex items-center justify-center backdrop-blur-sm bg-brand-yellow/5"
-          >
-            Our Story
-          </NuxtLink>
+          <UiActionButton
+            to="/movies"
+            text="Saffron Kingdom"
+            variant="gradient"
+            size="md"
+            class="min-h-[44px]"
+          />
+          <UiActionButton
+            to="/about"
+            text="Our Story"
+            variant="outline"
+            size="md"
+            class="min-h-[44px]"
+          />
         </div>
       </div>
     </section>
@@ -78,11 +77,11 @@
         <div class="xl:w-5/12">
           <div class="relative group">
             <!-- Main Poster Container -->
-            <div class="relative overflow-hidden rounded-2xl shadow-2xl poster-3d hover-lift">
+            <div class="relative overflow-hidden rounded-2xl shadow-2xl">
               <img 
-                src="~/assets/images/pages/home/movie-poster.jpg" 
-                alt="The Golden Hour Movie Poster" 
-                class="w-full h-auto aspect-[2/3] object-cover transition-transform duration-700 group-hover:scale-105"
+                :src="heroPoster" 
+                alt="Saffron Kingdom Movie Poster" 
+                class="w-full h-auto aspect-[2/3] object-cover"
               >
               <!-- Overlay Effects -->
               <div class="hover-overlay-dark"></div>
@@ -90,8 +89,8 @@
             </div>
             
             <!-- Decorative Elements -->
-            <div class="absolute -top-4 -right-4 w-20 h-20 bg-brand-gradient-br rounded-full opacity-20 blur-xl float-animation"></div>
-            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-brand-gradient-tr rounded-full opacity-10 blur-2xl float-animation delay-2s"></div>
+            <div class="absolute -top-4 -right-4 w-20 h-20 bg-brand-gradient-br rounded-full opacity-20 blur-xl"></div>
+            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-brand-gradient-tr rounded-full opacity-10 blur-2xl"></div>
           </div>
         </div>
         
@@ -242,12 +241,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import heroPoster from '@/assets/images/pages/home/movie-poster.jpg'
 
 const scrollProgress = ref(0)
-const isScrolling = ref(true)
 const heroVideo = ref(null)
-const videoLoaded = ref(false)
+let isScrollTicking = false
 
 const updateScrollProgress = () => {
   const scrollTop = window.pageYOffset
@@ -256,16 +254,16 @@ const updateScrollProgress = () => {
   scrollProgress.value = scrollPercent
 }
 
-const toggleScrolling = () => {
-  isScrolling.value = !isScrolling.value
-  const scrollElement = document.querySelector('.animate-scroll')
-  if (scrollElement) {
-    scrollElement.style.animationPlayState = isScrolling.value ? 'running' : 'paused'
-  }
+const onScroll = () => {
+  if (isScrollTicking) return
+  isScrollTicking = true
+  requestAnimationFrame(() => {
+    updateScrollProgress()
+    isScrollTicking = false
+  })
 }
 
 const onVideoLoaded = () => {
-  videoLoaded.value = true
   // Ensure video plays smoothly
   if (heroVideo.value) {
     heroVideo.value.play().catch(() => {
@@ -291,16 +289,8 @@ const observeElements = () => {
   })
 }
 
-// Add smooth scroll navigation
-const scrollToSection = (sectionId) => {
-  const element = document.getElementById(sectionId)
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })
-  }
-}
-
 onMounted(() => {
-  window.addEventListener('scroll', updateScrollProgress, { passive: true })
+  window.addEventListener('scroll', onScroll, { passive: true })
   updateScrollProgress()
   
   // Add intersection observer for scroll animations
@@ -313,6 +303,24 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', updateScrollProgress)
+  window.removeEventListener('scroll', onScroll)
+})
+
+useHead({
+  title: 'Daffodil Studios - Home',
+  meta: [
+    {
+      name: 'description',
+      content: 'Daffodil Studios creates powerful documentary films. Discover Saffron Kingdom and explore upcoming screenings.'
+    },
+    {
+      property: 'og:title',
+      content: 'Daffodil Studios - Home'
+    },
+    {
+      property: 'og:description',
+      content: 'Explore award-winning documentary filmmaking from Daffodil Studios and discover Saffron Kingdom.'
+    }
+  ]
 })
 </script>

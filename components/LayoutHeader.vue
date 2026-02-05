@@ -7,62 +7,38 @@
         class="flex items-center space-x-2 text-xl font-bold text-white hover:text-gray-300 transition-all duration-300 transform hover:scale-105"
       >
         <div class="relative">
-          <img src="~/public/logo.webp" alt="Daffodil Studios Logo" class="h-10 sm:h-12 w-auto filter drop-shadow-lg">
+          <img src="/logo.webp" alt="Daffodil Studios Logo" class="h-10 sm:h-12 w-auto filter drop-shadow-lg">
           <div class="absolute inset-0 bg-white opacity-0 hover:opacity-20 rounded-full transition-opacity duration-300"></div>
         </div>
       </NuxtLink>
       
       <!-- Navigation Links - Desktop -->
       <ul class="hidden md:flex space-x-8 items-center">
-        <li>
+        <li v-for="item in navItems" :key="item.to">
           <NuxtLink 
-            to="/" 
+            :to="item.to" 
             class="relative text-base text-gray-300 hover:text-brand-yellow font-semibold transition-all duration-300 group"
           >
-            Home
-            <span class="nav-underline"></span>
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink 
-            to="/screenings" 
-            class="relative text-base text-gray-300 hover:text-brand-yellow font-semibold transition-all duration-300 group"
-          >
-            Screenings
-            <span class="nav-underline"></span>
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink 
-            to="/movies" 
-            class="relative text-base text-gray-300 hover:text-brand-yellow font-semibold transition-all duration-300 group"
-          >
-            Movies
-            <span class="nav-underline"></span>
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink 
-            to="/press" 
-            class="relative text-base text-gray-300 hover:text-brand-yellow font-semibold transition-all duration-300 group"
-          >
-            Press
-            <span class="nav-underline"></span>
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink 
-            to="/about" 
-            class="relative text-base text-gray-300 hover:text-brand-yellow font-semibold transition-all duration-300 group"
-          >
-            About
+            {{ item.label }}
             <span class="nav-underline"></span>
           </NuxtLink>
         </li>
       </ul>
 
       <!-- Action Buttons -->
-      <div class="flex items-center space-x-2 sm:space-x-4">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <NuxtLink
+          to="/about#request-screening"
+          class="hidden md:inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-bold text-brand-yellow border-2 border-brand-yellow hover:bg-brand-yellow hover:text-gray-900 transition-all duration-300"
+        >
+          Request Screening
+        </NuxtLink>
+        <NuxtLink
+          to="/donate"
+          class="hidden md:inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-bold bg-gradient-to-br from-brand-yellow via-brand-yellow-light to-brand-yellow text-gray-900 hover:shadow-glow-yellow transition-all duration-300"
+        >
+          Donate
+        </NuxtLink>
         <!-- Mobile Menu Button -->
         <button 
           @click="showMobileMenu = !showMobileMenu"
@@ -90,49 +66,31 @@
     >
       <div v-if="showMobileMenu" class="md:hidden bg-gray-900 border-t border-gray-700 shadow-lg">
         <ul class="container mx-auto px-4 py-3 space-y-1">
-          <li>
+          <li v-for="item in navItems" :key="item.to">
             <NuxtLink 
-              to="/" 
+              :to="item.to" 
               @click="showMobileMenu = false"
               class="block text-sm text-gray-300 font-semibold py-3 px-3 rounded-lg active:bg-gray-700 active:bg-opacity-50 transition-colors duration-200 min-h-[48px] flex items-center"
             >
-              Home
+              {{ item.label }}
+            </NuxtLink>
+          </li>
+          <li class="pt-1">
+            <NuxtLink
+              to="/about#request-screening"
+              @click="showMobileMenu = false"
+              class="block text-sm text-brand-yellow font-semibold py-3 px-3 rounded-lg border border-brand-yellow/70 active:bg-brand-yellow/10 transition-colors duration-200 min-h-[48px] flex items-center justify-center"
+            >
+              Request Screening
             </NuxtLink>
           </li>
           <li>
-            <NuxtLink 
-              to="/screenings" 
+            <NuxtLink
+              to="/donate"
               @click="showMobileMenu = false"
-              class="block text-sm text-gray-300 font-semibold py-3 px-3 rounded-lg active:bg-gray-700 active:bg-opacity-50 transition-colors duration-200 min-h-[48px] flex items-center"
+              class="block text-sm text-gray-900 font-semibold py-3 px-3 rounded-lg bg-gradient-to-br from-brand-yellow via-brand-yellow-light to-brand-yellow transition-all duration-200 min-h-[48px] flex items-center justify-center"
             >
-              Screenings
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink 
-              to="/movies" 
-              @click="showMobileMenu = false"
-              class="block text-sm text-gray-300 font-semibold py-3 px-3 rounded-lg active:bg-gray-700 active:bg-opacity-50 transition-colors duration-200 min-h-[48px] flex items-center"
-            >
-              Movies
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink 
-              to="/press" 
-              @click="showMobileMenu = false"
-              class="block text-sm text-gray-300 font-semibold py-3 px-3 rounded-lg active:bg-gray-700 active:bg-opacity-50 transition-colors duration-200 min-h-[48px] flex items-center"
-            >
-              Press
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink 
-              to="/about" 
-              @click="showMobileMenu = false"
-              class="block text-sm text-gray-300 font-semibold py-3 px-3 rounded-lg active:bg-gray-700 active:bg-opacity-50 transition-colors duration-200 min-h-[48px] flex items-center"
-            >
-              About
+              Donate
             </NuxtLink>
           </li>
         </ul>
@@ -142,7 +100,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { navItems } from '~/utils/navItems'
 
 const showMobileMenu = ref(false)
 </script>

@@ -1,6 +1,16 @@
 import Stripe from 'stripe'
+import screeningsData from '~/data/screenings.json'
+import { assertRateLimit } from '~/server/utils/rateLimit'
+
+type ScreeningRecord = {
+  id: number
+  ticketUrl?: string
+  ticketPrice?: number
+}
 
 export default defineEventHandler(async (event) => {
+  assertRateLimit(event, { windowMs: 10 * 60 * 1000, max: 20, keyPrefix: 'checkout' })
+
   const config = useRuntimeConfig()
   const body = await readBody(event)
 
@@ -13,13 +23,40 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
+    const screeningId = Number(body.screeningId)
+    const amount = Number(body.amount)
+
+    if (!Number.isFinite(screeningId) || !Number.isFinite(amount) || amount <= 0) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Invalid screening or amount'
+      })
+    }
+
+    const screening = (screeningsData as unknown as ScreeningRecord[]).find((item) => item.id === screeningId)
+    if (!screening || screening.ticketUrl !== 'stripe' || !screening.ticketPrice) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Screening is not eligible for Stripe checkout'
+      })
+    }
+
+    if (amount !== screening.ticketPrice) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Invalid ticket amount'
+      })
+    }
+
     // Initialize Stripe
     const stripe = new Stripe(config.stripeSecretKey as string, {
       apiVersion: '2025-10-29.clover'
     })
 
     // Get the origin from the request headers for proper URL construction
-    const origin = getRequestHeader(event, 'origin') || config.public.siteUrl
+    const originHeader = getRequestHeader(event, 'origin')
+    const allowedOrigins = [config.public.siteUrl]
+    const origin = originHeader && allowedOrigins.includes(originHeader) ? originHeader : config.public.siteUrl
     
     // Create Checkout Session
     const session = await stripe.checkout.sessions.create({
@@ -33,7 +70,7 @@ export default defineEventHandler(async (event) => {
               description: `Screening at ${body.location || 'selected venue'}`,
               images: body.image ? [body.image] : []
             },
-            unit_amount: body.amount * 100 // Convert dollars to cents
+            unit_amount: amount * 100 // Convert dollars to cents
           },
           quantity: body.quantity || 1,
           adjustable_quantity: {

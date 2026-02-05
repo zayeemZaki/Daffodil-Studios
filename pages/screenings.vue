@@ -1,19 +1,9 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white relative">
-    <!-- Background Pattern -->
-    <div class="absolute inset-0 section-bg-animated">
-      <div class="floating-orbs">
-        <div class="floating-orbs-center"></div>
-      </div>
-      
-      <!-- Film Grain Texture for Cinematic Feel -->
-      <div class="absolute inset-0 opacity-[0.02] mix-blend-overlay pointer-events-none" 
-           style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');"></div>
-    </div>
-    
-    <!-- Hero Section -->
-    <section class="relative pt-20 pb-12" style="z-index: 100;">
-      <div class="container mx-auto px-6">
+    <UiBackgroundPattern film-grain padding="none">
+      <!-- Hero Section -->
+      <section class="relative pt-20 pb-12" style="z-index: 100;">
+        <div class="container mx-auto px-6">
         <UiSectionHeader 
           title="Find a Screening"
           subtitle="Experience the untold story of Kashmir in theaters worldwide. Discover upcoming screenings in your area."
@@ -25,7 +15,6 @@
           <FilterBar 
             :locations="uniqueLocations"
             @filter-change="applyFilters"
-            @search="applyFilters"
             @clear-filters="clearAllFilters"
           />
         </div>
@@ -38,10 +27,11 @@
         <div class="space-y-16">
           <!-- Upcoming Screenings Section -->
           <div v-if="filteredUpcomingScreenings.length > 0" class="space-y-8">
-            <UiSubHeader 
+            <UiSectionHeader 
               :title="getUpcomingResultsText()"
               size="md"
               align="center"
+              :level="2"
             />
             
             <div class="grid gap-6 max-w-6xl mx-auto">
@@ -67,10 +57,11 @@
           
           <!-- Past Screenings Section -->
           <div v-if="filteredPastScreenings.length > 0" class="space-y-8">
-            <UiSubHeader 
+            <UiSectionHeader 
               :title="`Past Screenings (${filteredPastScreenings.length})`"
               size="md"
               align="center"
+              :level="2"
             />
             
             <div class="grid gap-6 max-w-6xl mx-auto opacity-75">
@@ -116,437 +107,16 @@
         </div>
       </div>
     </section>
+    </UiBackgroundPattern>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 import type { FilterData } from '~/types'
+import screeningsData from '~/data/screenings.json'
 
 // Saffron Kingdom screenings data
-const allScreenings = ref([
-  // United States
-  {
-    id: 1,
-    movieName: "Saffron Kingdom",
-    date: "2025-03-01",
-    time: "",
-    venue: "Wake Forest Film Festival",
-    city: "Wake Forest",
-    state: "NC",
-    country: "United States",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 2,
-    movieName: "Saffron Kingdom",
-    date: "2025-04-22",
-    time: "",
-    venue: "Georgia State University",
-    city: "Atlanta",
-    state: "GA",
-    country: "United States",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 3,
-    movieName: "Saffron Kingdom",
-    date: "2025-04-25",
-    time: "",
-    venue: "Julien Dubuque International Film Festival",
-    city: "Dubuque",
-    state: "IA",
-    country: "United States",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 4,
-    movieName: "Saffron Kingdom",
-    date: "2025-04-27",
-    time: "",
-    venue: "Julien Dubuque International Film Festival",
-    city: "Dubuque",
-    state: "IA",
-    country: "United States",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 5,
-    movieName: "Saffron Kingdom",
-    date: "2025-06-29",
-    time: "",
-    venue: "Tasveer Film Center",
-    city: "Seattle",
-    state: "WA",
-    country: "United States",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 6,
-    movieName: "Saffron Kingdom",
-    date: "2025-06-30",
-    time: "",
-    venue: "Johns Hopkins University",
-    city: "Washington",
-    state: "DC",
-    country: "United States",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 7,
-    movieName: "Saffron Kingdom",
-    date: "2025-07-18",
-    time: "",
-    venue: "Islamic Society of Akron & Kent",
-    city: "Akron",
-    state: "OH",
-    country: "United States",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 8,
-    movieName: "Saffron Kingdom",
-    date: "2025-08-30",
-    time: "",
-    venue: "Islamic Society of North America",
-    city: "Chicago",
-    state: "IL",
-    country: "United States",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 9,
-    movieName: "Saffron Kingdom",
-    date: "2025-11-09",
-    time: "3:00 PM",
-    venue: "Teaneck Cinemas",
-    city: "Teaneck",
-    state: "NJ",
-    country: "United States",
-    ticketUrl: "https://www.eventbrite.com/e/teaneck-international-film-festival-2025-tickets-1689684946159",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 10,
-    movieName: "Saffron Kingdom",
-    date: "2025-11-16",
-    time: "3:00 PM",
-    venue: "The Nightlight Cinema",
-    city: "Akron",
-    state: "OH",
-    country: "United States",
-    ticketUrl: "https://nightlightcinema.com/movie/saffron-kingdom",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 11,
-    movieName: "Saffron Kingdom",
-    date: "2025-08-31",
-    time: "",
-    venue: "Islamic Society of North America",
-    city: "Chicago",
-    state: "IL",
-    country: "United States",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 12,
-    movieName: "Saffron Kingdom",
-    date: "2025-09-13",
-    time: "",
-    venue: "School of Visual Arts Theatre",
-    city: "New York",
-    state: "NY",
-    country: "United States",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 13,
-    movieName: "Saffron Kingdom",
-    date: "2025-10-19",
-    time: "",
-    venue: "Muslim Public Affairs Council",
-    city: "Los Angeles",
-    state: "CA",
-    country: "United States",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  // United Kingdom
-  {
-    id: 14,
-    movieName: "Saffron Kingdom",
-    date: "2025-09-20",
-    time: "",
-    venue: "Genesis Cinema",
-    city: "London",
-    state: "",
-    country: "United Kingdom",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 15,
-    movieName: "Saffron Kingdom",
-    date: "2025-10-04",
-    time: "",
-    venue: "Palestine House",
-    city: "London",
-    state: "",
-    country: "United Kingdom",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 28,
-    movieName: "Saffron Kingdom",
-    date: "2025-11-20",
-    time: "6:00 PM",
-    venue: "SOAS, University of London",
-    city: "London",
-    state: "",
-    country: "UK",
-    ticketUrl: "https://tinyurl.com/SKSOAS",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 30,
-    movieName: "Saffron Kingdom",
-    date: "2025-11-22",
-    time: "6:00 PM",
-    venue: "Refuge Worldwide",
-    city: "Berlin",
-    state: "",
-    country: "Germany",
-    ticketUrl: "https://www.theleftberlin.com/events/the-left-berlin-film-club-the-saffron-kingdom/",
-    buttonText: "Register",
-    isDisabled: false
-  },
-  {
-    id: 29,
-    movieName: "Saffron Kingdom",
-    date: "2025-12-06",
-    time: "5:00 PM",
-    venue: "SAN LA Office",
-    city: "Los Angeles",
-    state: "CA",
-    country: "United States",
-    ticketUrl: "https://tinyurl.com/saffronkingdom",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 31,
-    movieName: "Saffron Kingdom",
-    date: "2026-01-17",
-    time: "6:00 PM",
-    venue: "Reva and David Logan Center for the Arts",
-    city: "Chicago",
-    state: "IL",
-    country: "United States",
-    ticketUrl: "https://www.eventbookings.com/b/event/saffron-kingdom-chicago",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  // Australia
-  {
-    id: 16,
-    movieName: "Saffron Kingdom",
-    date: "2025-08-06",
-    time: "",
-    venue: "Australian National University",
-    city: "Canberra",
-    state: "ACT",
-    country: "Australia",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 17,
-    movieName: "Saffron Kingdom",
-    date: "2025-08-09",
-    time: "",
-    venue: "Bryan Brown Theatre",
-    city: "Sydney",
-    state: "NSW",
-    country: "Australia",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 18,
-    movieName: "Saffron Kingdom",
-    date: "2025-08-09",
-    time: "",
-    venue: "Institute of Postcolonial Studies",
-    city: "Melbourne",
-    state: "VIC",
-    country: "Australia",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 19,
-    movieName: "Saffron Kingdom",
-    date: "2025-08-15",
-    time: "",
-    venue: "Reading Cinemas Belmont",
-    city: "Perth",
-    state: "WA",
-    country: "Australia",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 20,
-    movieName: "Saffron Kingdom",
-    date: "2025-08-23",
-    time: "",
-    venue: "Five Star Cinemas",
-    city: "Brisbane",
-    state: "QLD",
-    country: "Australia",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 21,
-    movieName: "Saffron Kingdom",
-    date: "2025-10-05",
-    time: "",
-    venue: "Muslim Film Festival",
-    city: "Perth",
-    state: "WA",
-    country: "Australia",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 22,
-    movieName: "Saffron Kingdom",
-    date: "2025-10-18",
-    time: "",
-    venue: "Cinema Nova",
-    city: "Melbourne",
-    state: "VIC",
-    country: "Australia",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  // New Zealand
-  {
-    id: 23,
-    movieName: "Saffron Kingdom",
-    date: "2025-08-08",
-    time: "",
-    venue: "Penthouse Cinema & Cafe",
-    city: "Wellington",
-    state: "",
-    country: "New Zealand",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 24,
-    movieName: "Saffron Kingdom",
-    date: "2025-08-09",
-    time: "",
-    venue: "Event Cinemas Chartwell",
-    city: "Hamilton",
-    state: "",
-    country: "New Zealand",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 25,
-    movieName: "Saffron Kingdom",
-    date: "2025-08-09",
-    time: "",
-    venue: "Focal Point Cinema and Cafe",
-    city: "Palmerston North",
-    state: "",
-    country: "New Zealand",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 26,
-    movieName: "Saffron Kingdom",
-    date: "2025-09-06",
-    time: "",
-    venue: "Event Cinemas St. Lukes",
-    city: "Auckland",
-    state: "",
-    country: "New Zealand",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  // Canada
-  {
-    id: 27,
-    movieName: "Saffron Kingdom",
-    date: "2025-10-28",
-    time: "",
-    venue: "Innis Town Hall",
-    city: "Toronto",
-    state: "ON",
-    country: "Canada",
-    ticketUrl: "",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  },
-  {
-    id: 32,
-    movieName: "Saffron Kingdom",
-    date: "2026-01-10",
-    time: "6:00 PM",
-    venue: "Cineworld Solihull, 47 Homer Rd, England, B91 3QW",
-    city: "Solihull",
-    state: "",
-    country: "UK",
-    ticketUrl: "https://www.eventbookings.com/b/event/saffron-kingdom-cineworld-solihull",
-    buttonText: "Buy Tickets",
-    isDisabled: false
-  }
-])
+const allScreenings = ref(screeningsData)
 
 // Get today's date for comparison
 const today = new Date().toISOString().split('T')[0]
@@ -560,10 +130,22 @@ const uniqueLocations = computed(() => {
   return [...new Set(locations)].sort()
 })
 
-// Extract unique countries
-const uniqueCountries = computed(() => {
-  const countries = allScreenings.value.map(screening => screening.country)
-  return [...new Set(countries)].sort()
+useHead({
+  title: 'Screenings - Daffodil Studios',
+  meta: [
+    {
+      name: 'description',
+      content: 'Find upcoming and past screenings of Saffron Kingdom and explore where to watch.'
+    },
+    {
+      property: 'og:title',
+      content: 'Screenings - Daffodil Studios'
+    },
+    {
+      property: 'og:description',
+      content: 'Discover upcoming screenings of Saffron Kingdom around the world.'
+    }
+  ]
 })
 
 // Current filter state

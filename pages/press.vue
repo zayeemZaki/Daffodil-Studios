@@ -17,9 +17,10 @@
       <section class="relative pb-12 sm:pb-16">
         <div class="container mx-auto px-4 sm:px-6">
           <div class="max-w-7xl mx-auto">
-            <UiSubHeader 
+            <UiSectionHeader 
               title="Daffodil Studios Press Release"
               size="md"
+              :level="2"
             />
             
             <div class="glass-card rounded-xl overflow-hidden p-4 sm:p-6 lg:p-8">
@@ -108,90 +109,28 @@
       <section class="relative pb-12">
         <div class="container mx-auto px-4 sm:px-6">
           <div class="max-w-7xl mx-auto">
-            <UiSubHeader 
+            <UiSectionHeader 
               title="Articles"
               size="md"
               align="center"
+              :level="2"
             />
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            <!-- Article Item -->
-            <a 
-              v-for="article in visibleArticles" 
-              :key="article.id"
-              :href="article.url || '#'"
-              :target="article.url && article.url !== '#' ? '_blank' : '_self'"
-              :rel="article.url && article.url !== '#' ? 'noopener noreferrer' : ''"
-              class="flex flex-col glass-card rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-300 group h-full"
-              :class="{ 'cursor-default': !article.url || article.url === '#' }"
-            >
-              <!-- Preview Image with fallback -->
-              <div class="w-full h-40 sm:h-36 bg-gradient-to-br from-brand-primary to-brand-accent overflow-hidden relative shadow-lg group-hover:shadow-xl transition-shadow flex items-center justify-center">
-                <!-- Custom image if available -->
-                <img 
-                  v-if="getCustomPreviewImage(article.id)"
-                  :src="getCustomPreviewImage(article.id)!"
-                  :alt="`Preview of ${article.title}`"
-                  class="w-full h-full object-cover absolute inset-0 z-10"
-                  loading="lazy"
-                />
-                <!-- Screenshot API for articles with URL -->
-                <img 
-                  v-else-if="article.url && article.url !== '#'"
-                  :src="`https://api.microlink.io/?url=${encodeURIComponent(article.url)}&screenshot=true&meta=false&embed=screenshot.url`"
-                  :alt="`Preview of ${article.title}`"
-                  class="w-full h-full object-cover absolute inset-0 z-10"
-                  loading="lazy"
-                />
-                <!-- Fallback gradient background with publication name -->
-                <span class="text-sm sm:text-base font-bold text-white text-center leading-tight p-3 z-0">{{ article.publication }}</span>
-              </div>
-              
-              <!-- Content -->
-              <div class="flex flex-col flex-grow p-4 sm:p-4">
-                <!-- Publication Badge -->
-                <span class="inline-block px-2.5 py-1 bg-brand-accent rounded-md text-xs font-semibold mb-2 self-start">
-                  {{ article.publication }}
-                </span>
-                
-                <h3 class="text-sm sm:text-base font-bold text-white mb-2 group-hover:text-brand-gradient transition-colors line-clamp-2 leading-snug">
-                  {{ article.title }}
-                </h3>
-                
-                <p class="text-xs text-gray-300 leading-relaxed line-clamp-2 mb-3 flex-grow">
-                  {{ article.description }}
-                </p>
-                
-                <!-- Read More Link -->
-                <div 
-                  v-if="article.url && article.url !== '#'"
-                  class="inline-flex items-center gap-1 text-brand-gradient group-hover:text-gray-400 transition-colors font-semibold text-xs mt-auto"
-                >
-                  <span>Read Article</span>
-                  <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                  </svg>
-                </div>
-              </div>
-            </a>
-          </div>
+              <CardPress
+                v-for="article in visibleArticles"
+                :key="article.id"
+                :item="article"
+              />
+            </div>
           
           <!-- See More Button -->
           <div v-if="hasMoreArticles" class="text-center mt-6 sm:mt-8">
-            <button
-              @click="showAllArticles = !showAllArticles"
-              class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-gray-700 to-gray-600 active:from-gray-800 active:to-gray-700 text-white rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 shadow-lg min-h-[44px] min-w-[180px]"
-            >
-              <span>{{ showAllArticles ? 'Show Less' : `See More Articles (${articles.length - 3} more)` }}</span>
-              <svg 
-                class="w-5 h-5 transition-transform duration-300" 
-                :class="{ 'rotate-180': showAllArticles }"
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
+            <UiToggleButton
+              :expanded="showAllArticles"
+              :expanded-label="'Show Less'"
+              :collapsed-label="`See More Articles (${articles.length - 3} more)`"
+              @toggle="showAllArticles = !showAllArticles"
+            />
           </div>
         </div>
         </div>
@@ -201,84 +140,28 @@
       <section class="relative pb-16 sm:pb-24">
         <div class="container mx-auto px-4 sm:px-6">
           <div class="max-w-7xl mx-auto">
-            <UiSubHeader 
+            <UiSectionHeader 
               title="Podcasts"
               size="md"
               align="center"
+              :level="2"
             />
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            <!-- Podcast Item -->
-            <a 
-              v-for="podcast in visiblePodcasts" 
-              :key="podcast.id"
-              :href="podcast.url || '#'"
-              :target="podcast.url ? '_blank' : '_self'"
-              :rel="podcast.url ? 'noopener noreferrer' : ''"
-              class="flex flex-col glass-card rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-300 group h-full"
-              :class="{ 'cursor-default': !podcast.url }"
-            >
-              <!-- Preview Image with fallback -->
-              <div class="w-full h-40 sm:h-36 bg-gradient-to-br from-purple-600 to-pink-600 overflow-hidden relative shadow-lg group-hover:shadow-xl transition-shadow flex items-center justify-center">
-                <!-- Screenshot API for podcasts with URL -->
-                <img 
-                  v-if="podcast.url"
-                  :src="`https://api.microlink.io/?url=${encodeURIComponent(podcast.url)}&screenshot=true&meta=false&embed=screenshot.url`"
-                  :alt="`Preview of ${podcast.title}`"
-                  class="w-full h-full object-cover absolute inset-0 z-10"
-                  loading="lazy"
-                />
-                <!-- Fallback gradient background with microphone icon -->
-                <svg class="w-10 sm:w-12 h-10 sm:h-12 text-white/80 z-0" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2a4 4 0 014 4v6a4 4 0 11-8 0V6a4 4 0 014-4zm0 16c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm6-8.42V12a6 6 0 11-12 0V9.58a8 8 0 1012 0z"/>
-                </svg>
-              </div>
-              
-              <!-- Content -->
-              <div class="flex flex-col flex-grow p-4 sm:p-4">
-                <!-- Publication Badge -->
-                <span class="inline-block px-2.5 py-1 bg-purple-600 rounded-md text-xs font-semibold mb-2 self-start">
-                  {{ podcast.publication }}
-                </span>
-                
-                <h3 class="text-sm sm:text-base font-bold text-white mb-2 group-hover:text-brand-gradient transition-colors line-clamp-2 leading-snug">
-                  {{ podcast.title }}
-                </h3>
-                
-                <p class="text-xs text-gray-300 leading-relaxed line-clamp-2 mb-3 flex-grow">
-                  {{ podcast.description }}
-                </p>
-                
-                <!-- Listen Link -->
-                <div 
-                  v-if="podcast.url"
-                  class="inline-flex items-center gap-1 text-brand-gradient group-hover:text-gray-400 transition-colors font-semibold text-xs mt-auto"
-                >
-                  <span>Listen</span>
-                  <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                  </svg>
-                </div>
-              </div>
-            </a>
-          </div>
+              <CardPress
+                v-for="podcast in visiblePodcasts"
+                :key="podcast.id"
+                :item="podcast"
+              />
+            </div>
           
           <!-- See More Button -->
           <div v-if="hasMorePodcasts" class="text-center mt-6 sm:mt-8">
-            <button
-              @click="showAllPodcasts = !showAllPodcasts"
-              class="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-gray-700 to-gray-600 active:from-gray-800 active:to-gray-700 text-white rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 shadow-lg min-h-[44px] min-w-[180px]"
-            >
-              <span>{{ showAllPodcasts ? 'Show Less' : `See More Podcasts (${podcasts.length - 3} more)` }}</span>
-              <svg 
-                class="w-5 h-5 transition-transform duration-300" 
-                :class="{ 'rotate-180': showAllPodcasts }"
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
+            <UiToggleButton
+              :expanded="showAllPodcasts"
+              :expanded-label="'Show Less'"
+              :collapsed-label="`See More Podcasts (${podcasts.length - 3} more)`"
+              @toggle="showAllPodcasts = !showAllPodcasts"
+            />
           </div>
         </div>
         </div>
@@ -288,7 +171,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 // Import custom thumbnails from assets
 import bbcUrduThumb from '@/assets/images/pages/press/bbc-urdu-thumbnail.jpeg'
 import asianSundayThumb from '@/assets/images/pages/press/asian-sunday-thumbnail.jpeg'
@@ -308,15 +190,6 @@ const showPressRelease = ref(false)
 const showAllArticles = ref(false)
 const showAllPodcasts = ref(false)
 
-// Helper function to get custom preview image for specific articles
-const getCustomPreviewImage = (articleId: number): string | null => {
-  const customImages: Record<number, string> = {
-    1: bbcUrduThumb, // BBC Urdu
-    5: asianSundayThumb // Asian Sunday
-  }
-  return customImages[articleId] || null
-}
-
 // Computed properties to filter articles and podcasts
 const articles = computed(() => pressArticles.filter(item => item.type === 'article'))
 const podcasts = computed(() => pressArticles.filter(item => item.type === 'podcast'))
@@ -329,6 +202,24 @@ const visiblePodcasts = computed(() => showAllPodcasts.value ? podcasts.value : 
 const hasMoreArticles = computed(() => articles.value.length > 3)
 const hasMorePodcasts = computed(() => podcasts.value.length > 3)
 
+useHead({
+  title: 'Press & Media Coverage - Daffodil Studios',
+  meta: [
+    {
+      name: 'description',
+      content: 'Press coverage, interviews, and podcast appearances featuring Daffodil Studios and Saffron Kingdom.'
+    },
+    {
+      property: 'og:title',
+      content: 'Press & Media Coverage - Daffodil Studios'
+    },
+    {
+      property: 'og:description',
+      content: 'Explore press coverage and media appearances for Daffodil Studios and Saffron Kingdom.'
+    }
+  ]
+})
+
 const pressArticles: PressArticle[] = [
   {
     id: 1,
@@ -336,6 +227,7 @@ const pressArticles: PressArticle[] = [
     title: "'Saffron Kingdom': Filmmaker talks about why he couldn't cast Kashmiris in his film",
     description: "An Urdu-language interview with Saffron Kingdom director Arfat Sheikh with the BBC discussing the process of making the film as well as its impact.",
     url: "https://www.youtube.com/watch?v=BBWLEyzuMbU",
+    image: bbcUrduThumb,
     type: "article"
   },
   {
@@ -368,6 +260,7 @@ const pressArticles: PressArticle[] = [
     title: "Independent filmmaker strives to amplify Kashmiri voices beyond Bollywood",
     description: "Interview with director Arfat Sheikh and discussion on how Saffron Kingdom responds to the erasure of Kashmiri history and culture by UK weekly Asian Sunday. Discusses how the film was made for a global audience, the harmful stereotypes perpetuated in Bollywood, and why Saffron Kingdom was created.",
     url: "https://www.asiansunday.co.uk/indie-filmmaker-takes-on-bollywood-to-reclaim-kashmirs-voice/",
+    image: asianSundayThumb,
     type: "article"
   },
   {
@@ -475,19 +368,11 @@ const pressArticles: PressArticle[] = [
     type: "article"
   },
   {
-    id: 19,
-    publication: "Northeast Mississippi Daily Journal",
-    title: "Saffron Kingdom: Brave Kashmiri Independent Film Sheds Light on Kashmiri Oppression and Strength",
-    description: "Article discussing Saffron Kingdom framed around its New Jersey premiere as part of the Teaneck International Film Festival by the Northeast Mississippi Daily Journal. Includes some quotations by Arfat. Article was created from a press release by Daffodil.",
-    url: "#",
-    type: "article"
-  },
-  {
     id: 20,
     publication: "northjersey.com",
     title: "Teaneck film fest marks 20 years with lineup of films to inspire local activism",
     description: "Article on the Teaneck International Film Festival by northjersey.com. Discusses the festival, where Saffron Kingdom is being shown and director Arfat Sheikh is being presented with the Emerging Filmmaker Activist Award.",
-    url: "#",
+    url: "https://www.northjersey.com/story/news/bergen/teaneck/2025/11/05/teaneck-nj-film-fest-movies-inspire-activism/87087028007/?gnt-cfr=1&gca-cat=p&gca-uir=false&gca-epti=z115649p116250c116250d00----v115649&gca-ft=199&gca-ds=sophi",
     type: "article"
   },
   {
@@ -495,7 +380,39 @@ const pressArticles: PressArticle[] = [
     publication: "New Jersey Stage",
     title: "Teaneck International Film Festival announces Arfat Sheikh as Inaugural Emerging Filmmaker Activist Award Recipient",
     description: "Article discussing director Arfat Sheikh receiving the Emerging Filmmaker Activist Award at the 20th annual Teaneck International Film Festival. Includes some discussion on Saffron Kingdom.",
-    url: "#",
+    url: "https://www.newjerseystage.com/articles2/2025/10/22/teaneck-international-film-festival-announces-arfat-sheikh-as-inaugural-emerging-filmmaker-activist-award-recipient/",
+    type: "article"
+  },
+  {
+    id: 26,
+    publication: "Birmingham Live",
+    title: "A movie premiering in Solihull has sparked a row - as director addresses 'smear campaign'",
+    description: "Article discussing the Birmingham premiere of Saffron Kingdom and the Indian-backed disinformation campaign targeting it. Includes an interview with director Arfat Sheikh about the situation and the film.",
+    url: "https://www.birminghammail.co.uk/news/midlands-news/movie-premiering-solihull-sparked-row-33180515",
+    type: "article"
+  },
+  {
+    id: 27,
+    publication: "News18",
+    title: "Opinion | 'Saffron Kingdom': A Movie With A Message Or An Agenda?",
+    description: "Opinion article by Indian media about the film written by someone who has never watched it. Tries to paint it as a response to The Kashmir Files and accuses the film of being \"Pakistani propaganda\".",
+    url: "https://www.news18.com/opinion/opinion-saffron-kingdom-a-movie-with-a-message-or-an-agenda-ws-l-9818700.html",
+    type: "article"
+  },
+  {
+    id: 28,
+    publication: "5Pillars",
+    title: "Saffron Kingdom movie exposes true cost of India's brutal occupation of Kashmir",
+    description: "A review of Saffron Kingdom by Muslim news service 5Pillars. Discusses the emotional nature of the film, gives context about the Kashmir occupation, and describes the performances and the representation of Kashmiri culture in the film.",
+    url: "https://5pillarsuk.com/2026/01/14/more-than-a-movie-saffron-kingdom-exposes-the-true-cost-of-indias-brutal-occupation-of-kashmir/",
+    type: "article"
+  },
+  {
+    id: 29,
+    publication: "IMAGES (Dawn)",
+    title: "'Bollywood is used as an instrument of oppression': Filmmaker Arfat Sheikh is reclaiming Kashmir's stories",
+    description: "An interview with director Arfat Sheikh about the film by Pakistani newspaper Dawn's cultural section \"IMAGES\". Discusses his journey in becoming a filmmaker, the process of creating Saffron Kingdom, how Bollywood serves as a tool for oppression, and future Daffodil Studios projects.",
+    url: "https://images.dawn.com/news/1194833",
     type: "article"
   },
   {

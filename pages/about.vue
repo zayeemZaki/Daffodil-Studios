@@ -18,7 +18,7 @@
         <div class="container mx-auto px-6">
           <div class="max-w-4xl mx-auto">
             <div class="glass-card rounded-2xl p-8 md:p-12 mb-16">
-              <UiSubHeader title="Our Mission" size="sm" align="center" />
+              <UiSectionHeader title="Our Mission" size="sm" align="center" :level="2" />
               <p class="text-lg text-gray-300 leading-relaxed mb-6">
                 Daffodil Studios is committed to creating documentaries that shed light on untold stories and 
                 amplify voices that need to be heard. Through our films, we strive to educate, inspire, and 
@@ -34,16 +34,17 @@
       </section>
 
       <!-- Contact Form Section -->
-      <section class="relative pb-24">
+      <section id="request-screening" class="relative pb-24">
         <div class="container mx-auto px-6">
           <div class="max-w-4xl mx-auto">
             <div class="text-center mb-12">
-              <UiSubHeader 
+              <UiSectionHeader 
                 title="Get In Touch" 
                 subtitle="Request a screening or send us a message"
                 size="md" 
                 align="center"
                 :divider="false"
+                :level="2"
               />
             </div>
 
@@ -165,7 +166,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
 
 interface FormData {
   name: string

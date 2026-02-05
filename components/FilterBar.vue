@@ -141,7 +141,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
 import type { FilterData } from '~/types'
 
 // Props for available locations
@@ -217,7 +216,6 @@ const filteredLocations = computed(() => {
 // Define emits
 const emit = defineEmits<{
   'filter-change': [filters: FilterData]
-  'search': [filters: FilterData]
   'clear-filters': []
 }>()
 
@@ -258,31 +256,10 @@ const getSearchPlaceholder = () => {
   }
 }
 
-// Location search handler
-const onLocationSearch = () => {
-  // Just updating the search term, computed will handle filtering
-}
-
-// Toggle location selection
-const toggleLocation = (location: string) => {
-  const index = filters.selectedLocations.indexOf(location)
-  if (index > -1) {
-    filters.selectedLocations.splice(index, 1)
-  } else {
-    filters.selectedLocations.push(location)
-  }
-}
-
 // Clear location filters
 const clearLocationFilters = () => {
   filters.selectedLocations = []
   locationSearchTerm.value = ''
-}
-
-// Set sort order
-const setSortOrder = (order: string) => {
-  filters.sortByDate = filters.sortByDate === order ? '' : order
-  onFilterChange()
 }
 
 // Check if any filters are active
@@ -290,15 +267,6 @@ const hasActiveFilters = computed(() => {
   return filters.selectedLocations.length > 0 || (filters.sortByDate !== 'none' && filters.sortByDate !== '')
 })
 
-// Handle filter changes (real-time filtering)
-const onFilterChange = () => {
-  emit('filter-change', { ...filters })
-}
-
-// Handle search form submission
-const handleSearch = () => {
-  emit('search', { ...filters })
-}
 
 // Clear all filters
 const clearFilters = () => {

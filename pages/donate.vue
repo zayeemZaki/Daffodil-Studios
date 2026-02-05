@@ -6,8 +6,8 @@
       <div class="absolute -bottom-12 right-4 md:right-12 w-72 md:w-96 h-72 md:h-96 bg-brand-yellow/20 rounded-full blur-3xl"></div>
 
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 lg:py-20 relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 xl:gap-14 items-start">
-          <div class="flex flex-col gap-6 lg:gap-8 lg:pt-2">
+        <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 xl:gap-14 items-center">
+          <div class="flex flex-col gap-6 lg:gap-8">
             <UiSectionHeader
               title="Support Our Mission"
               subtitle="Your generous contribution helps us continue creating meaningful stories that inspire, educate, and connect audiences around the world. Every donation, no matter the size, fuels independent cinema and the art of storytelling."
@@ -67,13 +67,14 @@
               <iframe
                 v-show="iframeLoaded"
                 class="donorbox-iframe"
-                src="https://donorbox.org/embed/daffodil"
+                :src="iframeSrc"
                 title="Donate securely via Donorbox"
                 allowpaymentrequest="allowpaymentrequest"
                 frameborder="0"
                 scrolling="no"
-                :style="{ height: `${iframeHeight}px` }"
                 loading="eager"
+                fetchpriority="high"
+                :style="{ height: `${iframeHeight}px` }"
                 @load="handleIframeLoad"
               ></iframe>
             </div>
@@ -85,13 +86,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
-const MIN_IFRAME_HEIGHT = 720
+const DONORBOX_URL = 'https://donorbox.org/embed/daffodil'
 const MAX_IFRAME_HEIGHT = 2000
 
 const iframeLoaded = ref(false)
-const iframeHeight = ref(MIN_IFRAME_HEIGHT)
+const iframeSrc = ref(DONORBOX_URL)
+const iframeHeight = ref(0)
 
 const handleIframeLoad = () => {
   iframeLoaded.value = true
@@ -99,7 +100,7 @@ const handleIframeLoad = () => {
 
 
 const handleHeightMessage = (event: MessageEvent) => {
-  if (!event.origin.includes('donorbox.org')) return
+  if (event.origin !== 'https://donorbox.org') return
 
   const data = event.data
   let nextHeight: number | undefined
@@ -125,11 +126,11 @@ const handleHeightMessage = (event: MessageEvent) => {
   if (!nextHeight) return
 
   const buffered = Math.round(nextHeight) + 20 // small buffer for focus outlines
-  const clamped = Math.max(MIN_IFRAME_HEIGHT, Math.min(MAX_IFRAME_HEIGHT, buffered))
+  const clamped = Math.min(MAX_IFRAME_HEIGHT, buffered)
   if (clamped !== iframeHeight.value) iframeHeight.value = clamped
 }
 
-const skeletonHeight = computed(() => Math.max(iframeHeight.value, MIN_IFRAME_HEIGHT))
+const skeletonHeight = computed(() => iframeHeight.value || 500)
 
 onMounted(() => {
   window.addEventListener('message', handleHeightMessage)
@@ -142,6 +143,13 @@ onBeforeUnmount(() => {
 // SEO Meta tags
 useHead({
   title: 'Donate - Support Daffodil Studios',
+  link: [
+    { rel: 'preconnect', href: 'https://donorbox.org', crossorigin: '' },
+    { rel: 'dns-prefetch', href: 'https://donorbox.org' },
+    { rel: 'preconnect', href: 'https://cdn.donorbox.org', crossorigin: '' },
+    { rel: 'dns-prefetch', href: 'https://cdn.donorbox.org' },
+    { rel: 'preload', href: 'https://donorbox.org/embed/daffodil', as: 'document', crossorigin: '' }
+  ],
   meta: [
     {
       name: 'description',
@@ -162,23 +170,30 @@ useHead({
 <style scoped>
 .donate-page {
   background: #000;
+  min-height: calc(100vh - 88px);
+  display: flex;
+  flex-direction: column;
 }
 
 .hero-section {
-  min-height: auto;
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
 
 .donation-form-wrapper {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
+  margin: 0 auto;
 }
 
 .donation-form-card {
   position: relative;
   width: 100%;
-  max-width: 520px;
+  max-width: 480px;
+  margin: 0 auto;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
   backdrop-filter: blur(12px);
   border-radius: 1.5rem;
@@ -203,13 +218,11 @@ useHead({
 .donorbox-iframe {
   width: 100% !important;
   border-radius: 1rem;
-  min-height: 650px;
 }
 
 .donorbox-skeleton {
   position: relative;
   width: 100%;
-  min-height: 650px;
   border-radius: 1rem;
   border: 2px solid rgba(253, 185, 19, 0.4);
   background: linear-gradient(135deg, rgba(253, 185, 19, 0.1), rgba(253, 185, 19, 0.08));
@@ -276,20 +289,28 @@ useHead({
 }
 
 @media (max-width: 1024px) {
+  .donation-form-wrapper {
+    max-width: 480px;
+  }
+
   .donation-form-card {
     max-width: 100%;
   }
 }
 
 @media (max-width: 640px) {
+  .donation-form-wrapper {
+    max-width: 100%;
+  }
+
   .donation-form-card {
-    padding: 1rem;
+    padding: 0.75rem;
     border-radius: 1.1rem;
   }
 
   .donorbox-iframe,
   .donorbox-skeleton {
-    min-height: 620px;
+    border-radius: 0.75rem;
   }
 }
 </style>

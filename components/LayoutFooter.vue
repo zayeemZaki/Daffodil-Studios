@@ -6,7 +6,7 @@
         <!-- Company Info -->
         <div class="text-center md:text-left">
           <div class="flex items-center justify-center md:justify-start space-x-2 mb-2 sm:mb-3">
-            <img src="~public/logo.webp" alt="Daffodil Studios Logo" class="h-8 sm:h-10 w-auto filter drop-shadow-lg">
+            <img src="/logo.webp" alt="Daffodil Studios Logo" class="h-8 sm:h-10 w-auto filter drop-shadow-lg">
             <span class="text-base sm:text-lg font-bold text-white">Daffodil Studios</span>
           </div>
           <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
@@ -17,28 +17,21 @@
         <!-- Quick Links -->
         <div class="text-center">
           <h3 class="text-base sm:text-lg font-bold mb-2 sm:mb-3 text-white">Quick Links</h3>
-          <ul class="space-y-1.5 sm:space-y-2">
-            <li>
-              <NuxtLink to="/" class="text-gray-400 hover:text-white text-sm font-medium transition-colors duration-300">
-                Home
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/movies" class="text-gray-400 hover:text-white text-sm font-medium transition-colors duration-300">
-                Movies
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/screenings" class="text-gray-400 hover:text-white text-sm font-medium transition-colors duration-300">
-                Screenings
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink to="/about" class="text-gray-400 hover:text-white text-sm font-medium transition-colors duration-300">
-                About Us
+          <ul class="space-y-1.5 sm:space-y-2 mb-4">
+            <li v-for="item in navItems" :key="item.to">
+              <NuxtLink :to="item.to" class="text-gray-400 hover:text-white text-sm font-medium transition-colors duration-300">
+                {{ item.label }}
               </NuxtLink>
             </li>
           </ul>
+          <div class="flex flex-col items-center gap-2">
+            <NuxtLink
+              to="/donate"
+              class="inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-bold bg-gradient-to-br from-brand-yellow via-brand-yellow-light to-brand-yellow text-gray-900 hover:shadow-glow-yellow transition-all duration-300"
+            >
+              Donate
+            </NuxtLink>
+          </div>
         </div>
         
         <!-- Contact & Social -->
@@ -71,7 +64,7 @@
       <div class="border-t border-gray-700 pt-6 sm:pt-8">
         <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
           <p class="text-xs sm:text-sm font-semibold text-gray-400 text-center md:text-left">
-            &copy; 2025 Daffodil Studios. All Rights Reserved.
+            &copy; {{ currentYear }} Daffodil Studios. All Rights Reserved.
           </p>
           <p class="text-xs sm:text-sm text-gray-400 text-center md:text-right">
             Developed by 
@@ -84,3 +77,9 @@
     </div>
   </footer>
 </template>
+
+<script setup lang="ts">
+import { navItems } from '~/utils/navItems'
+
+const currentYear = new Date().getFullYear()
+</script>

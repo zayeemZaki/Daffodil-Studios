@@ -11,8 +11,8 @@ export default defineNuxtConfig({
     typeCheck: false
   },
   
-  // Register the Tailwind CSS module
-  modules: ['@nuxtjs/tailwindcss'],
+  // Register modules
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts', '@nuxt/image'],
 
   // Import CSS files
   css: ['~/assets/styles/main.css'],
@@ -28,10 +28,10 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', href: '/logo.png' },
         { rel: 'apple-touch-icon', href: '/logo.png' },
         { rel: 'canonical', href: 'https://daffodilstudios.org' },
-        // Google Fonts - Inter
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap' }
+        // Donorbox preconnect for faster iframe load
+        { rel: 'preconnect', href: 'https://donorbox.org', crossorigin: '' },
+        { rel: 'dns-prefetch', href: 'https://donorbox.org' },
+        // Google Fonts handled by @nuxtjs/google-fonts
       ],
       meta: [
         { charset: 'utf-8' },
@@ -79,5 +79,13 @@ export default defineNuxtConfig({
         ? 'https://daffodilstudios.org' 
         : 'http://localhost:3000'
     }
+  },
+  googleFonts: {
+    families: {
+      Inter: [300, 400, 500, 600, 700, 800, 900]
+    },
+    display: 'swap',
+    preload: true,
+    preconnect: true
   }
 })

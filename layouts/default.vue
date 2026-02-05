@@ -20,5 +20,6 @@
 
     <!-- Footer Component -->
     <LayoutFooter />
+
   </div>
 </template>

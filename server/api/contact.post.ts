@@ -1,5 +1,17 @@
+import { assertRateLimit } from '~/server/utils/rateLimit'
+
+const escapeHtml = (value: string): string =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+
 export default defineEventHandler(async (event) => {
   try {
+    assertRateLimit(event, { windowMs: 10 * 60 * 1000, max: 10, keyPrefix: 'contact' })
+
     const body = await readBody(event)
     const { name, email, subject, organization, message } = body
 
@@ -11,14 +23,33 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    // Basic length validation
+    const nameValue = String(name).trim()
+    const emailValue = String(email).trim()
+    const subjectValue = String(subject).trim()
+    const organizationValue = organization ? String(organization).trim() : ''
+    const messageValue = String(message).trim()
+
+    if (nameValue.length > 100 || emailValue.length > 254 || subjectValue.length > 120 || organizationValue.length > 120 || messageValue.length > 4000) {
+      throw createError({
+        statusCode: 400,
+        message: 'One or more fields exceed the allowed length'
+      })
+    }
+
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(emailValue)) {
       throw createError({
         statusCode: 400,
         message: 'Invalid email format'
       })
     }
+
+    const safeName = escapeHtml(nameValue)
+    const safeEmail = escapeHtml(emailValue)
+    const safeOrganization = organizationValue ? escapeHtml(organizationValue) : ''
+    const safeMessage = escapeHtml(messageValue).replace(/\n/g, '<br>')
 
     // Map subject codes to readable text
     const subjectMap: Record<string, string> = {
@@ -30,6 +61,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const subjectText = subjectMap[subject] || 'Contact Form'
+    const safeSubjectText = escapeHtml(subjectText)
     
     // Format email content
     const emailContent = `
@@ -57,30 +89,30 @@ export default defineEventHandler(async (event) => {
     <div class="content">
       <div class="field">
         <div class="label">Subject Type</div>
-        <div class="value">${subjectText}</div>
+        <div class="value">${safeSubjectText}</div>
       </div>
       <div class="field">
         <div class="label">Name</div>
-        <div class="value">${name}</div>
+        <div class="value">${safeName}</div>
       </div>
       <div class="field">
         <div class="label">Email</div>
-        <div class="value"><a href="mailto:${email}">${email}</a></div>
+        <div class="value"><a href="mailto:${safeEmail}">${safeEmail}</a></div>
       </div>
-      ${organization ? `
+      ${safeOrganization ? `
       <div class="field">
         <div class="label">Organization/Venue</div>
-        <div class="value">${organization}</div>
+        <div class="value">${safeOrganization}</div>
       </div>
       ` : ''}
       <div class="field">
         <div class="label">Message</div>
-        <div class="message-box">${message.replace(/\n/g, '<br>')}</div>
+        <div class="message-box">${safeMessage}</div>
       </div>
     </div>
     <div class="footer">
       <p>This email was sent from the Daffodil Studios contact form</p>
-      <p>Reply directly to this email to respond to ${name}</p>
+      <p>Reply directly to this email to respond to ${safeName}</p>
     </div>
   </div>
 </body>
@@ -94,7 +126,7 @@ export default defineEventHandler(async (event) => {
 
     if (!resendApiKey) {
       // Fallback: Return success but log that email service isn't configured
-      console.log('Email would be sent:', { name, email, subject: subjectText, organization, message })
+      console.log('Email would be sent:', { name: nameValue, email: emailValue, subject: subjectText, organization: organizationValue, message: messageValue })
       return {
         success: true,
         message: 'Form submitted successfully (email service not configured)'
@@ -112,7 +144,7 @@ export default defineEventHandler(async (event) => {
         from: 'Daffodil Studios <noreply@daffodilstudios.org>',
         to: ['contact@daffodilstudios.org'],
         reply_to: email,
-        subject: `${subjectText} - ${name}`,
+        subject: `${subjectText} - ${nameValue}`,
         html: emailContent
       })
     })
