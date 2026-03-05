@@ -429,6 +429,19 @@
     "isDisabled": false
   },
   {
+    "id": 35,
+    "movieName": "Saffron Kingdom",
+    "date": "2026-04-04",
+    "time": "3:00 PM",
+    "venue": "Angelika Pop-Up at Union Market, 550 Penn St NE",
+    "city": "Washington",
+    "state": "DC",
+    "country": "United States",
+    "ticketUrl": "https://www.eventbookings.com/b/event/saffron-kingdom-washington-dc-screening",
+    "buttonText": "Buy Tickets",
+    "isDisabled": false
+  },
+  {
     "id": 34,
     "movieName": "Saffron Kingdom",
     "date": "2026-03-12",
