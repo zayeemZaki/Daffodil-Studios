@@ -188,9 +188,10 @@ const filterScreenings = (screenings: any[]) => {
 }
 
 // Separate upcoming and past screenings, then apply filters
-const upcomingScreenings = computed(() => 
-  allScreenings.value.filter(screening => screening.date >= today)
-)
+const upcomingScreenings = computed(() => {
+  const upcoming = allScreenings.value.filter(screening => screening.date >= today)
+  return upcoming.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+})
 
 const pastScreenings = computed(() => {
   const past = allScreenings.value.filter(screening => screening.date < today)
