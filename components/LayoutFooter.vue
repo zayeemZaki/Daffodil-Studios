@@ -7,7 +7,6 @@
         <div class="text-center md:text-left">
           <div class="flex items-center justify-center md:justify-start space-x-2 mb-2 sm:mb-3">
             <img src="/logo.webp" alt="Daffodil Studios Logo" class="h-8 sm:h-10 w-auto filter drop-shadow-lg">
-            <span class="text-base sm:text-lg font-bold text-white">Daffodil Studios</span>
           </div>
           <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
             Creating compelling narratives that inspire, entertain, and connect audiences across the globe.
