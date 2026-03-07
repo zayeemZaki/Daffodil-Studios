@@ -66,7 +66,7 @@
     </section>
 
     <!-- Featured Movie Section -->
-    <UiBackgroundPattern class="opacity-0" data-animate>
+    <UiBackgroundPattern>
       <UiSectionHeader 
         title="Saffron Kingdom Film" 
         size="lg"
@@ -272,30 +272,10 @@ const onVideoLoaded = () => {
   }
 }
 
-const observeElements = () => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1'
-        entry.target.classList.add('section-animate')
-      }
-    })
-  }, { threshold: 0.1 })
-
-  // Observe sections for animation
-  const sections = document.querySelectorAll('[data-animate]')
-  sections.forEach((section) => {
-    observer.observe(section)
-  })
-}
-
 onMounted(() => {
   window.addEventListener('scroll', onScroll, { passive: true })
   updateScrollProgress()
-  
-  // Add intersection observer for scroll animations
-  setTimeout(observeElements, 100)
-  
+
   // Ensure video is ready
   if (heroVideo.value && heroVideo.value.readyState >= 3) {
     onVideoLoaded()

@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white relative">
+  <div class="min-h-screen text-white relative">
     <UiBackgroundPattern film-grain padding="none">
       <!-- Hero Section -->
       <section class="relative pt-20 pb-12" style="z-index: 100;">
