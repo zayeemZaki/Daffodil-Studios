@@ -14,7 +14,7 @@
         playsinline
         preload="metadata"
         :poster="heroPoster"
-        class="absolute inset-0 w-full h-full object-cover object-center parallax-element" style="will-change: transform;"
+        class="absolute inset-0 w-full h-full object-cover object-center"
         @loadeddata="onVideoLoaded"
       >
         <source src="https://res.cloudinary.com/doellzqg2/video/upload/f_auto,q_auto,w_1280/hero-video_1_joqnej.mp4" type="video/mp4">
@@ -68,7 +68,7 @@
     </section>
 
     <!-- Featured Movie Section -->
-    <UiBackgroundPattern class="opacity-0" data-animate>
+    <UiBackgroundPattern>
       <UiSectionHeader
         title="Saffron Kingdom Film"
         size="lg"
@@ -232,7 +232,6 @@
 import heroPoster from '@/assets/images/pages/home/movie-poster.jpg'
 
 const { scrollProgress } = useScrollProgress()
-useSectionAnimations()
 
 const heroVideo = ref<HTMLVideoElement | null>(null)
 
