@@ -75,9 +75,9 @@ const showDivider = computed(() => (props.divider !== undefined ? props.divider 
 
 const sizeClasses = {
   1: {
-    sm: 'text-4xl md:text-5xl',
-    md: 'text-5xl md:text-7xl',
-    lg: 'text-6xl md:text-8xl'
+    sm: 'text-3xl md:text-4xl',
+    md: 'text-4xl md:text-5xl',
+    lg: 'text-5xl md:text-7xl'
   },
   2: {
     sm: 'text-xl md:text-2xl',
@@ -101,9 +101,9 @@ const dividerClasses = {
 
 const subtitleClasses = {
   1: {
-    sm: 'mt-6 text-lg md:text-xl max-w-3xl',
-    md: 'mt-8 text-xl md:text-2xl max-w-4xl',
-    lg: 'mt-8 text-2xl md:text-3xl max-w-5xl'
+    sm: 'mt-4 text-base md:text-lg max-w-3xl',
+    md: 'mt-6 text-lg md:text-xl max-w-4xl',
+    lg: 'mt-8 text-xl md:text-2xl max-w-5xl'
   },
   2: {
     sm: 'mt-3 text-base max-w-2xl',

@@ -240,31 +240,15 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import heroPoster from '@/assets/images/pages/home/movie-poster.jpg'
 
-const scrollProgress = ref(0)
-const heroVideo = ref(null)
-let isScrollTicking = false
+const { scrollProgress } = useScrollProgress()
+useSectionAnimations()
 
-const updateScrollProgress = () => {
-  const scrollTop = window.pageYOffset
-  const docHeight = document.documentElement.scrollHeight - window.innerHeight
-  const scrollPercent = (scrollTop / docHeight) * 100
-  scrollProgress.value = scrollPercent
-}
-
-const onScroll = () => {
-  if (isScrollTicking) return
-  isScrollTicking = true
-  requestAnimationFrame(() => {
-    updateScrollProgress()
-    isScrollTicking = false
-  })
-}
+const heroVideo = ref<HTMLVideoElement | null>(null)
 
 const onVideoLoaded = () => {
-  // Ensure video plays smoothly
   if (heroVideo.value) {
     heroVideo.value.play().catch(() => {
       // Autoplay was prevented, video will show poster instead
@@ -272,38 +256,10 @@ const onVideoLoaded = () => {
   }
 }
 
-const observeElements = () => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1'
-        entry.target.classList.add('section-animate')
-      }
-    })
-  }, { threshold: 0.1 })
-
-  // Observe sections for animation
-  const sections = document.querySelectorAll('[data-animate]')
-  sections.forEach((section) => {
-    observer.observe(section)
-  })
-}
-
 onMounted(() => {
-  window.addEventListener('scroll', onScroll, { passive: true })
-  updateScrollProgress()
-  
-  // Add intersection observer for scroll animations
-  setTimeout(observeElements, 100)
-  
-  // Ensure video is ready
   if (heroVideo.value && heroVideo.value.readyState >= 3) {
     onVideoLoaded()
   }
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', onScroll)
 })
 
 useHead({

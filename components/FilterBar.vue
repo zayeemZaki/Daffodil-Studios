@@ -152,19 +152,7 @@ const props = withDefaults(defineProps<Props>(), {
   locations: () => []
 })
 
-// Default locations if none provided
-const defaultLocations = [
-  'Downtown Cinema, New York',
-  'Arthouse Theater, Los Angeles', 
-  'Independent Cinema, Chicago',
-  'Metro Theater, Miami',
-  'Art House Cinema, New York',
-  'Downtown Theater, Los Angeles'
-]
-
-const availableLocations = computed(() => 
-  props.locations.length > 0 ? props.locations : defaultLocations
-)
+const availableLocations = computed(() => props.locations)
 
 // Reactive filter state
 const filters = reactive<FilterData>({

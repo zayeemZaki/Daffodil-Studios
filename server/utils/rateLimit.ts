@@ -11,6 +11,14 @@ type RateLimitEntry = {
 
 const rateLimitStore = new Map<string, RateLimitEntry>()
 
+// Periodically evict expired entries to prevent unbounded memory growth
+setInterval(() => {
+  const now = Date.now()
+  for (const [key, entry] of rateLimitStore) {
+    if (now > entry.resetAt) rateLimitStore.delete(key)
+  }
+}, 5 * 60 * 1000)
+
 const getClientIp = (event: any): string => {
   const forwardedFor = getRequestHeader(event, 'x-forwarded-for')
   if (forwardedFor) {

@@ -68,15 +68,7 @@
 </template>
 
 <script setup lang="ts">
-interface PressItem {
-  id: number
-  publication: string
-  title: string
-  description: string
-  url?: string
-  image?: string
-  type: 'article' | 'podcast'
-}
+import type { PressItem } from '~/types'
 
 interface Props {
   item: PressItem
