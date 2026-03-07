@@ -14,10 +14,10 @@
         playsinline
         preload="metadata"
         :poster="heroPoster"
-        class="absolute inset-0 w-full h-full object-cover object-center parallax-element"
+        class="absolute inset-0 w-full h-full object-cover object-center parallax-element" style="will-change: transform;"
         @loadeddata="onVideoLoaded"
       >
-        <source src="https://res.cloudinary.com/doellzqg2/video/upload/f_auto,q_auto,w_1920/hero-video_1_joqnej.mp4" type="video/mp4">
+        <source src="https://res.cloudinary.com/doellzqg2/video/upload/f_auto,q_auto,w_1280/hero-video_1_joqnej.mp4" type="video/mp4">
         <!-- Fallback image if video doesn't load -->
         <img :src="heroPoster" alt="Daffodil Studios" class="w-full h-full object-cover object-center blur-sm">
       </video>
