@@ -57,16 +57,16 @@
           
           <!-- Past Screenings Section -->
           <div v-if="filteredPastScreenings.length > 0" class="space-y-8">
-            <UiSectionHeader 
+            <UiSectionHeader
               :title="`Past Screenings (${filteredPastScreenings.length})`"
               size="md"
               align="center"
               :level="2"
             />
-            
+
             <div class="grid gap-6 max-w-6xl mx-auto opacity-75">
               <CardScreening
-                v-for="screening in filteredPastScreenings"
+                v-for="screening in visiblePastScreenings"
                 :key="screening.id"
                 :movie-name="screening.movieName"
                 :screening-date="screening.date"
@@ -80,6 +80,27 @@
                 :is-disabled="true"
                 @buy-ticket="handleBuyTicket"
               />
+            </div>
+
+            <!-- Show more / collapse -->
+            <div v-if="filteredPastScreenings.length > PAST_PAGE_SIZE" class="flex flex-col items-center gap-3">
+              <button
+                v-if="visiblePastCount < filteredPastScreenings.length"
+                @click="visiblePastCount += PAST_PAGE_SIZE"
+                class="px-6 py-2.5 rounded-xl text-sm font-bold border border-white/10 text-gray-300 hover:text-white hover:border-brand-yellow/40 hover:bg-brand-yellow/5 transition-all duration-300"
+              >
+                Show more ({{ Math.min(PAST_PAGE_SIZE, filteredPastScreenings.length - visiblePastCount) }} more)
+              </button>
+              <button
+                v-if="visiblePastCount > PAST_PAGE_SIZE"
+                @click="visiblePastCount = PAST_PAGE_SIZE"
+                class="text-xs text-gray-500 hover:text-gray-300 transition-colors duration-200 font-medium"
+              >
+                Collapse
+              </button>
+              <p class="text-xs text-gray-600">
+                Showing {{ visiblePastScreenings.length }} of {{ filteredPastScreenings.length }}
+              </p>
             </div>
           </div>
           
@@ -209,9 +230,17 @@ const filteredPastScreenings = computed(() =>
   filterScreenings(pastScreenings.value)
 )
 
+const PAST_PAGE_SIZE = 10
+const visiblePastCount = ref(PAST_PAGE_SIZE)
+
+const visiblePastScreenings = computed(() =>
+  filteredPastScreenings.value.slice(0, visiblePastCount.value)
+)
+
 // Apply filters from FilterBar component
 const applyFilters = (filters: FilterData) => {
   currentFilters.value = { ...filters }
+  visiblePastCount.value = PAST_PAGE_SIZE
 }
 
 // Clear all filters
@@ -220,6 +249,7 @@ const clearAllFilters = () => {
     selectedLocations: [],
     sortByDate: ''
   }
+  visiblePastCount.value = PAST_PAGE_SIZE
 }
 
 // Check if any filters are active

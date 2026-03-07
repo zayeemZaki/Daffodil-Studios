@@ -1,5 +1,5 @@
 <template>
-  <header class="fixed top-0 left-0 right-0 bg-gray-900 shadow-2xl backdrop-blur-sm border-b border-gray-700" style="z-index: 10000;">
+  <header class="fixed top-0 left-0 right-0 bg-black/40 backdrop-blur-2xl border-b border-white/[0.06]" style="z-index: 10000;">
     <nav class="container mx-auto px-6 sm:px-8 py-4 sm:py-5 flex justify-between items-center">
       <!-- Logo -->
       <NuxtLink 
@@ -64,7 +64,7 @@
       leave-from-class="opacity-100 translate-y-0"
       leave-to-class="opacity-0 -translate-y-2"
     >
-      <div v-if="showMobileMenu" class="md:hidden bg-gray-900 border-t border-gray-700 shadow-lg">
+      <div v-if="showMobileMenu" class="md:hidden bg-black/60 backdrop-blur-2xl border-t border-white/[0.06]">
         <ul class="container mx-auto px-4 py-3 space-y-1">
           <li v-for="item in navItems" :key="item.to">
             <NuxtLink 

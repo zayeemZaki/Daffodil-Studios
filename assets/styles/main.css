@@ -164,22 +164,84 @@
   }
 }
 
-/* Section Background Utilities */
+/* ─── Aurora Background System ─────────────────────────────────────── */
+.aurora-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform;
+}
+
+.aurora-orb-gold {
+  width: 70vw;
+  height: 65vh;
+  top: -20%;
+  left: -15%;
+  background: radial-gradient(ellipse at center, rgba(253, 185, 19, 0.14) 0%, transparent 65%);
+  animation: aurora-gold 22s ease-in-out infinite;
+}
+
+.aurora-orb-amber {
+  width: 55vw;
+  height: 70vh;
+  bottom: -20%;
+  right: -10%;
+  background: radial-gradient(ellipse at center, rgba(229, 140, 10, 0.10) 0%, transparent 65%);
+  animation: aurora-amber 28s ease-in-out infinite;
+}
+
+.aurora-orb-indigo {
+  width: 50vw;
+  height: 60vh;
+  top: 20%;
+  right: 5%;
+  background: radial-gradient(ellipse at center, rgba(90, 60, 200, 0.08) 0%, transparent 65%);
+  animation: aurora-indigo 35s ease-in-out infinite;
+}
+
+@keyframes aurora-gold {
+  0%, 100% { transform: translate(0, 0); }
+  25%       { transform: translate(8%, 14%); }
+  50%       { transform: translate(4%, -6%); }
+  75%       { transform: translate(-5%, 9%); }
+}
+
+@keyframes aurora-amber {
+  0%, 100% { transform: translate(0, 0); }
+  33%       { transform: translate(-10%, -9%); }
+  66%       { transform: translate(7%, -13%); }
+}
+
+@keyframes aurora-indigo {
+  0%, 100% { transform: translate(0, 0); }
+  40%       { transform: translate(-9%, 7%); }
+  80%       { transform: translate(6%, -9%); }
+}
+
+/* Pause aurora on reduced-motion or mobile (perf) */
+@media (prefers-reduced-motion: reduce), (max-width: 768px) {
+  .aurora-orb-gold,
+  .aurora-orb-amber,
+  .aurora-orb-indigo {
+    animation: none;
+  }
+}
+
+/* ─── Section Background ────────────────────────────────────────────── */
 .section-bg-animated {
-  background: linear-gradient(to right, rgb(17 24 39), rgb(31 41 55), rgb(0 0 0));
+  background: rgba(7, 10, 18, 0.86);
   position: relative;
   overflow: hidden;
 }
 
+/* Subtle local warmth per-section — complements the aurora */
 .section-bg-animated::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), 
-    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.05;
+  background:
+    radial-gradient(ellipse 50% 40% at 5% 10%, rgba(253, 185, 19, 0.05) 0%, transparent 100%),
+    radial-gradient(ellipse 40% 50% at 95% 90%, rgba(253, 185, 19, 0.04) 0%, transparent 100%);
   pointer-events: none;
 }
 

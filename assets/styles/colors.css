@@ -114,14 +114,14 @@
 
 /* Card Styles - ENHANCED GLASSMORPHISM WITH YELLOW GLOW */
 .glass-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(253, 185, 19, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 1rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-              box-shadow 0.4s ease, 
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s ease,
               background 0.4s ease,
               border-color 0.4s ease;
   position: relative;
@@ -275,6 +275,17 @@
     border-color: rgba(253, 185, 19, 0.4);
     transform: translateY(-2px);
   }
+}
+
+/* Glass Panel — for inner content containers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 /* Hover Overlay Utilities */

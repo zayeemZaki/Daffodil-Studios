@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-gray-900 text-gray-300 py-12 sm:py-16 border-t border-gray-700">
+  <footer class="bg-[#030508] text-gray-300 py-12 sm:py-16 border-t border-white/[0.07]">
     <div class="container mx-auto px-6 sm:px-8">
       <!-- Main Footer Content -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 mb-8 sm:mb-10">
@@ -60,7 +60,7 @@
       </div>
       
       <!-- Bottom Section -->
-      <div class="border-t border-gray-700 pt-6 sm:pt-8">
+      <div class="border-t border-white/[0.07] pt-6 sm:pt-8">
         <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
           <p class="text-xs sm:text-sm font-semibold text-gray-400 text-center md:text-left">
             &copy; {{ currentYear }} Daffodil Studios. All Rights Reserved.
