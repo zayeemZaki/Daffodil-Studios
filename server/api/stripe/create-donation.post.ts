@@ -1,6 +1,9 @@
 import Stripe from 'stripe'
+import { assertRateLimit } from '~/server/utils/rateLimit'
 
 export default defineEventHandler(async (event) => {
+  assertRateLimit(event, { windowMs: 10 * 60 * 1000, max: 10, keyPrefix: 'donation' })
+
   const config = useRuntimeConfig()
   const body = await readBody(event)
 
@@ -27,7 +30,9 @@ export default defineEventHandler(async (event) => {
     })
 
     // Get the origin from the request headers for proper URL construction
-    const origin = getRequestHeader(event, 'origin') || config.public.siteUrl
+    const originHeader = getRequestHeader(event, 'origin')
+    const allowedOrigins = [config.public.siteUrl]
+    const origin = originHeader && allowedOrigins.includes(originHeader) ? originHeader : config.public.siteUrl
     
     // Create Checkout Session
     const session = await stripe.checkout.sessions.create({

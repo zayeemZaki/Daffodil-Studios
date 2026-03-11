@@ -186,31 +186,24 @@ const formData = reactive<FormData>({
 const isSubmitting = ref(false)
 const submitMessage = ref('')
 const submitSuccess = ref(false)
+let resetTimer: ReturnType<typeof setTimeout> | null = null
 
 const handleSubmit = async () => {
   isSubmitting.value = true
   submitMessage.value = ''
   submitSuccess.value = false
-  
+
   try {
-    // Send form data to API endpoint
     const response = await $fetch('/api/contact', {
       method: 'POST',
-      body: {
-        name: formData.name,
-        email: formData.email,
-        subject: formData.subject,
-        organization: formData.organization,
-        message: formData.message
-      }
+      body: { ...formData }
     })
 
     if (response.success) {
-      submitMessage.value = response.message || 'Thank you! Your message has been sent successfully. We\'ll get back to you soon.'
+      submitMessage.value = response.message || "Thank you! Your message has been sent successfully. We'll get back to you soon."
       submitSuccess.value = true
-      
-      // Reset form after successful submission
-      setTimeout(() => {
+
+      resetTimer = setTimeout(() => {
         formData.name = ''
         formData.email = ''
         formData.subject = ''
@@ -220,11 +213,32 @@ const handleSubmit = async () => {
       }, 5000)
     }
   } catch (error: any) {
-    console.error('Form submission error:', error)
     submitMessage.value = error.data?.message || 'Sorry, there was an error sending your message. Please email us directly at contact@daffodilstudios.org'
     submitSuccess.value = false
   } finally {
     isSubmitting.value = false
   }
 }
+
+onUnmounted(() => {
+  if (resetTimer) clearTimeout(resetTimer)
+})
+
+useHead({
+  title: 'About - Daffodil Studios',
+  meta: [
+    {
+      name: 'description',
+      content: 'Learn about Daffodil Studios, our mission, and how to request a screening or get in touch with us.'
+    },
+    {
+      property: 'og:title',
+      content: 'About - Daffodil Studios'
+    },
+    {
+      property: 'og:description',
+      content: 'Daffodil Studios creates powerful documentary films. Contact us to request a screening or learn more.'
+    }
+  ]
+})
 </script>

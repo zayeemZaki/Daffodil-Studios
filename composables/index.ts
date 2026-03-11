@@ -2,35 +2,53 @@
 
 export const useScrollProgress = () => {
   const scrollProgress = ref(0)
+  let ticking = false
 
   const updateScrollProgress = () => {
     const scrollTop = window.pageYOffset
     const docHeight = document.documentElement.scrollHeight - window.innerHeight
-    const scrollPercent = (scrollTop / docHeight) * 100
-    scrollProgress.value = scrollPercent
+    scrollProgress.value = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0
+    ticking = false
+  }
+
+  const onScroll = () => {
+    if (!ticking) {
+      ticking = true
+      requestAnimationFrame(updateScrollProgress)
+    }
   }
 
   onMounted(() => {
-    window.addEventListener('scroll', updateScrollProgress)
+    window.addEventListener('scroll', onScroll, { passive: true })
     updateScrollProgress()
   })
 
   onUnmounted(() => {
-    window.removeEventListener('scroll', updateScrollProgress)
+    window.removeEventListener('scroll', onScroll)
   })
 
   return { scrollProgress }
 }
 
-export const useIntersectionObserver = () => {
-  const observeElements = (callback: IntersectionObserverCallback) => {
-    const observer = new IntersectionObserver(callback, { threshold: 0.1 })
-    
-    const sections = document.querySelectorAll('[data-animate]')
-    sections.forEach((section) => observer.observe(section))
-    
-    return observer
+export const useSectionAnimations = () => {
+  let observer: IntersectionObserver | null = null
+
+  const observe = () => {
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).style.opacity = '1'
+            entry.target.classList.add('section-animate')
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+    document.querySelectorAll('[data-animate]').forEach((el) => observer!.observe(el))
   }
 
-  return { observeElements }
+  onMounted(() => nextTick(observe))
+
+  onUnmounted(() => observer?.disconnect())
 }

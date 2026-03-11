@@ -120,10 +120,24 @@ const props = withDefaults(defineProps<Props>(), {
   screeningId: 0
 })
 
+const emit = defineEmits<{
+  'buy-ticket': [screeningInfo: {
+    movieName: string
+    screeningDate: string | Date
+    location: string
+    screeningTime?: string
+  }]
+}>()
+
 const isProcessing = ref(false)
 
-// Generate display title based on structured fields
-// United States: "City, State"; International: "City, Country"
+// Shared location string builder
+const buildLocation = (venue: string, city: string, state: string, country: string) => {
+  const cityPart = state ? `${city}, ${state}` : city
+  return country ? `${venue}, ${cityPart}, ${country}` : `${venue}, ${cityPart}`
+}
+
+// "Atlanta, GA" for US; "London, United Kingdom" for international
 const displayTitle = computed(() => {
   if (props.country === 'United States') {
     return props.state ? `${props.city}, ${props.state}` : props.city
@@ -140,15 +154,12 @@ const venueSubtitle = computed(() => {
 // Format the date for display
 const formattedDate = computed(() => {
   let date: Date
-  
   if (typeof props.screeningDate === 'string') {
-    // Parse the date string as local time to avoid timezone issues
     const [year, month, day] = props.screeningDate.split('-').map(Number)
-    date = new Date(year, month - 1, day) // month is 0-indexed
+    date = new Date(year, month - 1, day)
   } else {
     date = props.screeningDate
   }
-    
   return date.toLocaleDateString('en-US', {
     weekday: 'long',
     year: 'numeric',
@@ -157,28 +168,29 @@ const formattedDate = computed(() => {
   })
 })
 
-// Handle buy ticket button click
 const handleBuyTicket = async () => {
   if (props.isDisabled || isProcessing.value) return
-  
-  // If ticketUrl is 'stripe', handle Stripe checkout
-  if (props.ticketUrl === 'stripe' && props.ticketPrice && props.ticketPrice > 0) {
+
+  if (props.ticketUrl === 'stripe') {
+    if (!props.ticketPrice || props.ticketPrice <= 0) {
+      alert('Ticket price information is unavailable. Please contact us at contact@daffodilstudios.org')
+      return
+    }
+
     isProcessing.value = true
-    
     try {
       const response = await $fetch('/api/stripe/create-checkout', {
         method: 'POST',
         body: {
           screeningId: props.screeningId,
           screeningName: `${props.movieName} - ${formattedDate.value}`,
-          location: `${props.venue}, ${props.city}${props.state ? ', ' + props.state : ''}${props.country ? ', ' + props.country : ''}`,
+          location: buildLocation(props.venue, props.city, props.state, props.country ?? ''),
           amount: props.ticketPrice,
           quantity: 1
         }
       })
 
       if (response.url) {
-        // Redirect to Stripe Checkout
         window.location.href = response.url
       }
     } catch (error) {
@@ -188,23 +200,12 @@ const handleBuyTicket = async () => {
       isProcessing.value = false
     }
   } else {
-    // Emit an event for parent component to handle
     emit('buy-ticket', {
       movieName: props.movieName,
       screeningDate: props.screeningDate,
-      location: `${props.venue}, ${props.city}${props.state ? ', ' + props.state : ''}${props.country ? ', ' + props.country : ''}`,
+      location: buildLocation(props.venue, props.city, props.state, props.country ?? ''),
       screeningTime: props.screeningTime
     })
   }
 }
-
-// Define emits
-const emit = defineEmits<{
-  'buy-ticket': [screeningInfo: {
-    movieName: string
-    screeningDate: string | Date
-    location: string
-    screeningTime?: string
-  }]
-}>()
 </script>

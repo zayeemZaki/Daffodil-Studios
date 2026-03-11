@@ -171,19 +171,10 @@
 </template>
 
 <script setup lang="ts">
+import type { PressItem } from '~/types'
 // Import custom thumbnails from assets
 import bbcUrduThumb from '@/assets/images/pages/press/bbc-urdu-thumbnail.jpeg'
 import asianSundayThumb from '@/assets/images/pages/press/asian-sunday-thumbnail.jpeg'
-
-interface PressArticle {
-  id: number
-  publication: string
-  title: string
-  description: string
-  url?: string
-  image?: string
-  type: 'article' | 'podcast'
-}
 
 // Reactive state for press release toggle
 const showPressRelease = ref(false)
@@ -220,7 +211,7 @@ useHead({
   ]
 })
 
-const pressArticles: PressArticle[] = [
+const pressArticles: PressItem[] = [
   {
     id: 1,
     publication: "BBC",

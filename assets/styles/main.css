@@ -16,82 +16,12 @@
   }
   
   body {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
-  }
-
-  /* Enhanced Typography Hierarchy */
-  h1 {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-
-  h2 {
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-
-  h3 {
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
-    font-weight: 700;
-    line-height: 1.3;
-  }
-
-  h4 {
-    font-size: clamp(1.25rem, 2.5vw, 2rem);
-    font-weight: 600;
-    line-height: 1.4;
   }
 
   p {
     line-height: 1.7;
     letter-spacing: 0.01em;
-  }
-
-  /* Large display text for heroes */
-  .text-display {
-    font-size: clamp(3rem, 6vw, 6rem);
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -0.03em;
-  }
-
-  /* Section titles */
-  .text-section-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-  }
-}
-
-/* Custom scrolling animation for client logos */
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-scroll {
-  animation: scroll 25s linear infinite;
-  width: max-content;
-}
-
-.animate-scroll:hover {
-  animation-play-state: paused;
-}
-
-/* Ensure the animation works properly */
-@layer utilities {
-  .scroll-smooth {
-    scroll-behavior: smooth;
   }
 }
 
@@ -228,22 +158,84 @@
   }
 }
 
-/* Section Background Utilities */
+/* ─── Aurora Background System ─────────────────────────────────────── */
+.aurora-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform;
+}
+
+.aurora-orb-gold {
+  width: 70vw;
+  height: 65vh;
+  top: -20%;
+  left: -15%;
+  background: radial-gradient(ellipse at center, rgba(253, 185, 19, 0.14) 0%, transparent 65%);
+  animation: aurora-gold 22s ease-in-out infinite;
+}
+
+.aurora-orb-amber {
+  width: 55vw;
+  height: 70vh;
+  bottom: -20%;
+  right: -10%;
+  background: radial-gradient(ellipse at center, rgba(229, 140, 10, 0.10) 0%, transparent 65%);
+  animation: aurora-amber 28s ease-in-out infinite;
+}
+
+.aurora-orb-indigo {
+  width: 50vw;
+  height: 60vh;
+  top: 20%;
+  right: 5%;
+  background: radial-gradient(ellipse at center, rgba(90, 60, 200, 0.08) 0%, transparent 65%);
+  animation: aurora-indigo 35s ease-in-out infinite;
+}
+
+@keyframes aurora-gold {
+  0%, 100% { transform: translate(0, 0); }
+  25%       { transform: translate(8%, 14%); }
+  50%       { transform: translate(4%, -6%); }
+  75%       { transform: translate(-5%, 9%); }
+}
+
+@keyframes aurora-amber {
+  0%, 100% { transform: translate(0, 0); }
+  33%       { transform: translate(-10%, -9%); }
+  66%       { transform: translate(7%, -13%); }
+}
+
+@keyframes aurora-indigo {
+  0%, 100% { transform: translate(0, 0); }
+  40%       { transform: translate(-9%, 7%); }
+  80%       { transform: translate(6%, -9%); }
+}
+
+/* Pause aurora on reduced-motion or mobile (perf) */
+@media (prefers-reduced-motion: reduce), (max-width: 768px) {
+  .aurora-orb-gold,
+  .aurora-orb-amber,
+  .aurora-orb-indigo {
+    animation: none;
+  }
+}
+
+/* ─── Section Background ────────────────────────────────────────────── */
 .section-bg-animated {
-  background: linear-gradient(to right, rgb(17 24 39), rgb(31 41 55), rgb(0 0 0));
+  background: rgba(7, 10, 18, 0.86);
   position: relative;
   overflow: hidden;
 }
 
+/* Subtle local warmth per-section — complements the aurora */
 .section-bg-animated::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: 
-    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), 
-    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.05;
+  background:
+    radial-gradient(ellipse 50% 40% at 5% 10%, rgba(253, 185, 19, 0.05) 0%, transparent 100%),
+    radial-gradient(ellipse 40% 50% at 95% 90%, rgba(253, 185, 19, 0.04) 0%, transparent 100%);
   pointer-events: none;
 }
 
@@ -334,15 +326,6 @@
   transition: width 0.3s ease;
 }
 
-/* Movie poster 3D tilt effect */
-.poster-3d {
-  transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.poster-3d:hover {
-  transform: perspective(1000px) rotateY(-10deg) rotateX(5deg) translateZ(50px);
-}
 
 /* Animation Delay Utilities */
 .delay-1s { animation-delay: 1s; }

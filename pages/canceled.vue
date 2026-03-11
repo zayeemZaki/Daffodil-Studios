@@ -20,7 +20,7 @@
           </div>
 
           <!-- Message -->
-          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">
             Payment Canceled
           </h1>
           
@@ -63,20 +63,20 @@
 
           <!-- Action Buttons -->
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
+            <NuxtLink
               v-if="isTicket"
-              @click="$router.back()"
+              to="/screenings"
               class="bg-brand-accent text-white px-8 py-4 rounded-full text-lg font-bold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               Try Again
-            </button>
-            <button
+            </NuxtLink>
+            <NuxtLink
               v-else
-              @click="showDonateModal"
+              to="/donate"
               class="bg-brand-accent text-white px-8 py-4 rounded-full text-lg font-bold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               Try Donation Again
-            </button>
+            </NuxtLink>
             <NuxtLink 
               to="/"
               class="bg-white/10 text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white/20 transition-all duration-300"
@@ -118,32 +118,14 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router'
-
 const route = useRoute()
-const router = useRouter()
-const isTicket = ref(false)
 
-// Set page metadata
+const isTicket = computed(() => route.query.type === 'ticket')
+
 useHead({
   title: 'Payment Canceled - Daffodil Studios',
   meta: [
     { name: 'robots', content: 'noindex, nofollow' }
   ]
 })
-
-onMounted(() => {
-  // Check if this is a ticket purchase or donation
-  isTicket.value = route.query.type === 'ticket'
-  
-  // Optional: Log canceled transaction (you can send this to analytics)
-  console.log('Transaction canceled:', {
-    type: isTicket.value ? 'ticket' : 'donation'
-  })
-})
-
-const showDonateModal = () => {
-  // Navigate to home and trigger donate modal (you may need to add event bus or state management)
-  router.push('/')
-}
 </script>

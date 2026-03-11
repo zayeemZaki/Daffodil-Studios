@@ -47,7 +47,7 @@
                 :state="screening.state"
                 :country="screening.country"
                 :ticket-url="screening.ticketUrl"
-                :ticket-price="screening.ticketPrice"
+                :ticket-price="(screening as any).ticketPrice ?? 0"
                 :button-text="screening.buttonText"
                 :is-disabled="screening.isDisabled"
                 @buy-ticket="handleBuyTicket"
@@ -57,16 +57,16 @@
           
           <!-- Past Screenings Section -->
           <div v-if="filteredPastScreenings.length > 0" class="space-y-8">
-            <UiSectionHeader 
+            <UiSectionHeader
               :title="`Past Screenings (${filteredPastScreenings.length})`"
               size="md"
               align="center"
               :level="2"
             />
-            
+
             <div class="grid gap-6 max-w-6xl mx-auto opacity-75">
               <CardScreening
-                v-for="screening in filteredPastScreenings"
+                v-for="screening in visiblePastScreenings"
                 :key="screening.id"
                 :movie-name="screening.movieName"
                 :screening-date="screening.date"
@@ -80,6 +80,27 @@
                 :is-disabled="true"
                 @buy-ticket="handleBuyTicket"
               />
+            </div>
+
+            <!-- Show more / collapse -->
+            <div v-if="filteredPastScreenings.length > PAST_PAGE_SIZE" class="flex flex-col items-center gap-3">
+              <button
+                v-if="visiblePastCount < filteredPastScreenings.length"
+                @click="visiblePastCount += PAST_PAGE_SIZE"
+                class="px-6 py-2.5 rounded-xl text-sm font-bold border border-white/10 text-gray-300 hover:text-white hover:border-brand-yellow/40 hover:bg-brand-yellow/5 transition-all duration-300"
+              >
+                Show more ({{ Math.min(PAST_PAGE_SIZE, filteredPastScreenings.length - visiblePastCount) }} more)
+              </button>
+              <button
+                v-if="visiblePastCount > PAST_PAGE_SIZE"
+                @click="visiblePastCount = PAST_PAGE_SIZE"
+                class="text-xs text-gray-500 hover:text-gray-300 transition-colors duration-200 font-medium"
+              >
+                Collapse
+              </button>
+              <p class="text-xs text-gray-600">
+                Showing {{ visiblePastScreenings.length }} of {{ filteredPastScreenings.length }}
+              </p>
             </div>
           </div>
           
@@ -96,7 +117,7 @@
                 Try adjusting your filters or check back later for new screenings.
               </p>
               <button 
-                v-if="hasActiveFilters()"
+                v-if="hasActiveFilters"
                 @click="clearAllFilters"
                 class="text-brand-yellow hover:text-brand-yellow-light transition-colors font-bold text-base"
               >
@@ -116,14 +137,14 @@ import type { FilterData } from '~/types'
 import screeningsData from '~/data/screenings.json'
 
 // Saffron Kingdom screenings data
-const allScreenings = ref(screeningsData)
+const allScreenings = screeningsData
 
 // Get today's date for comparison
 const today = new Date().toISOString().split('T')[0]
 
 // Extract unique locations for filter dropdown (includes country)
 const uniqueLocations = computed(() => {
-  const locations = allScreenings.value.map(screening => {
+  const locations = allScreenings.map(screening => {
     const cityState = screening.state ? `${screening.city}, ${screening.state}` : `${screening.city}`
     return `${cityState}, ${screening.country}`
   })
@@ -154,8 +175,10 @@ const currentFilters = ref<FilterData>({
   sortByDate: ''
 })
 
+type Screening = typeof screeningsData[number]
+
 // Helper function to filter screenings
-const filterScreenings = (screenings: any[]) => {
+const filterScreenings = (screenings: Screening[]) => {
   let result = [...screenings]
 
   // Filter by selected locations (reconstructed from city/state/country)
@@ -189,27 +212,35 @@ const filterScreenings = (screenings: any[]) => {
 
 // Separate upcoming and past screenings, then apply filters
 const upcomingScreenings = computed(() => {
-  const upcoming = allScreenings.value.filter(screening => screening.date >= today)
+  const upcoming = allScreenings.filter(screening => screening.date >= today)
   return upcoming.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 })
 
 const pastScreenings = computed(() => {
-  const past = allScreenings.value.filter(screening => screening.date < today)
+  const past = allScreenings.filter(screening => screening.date < today)
   // Sort past screenings by date descending (most recent first)
   return past.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 })
 
-const filteredUpcomingScreenings = computed(() => 
+const filteredUpcomingScreenings = computed(() =>
   filterScreenings(upcomingScreenings.value)
 )
 
-const filteredPastScreenings = computed(() => 
+const filteredPastScreenings = computed(() =>
   filterScreenings(pastScreenings.value)
+)
+
+const PAST_PAGE_SIZE = 10
+const visiblePastCount = ref(PAST_PAGE_SIZE)
+
+const visiblePastScreenings = computed(() =>
+  filteredPastScreenings.value.slice(0, visiblePastCount.value)
 )
 
 // Apply filters from FilterBar component
 const applyFilters = (filters: FilterData) => {
   currentFilters.value = { ...filters }
+  visiblePastCount.value = PAST_PAGE_SIZE
 }
 
 // Clear all filters
@@ -218,28 +249,24 @@ const clearAllFilters = () => {
     selectedLocations: [],
     sortByDate: ''
   }
+  visiblePastCount.value = PAST_PAGE_SIZE
 }
+
+// Check if any filters are active
+const hasActiveFilters = computed(() =>
+  currentFilters.value.selectedLocations.length > 0 || !!currentFilters.value.sortByDate
+)
 
 // Get results text for upcoming screenings
 const getUpcomingResultsText = () => {
   const count = filteredUpcomingScreenings.value.length
   const total = upcomingScreenings.value.length
-  
-  if (hasActiveFilters()) {
-    return `Upcoming Screenings (${count} of ${total})`
-  } else {
-    return `Upcoming Screenings (${count})`
-  }
+  return hasActiveFilters.value
+    ? `Upcoming Screenings (${count} of ${total})`
+    : `Upcoming Screenings (${count})`
 }
 
-// Check if any filters are active
-const hasActiveFilters = () => {
-  return currentFilters.value.selectedLocations.length > 0 ||
-         currentFilters.value.sortByDate
-}
-
-function handleBuyTicket(screeningInfo: any) {
-  // Handle buy ticket event when no direct URL is provided
-  // In a real app, this would open a ticket purchasing modal or navigate to a ticket page
+function handleBuyTicket(_screeningInfo: { movieName: string; screeningDate: string | Date; location: string; screeningTime?: string }) {
+  navigateTo('/about#request-screening')
 }
 </script>

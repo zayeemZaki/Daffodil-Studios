@@ -91,7 +91,7 @@ const DONORBOX_URL = 'https://donorbox.org/embed/daffodil'
 const MAX_IFRAME_HEIGHT = 2000
 
 const iframeLoaded = ref(false)
-const iframeSrc = ref(DONORBOX_URL)
+const iframeSrc = DONORBOX_URL
 const iframeHeight = ref(0)
 
 const handleIframeLoad = () => {

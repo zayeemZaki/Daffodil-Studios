@@ -20,7 +20,7 @@
           </div>
 
           <!-- Thank You Message -->
-          <h1 class="text-4xl md:text-5xl font-bold text-brand-gradient mb-4">
+          <h1 class="text-3xl md:text-4xl font-bold text-brand-gradient mb-4">
             {{ isTicket ? 'Tickets Confirmed!' : 'Thank You!' }}
           </h1>
           
@@ -128,31 +128,15 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-
 const route = useRoute()
-const sessionId = ref('')
-const isTicket = ref(false)
 
-// Set page metadata
+const isTicket = computed(() => route.query.type === 'ticket')
+const sessionId = computed(() => (route.query.session_id as string) || '')
+
 useHead({
   title: 'Payment Successful - Daffodil Studios',
   meta: [
     { name: 'robots', content: 'noindex, nofollow' }
   ]
-})
-
-onMounted(() => {
-  // Get session ID from URL query params
-  sessionId.value = route.query.session_id as string || ''
-  
-  // Check if this is a ticket purchase or donation based on URL or query param
-  isTicket.value = route.query.type === 'ticket'
-  
-  // Optional: Log successful transaction (you can send this to analytics)
-  console.log('Transaction successful:', {
-    sessionId: sessionId.value,
-    type: isTicket.value ? 'ticket' : 'donation'
-  })
 })
 </script>

@@ -114,14 +114,14 @@
 
 /* Card Styles - ENHANCED GLASSMORPHISM WITH YELLOW GLOW */
 .glass-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(253, 185, 19, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 1rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-              box-shadow 0.4s ease, 
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s ease,
               background 0.4s ease,
               border-color 0.4s ease;
   position: relative;
@@ -179,17 +179,6 @@
   text-shadow: 0 0 20px rgba(75,85,99,0.4);
 }
 
-/* Animation Utilities */
-.hover-lift {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .hover-lift:hover {
-    transform: translateY(-6px);
-  }
-}
-
 /* Section Utilities */
 .section-padding {
   padding: 4rem 0;
@@ -242,9 +231,11 @@
   transition: all 0.3s ease;
 }
 
-.tag-drama:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(253, 185, 19, 0.4);
+@media (hover: hover) and (pointer: fine) {
+  .tag-drama:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(253, 185, 19, 0.4);
+  }
 }
 
 .tag-tragedy {
@@ -259,9 +250,11 @@
   transition: all 0.3s ease;
 }
 
-.tag-tragedy:hover {
-  background: linear-gradient(135deg, rgba(253, 185, 19, 0.3) 0%, rgba(229, 167, 18, 0.3) 100%);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .tag-tragedy:hover {
+    background: linear-gradient(135deg, rgba(253, 185, 19, 0.3) 0%, rgba(229, 167, 18, 0.3) 100%);
+    transform: translateY(-2px);
+  }
 }
 
 .tag-indie {
@@ -276,10 +269,23 @@
   transition: all 0.3s ease;
 }
 
-.tag-indie:hover {
-  background: rgba(100, 116, 139, 0.3);
-  border-color: rgba(253, 185, 19, 0.4);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .tag-indie:hover {
+    background: rgba(100, 116, 139, 0.3);
+    border-color: rgba(253, 185, 19, 0.4);
+    transform: translateY(-2px);
+  }
+}
+
+/* Glass Panel — for inner content containers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 /* Hover Overlay Utilities */
@@ -307,23 +313,6 @@
   opacity: 1;
 }
 
-/* Navigation Underline Utility - YELLOW ACCENT */
-.nav-underline {
-  position: absolute;
-  bottom: -0.25rem;
-  left: 0;
-  width: 0;
-  height: 0.1875rem;
-  background: linear-gradient(90deg, #FDB913 0%, #FDC94A 100%);
-  border-radius: 2px;
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(253, 185, 19, 0.4);
-}
-
-.group:hover .nav-underline {
-  width: 100%;
-}
-
 /* Text Brand Gradient - YELLOW THEME */
 .text-brand-gradient {
   background: linear-gradient(90deg, #FDB913 0%, #FDC94A 50%, #FDB913 100%);
@@ -339,24 +328,3 @@
   text-shadow: 0 0 20px rgba(253, 185, 19, 0.5);
 }
 
-/* Client Logo Card */
-.client-logo-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 5rem;
-  width: 8rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1rem;
-  flex-shrink: 0;
-}
-
-.client-logo-card img {
-  max-height: 3rem;
-  max-width: 100%;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.7;
-}

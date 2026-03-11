@@ -45,7 +45,7 @@ export default defineNuxtConfig({
         { property: 'og:url', content: 'https://daffodilstudios.org' },
         { property: 'og:title', content: 'Daffodil Studios - Documentary Filmmaking | Saffron Kingdom' },
         { property: 'og:description', content: 'Creating powerful documentary films that tell untold stories. Watch Saffron Kingdom, our award-winning documentary about Kashmir.' },
-        { property: 'og:image', content: 'https://daffodilstudios.org/og-image.jpg' },
+        { property: 'og:image', content: 'https://daffodilstudios.org/logo.png' },
         { property: 'og:site_name', content: 'Daffodil Studios' },
         
         // Twitter
@@ -53,7 +53,7 @@ export default defineNuxtConfig({
         { name: 'twitter:url', content: 'https://daffodilstudios.org' },
         { name: 'twitter:title', content: 'Daffodil Studios - Documentary Filmmaking' },
         { name: 'twitter:description', content: 'Creating powerful documentary films that tell untold stories. Watch Saffron Kingdom.' },
-        { name: 'twitter:image', content: 'https://daffodilstudios.org/og-image.jpg' },
+        { name: 'twitter:image', content: 'https://daffodilstudios.org/logo.png' },
         
         // Additional
         { name: 'theme-color', content: '#4b5563' },
