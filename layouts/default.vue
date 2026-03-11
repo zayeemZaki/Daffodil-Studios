@@ -1,10 +1,11 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-[#060810] relative">
-    <!-- Aurora background -->
-    <div class="fixed inset-0 pointer-events-none overflow-hidden">
-      <div class="aurora-orb aurora-orb-gold"></div>
-      <div class="aurora-orb aurora-orb-amber"></div>
-      <div class="aurora-orb aurora-orb-indigo"></div>
+  <div class="flex flex-col min-h-screen bg-gray-900 relative">
+    <!-- Background Pattern Overlay -->
+    <div class="fixed inset-0 opacity-[0.02] pointer-events-none">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25px 25px, rgba(255,193,7,0.8) 2px, transparent 2px); background-size: 50px 50px;"></div>
+    </div>
+    <div class="fixed inset-0 opacity-[0.015] pointer-events-none">
+      <div class="absolute inset-0" style="background-image: linear-gradient(45deg, rgba(255,193,7,0.1) 1px, transparent 1px), linear-gradient(-45deg, rgba(255,193,7,0.1) 1px, transparent 1px); background-size: 20px 20px;"></div>
     </div>
     <!-- Header Component -->
     <LayoutHeader />

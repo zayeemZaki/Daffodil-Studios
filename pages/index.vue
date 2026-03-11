@@ -69,8 +69,8 @@
 
     <!-- Featured Movie Section -->
     <UiBackgroundPattern>
-      <UiSectionHeader
-        title="Saffron Kingdom Film"
+      <UiSectionHeader 
+        title="Saffron Kingdom Film" 
         size="lg"
       />
 
@@ -244,6 +244,10 @@ const onVideoLoaded = () => {
 }
 
 onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+  updateScrollProgress()
+
+  // Ensure video is ready
   if (heroVideo.value && heroVideo.value.readyState >= 3) {
     onVideoLoaded()
   }
