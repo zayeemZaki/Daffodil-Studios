@@ -244,10 +244,6 @@ const onVideoLoaded = () => {
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', onScroll, { passive: true })
-  updateScrollProgress()
-
-  // Ensure video is ready
   if (heroVideo.value && heroVideo.value.readyState >= 3) {
     onVideoLoaded()
   }
