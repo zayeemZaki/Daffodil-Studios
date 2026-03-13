@@ -453,5 +453,18 @@
     "ticketUrl": "https://www.eventbookings.com/b/event/saffron-kingdom-ann-arbor-michigan",
     "buttonText": "Buy Tickets",
     "isDisabled": false
+  },
+  {
+    "id": 36,
+    "movieName": "Saffron Kingdom",
+    "date": "2026-04-01",
+    "time": "1:00 PM",
+    "venue": "Hamilton College - Taylor Science Center, SCCT G027",
+    "city": "Clinton",
+    "state": "NY",
+    "country": "United States",
+    "ticketUrl": "",
+    "buttonText": "Free",
+    "isDisabled": true
   }
 ]
