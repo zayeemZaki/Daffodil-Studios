@@ -37,34 +37,30 @@
   }
 }
 
-@keyframes blinkBorder {
-  50% { border-right-color: transparent; }
-}
-
-@keyframes stopBlink {
-  to { border-right-color: transparent; }
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .typewriter-text {
   display: inline-block;
-  overflow: hidden;
   white-space: nowrap;
-  max-width: fit-content;
-  width: fit-content;
-  border-right: 3px solid #6b7280;
-  animation: 
-    typewriter 3s steps(16, end) 0.5s forwards,
-    blinkBorder 0.75s step-end infinite 0.5s,
-    stopBlink 0s 3.5s forwards;
-}
-
-@keyframes typewriter {
-  from { max-width: 0; }
-  to { max-width: 100%; }
 }
 
 .typewriter-cursor {
-  display: none;
+  display: inline-block;
+  color: #6b7280;
+  opacity: 1;
+  margin-left: 1px;
+}
+
+.typewriter-cursor.blinking {
+  animation: blinkCursor 0.75s step-end infinite;
+}
+
+.typewriter-cursor.done {
+  animation: none;
+  opacity: 0;
 }
 
 .fade-in-delay {
