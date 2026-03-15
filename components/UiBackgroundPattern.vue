@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<Props>(), {
   padding: 'default'
 })
 
-const paddingClasses = computed(() => (props.padding === 'none' ? 'py-0' : 'py-16 md:py-24'))
+const paddingClasses = computed(() => (props.padding === 'none' ? 'py-0' : 'py-10 md:py-14'))
 
 const patternRef = ref<HTMLElement | null>(null)
 const isInView = ref(true)

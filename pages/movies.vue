@@ -16,7 +16,7 @@
       <!-- Movies Section -->
       <section class="relative pb-24">
         <div class="container mx-auto px-6">
-          <div class="space-y-32">
+          <div class="space-y-16">
             <!-- Loop through movies -->
             <div
               v-for="(movie, index) in movies"
