@@ -464,8 +464,8 @@
     "state": "NY",
     "country": "United States",
     "ticketUrl": "",
-    "buttonText": "Free",
-    "isDisabled": true
+    "buttonText": "Free Screening",
+    "isDisabled": false
   },
   {
     "id": 37,
