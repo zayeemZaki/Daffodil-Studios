@@ -28,7 +28,7 @@
       <!-- Action Buttons -->
       <div class="flex items-center space-x-2 sm:space-x-3">
         <NuxtLink
-          to="/about#request-screening"
+          to="/about?subject=screening-request#request-screening"
           class="hidden md:inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-bold text-brand-yellow border-2 border-brand-yellow hover:bg-brand-yellow hover:text-gray-900 transition-all duration-300"
         >
           Request Screening
@@ -77,7 +77,7 @@
           </li>
           <li class="pt-1">
             <NuxtLink
-              to="/about#request-screening"
+              to="/about?subject=screening-request#request-screening"
               @click="showMobileMenu = false"
               class="block text-sm text-brand-yellow font-semibold py-3 px-3 rounded-lg border border-brand-yellow/70 active:bg-brand-yellow/10 transition-colors duration-200 min-h-[48px] flex items-center justify-center"
             >

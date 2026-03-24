@@ -185,6 +185,21 @@ const formData = reactive<FormData>({
 
 const route = useRoute()
 
+onMounted(() => {
+  if (route.query.subject) {
+    formData.subject = route.query.subject as string
+  }
+  if (route.hash === '#request-screening') {
+    setTimeout(() => {
+      const el = document.getElementById('request-screening')
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - 96
+        window.scrollTo({ top, behavior: 'smooth' })
+      }
+    }, 150)
+  }
+})
+
 const isSubmitting = ref(false)
 const submitMessage = ref('')
 const submitSuccess = ref(false)
