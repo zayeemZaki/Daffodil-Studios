@@ -465,7 +465,7 @@
     "country": "United States",
     "ticketUrl": "",
     "buttonText": "Free Screening",
-    "isDisabled": false
+    "isDisabled": true
   },
   {
     "id": 37,
