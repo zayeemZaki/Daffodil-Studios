@@ -41,8 +41,8 @@
       <!-- Hero Content -->
       <div class="relative z-10 text-center text-white px-4 sm:px-6 py-16">
         <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight">
-          <span class="text-brand-gradient typewriter-text">Daffodil Studios</span>
-          <span class="typewriter-cursor">|</span>
+          <span class="text-brand-gradient typewriter-text">{{ typedText }}</span>
+          <span class="typewriter-cursor" :class="{ blinking: typingComplete && !typingDone, done: typingDone }">|</span>
         </h1>
         <p class="text-base sm:text-lg md:text-xl mb-6 max-w-2xl mx-auto leading-relaxed opacity-0 fade-in-delay px-4">
           Where stories come to life through the art of cinema. We create compelling narratives
@@ -83,6 +83,7 @@
                 :src="heroPoster"
                 alt="Saffron Kingdom Movie Poster"
                 class="w-full h-auto aspect-[2/3] object-cover"
+                loading="lazy"
               >
               <div class="hover-overlay-dark"></div>
               <div class="hover-overlay-brand"></div>
@@ -247,10 +248,12 @@ onMounted(() => {
   if (heroVideo.value && heroVideo.value.readyState >= 3) {
     onVideoLoaded()
   }
-})
 
 useHead({
   title: 'Daffodil Studios - Home',
+  link: [
+    { rel: 'preload', as: 'image', href: heroPoster, fetchpriority: 'high' }
+  ],
   meta: [
     {
       name: 'description',

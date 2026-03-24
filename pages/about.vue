@@ -183,6 +183,8 @@ const formData = reactive<FormData>({
   message: ''
 })
 
+const route = useRoute()
+
 const isSubmitting = ref(false)
 const submitMessage = ref('')
 const submitSuccess = ref(false)

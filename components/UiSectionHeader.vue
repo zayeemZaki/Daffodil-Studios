@@ -50,10 +50,10 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const headingTag = computed(() => (props.level === 1 ? 'h1' : 'h2'))
-const wrapperSpacing = computed(() => (props.level === 1 ? 'mb-16' : 'mb-6'))
+const wrapperSpacing = computed(() => (props.level === 1 ? 'mb-8' : 'mb-6'))
 const headingClasses = computed(() =>
   props.level === 1
-    ? 'font-black mb-8 leading-tight gradient-text animate-fade-in'
+    ? 'font-black mb-4 leading-tight gradient-text animate-fade-in'
     : 'font-bold leading-tight gradient-text'
 )
 

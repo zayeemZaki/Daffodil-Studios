@@ -453,5 +453,44 @@
     "ticketUrl": "https://www.eventbookings.com/b/event/saffron-kingdom-ann-arbor-michigan",
     "buttonText": "Buy Tickets",
     "isDisabled": false
+  },
+  {
+    "id": 36,
+    "movieName": "Saffron Kingdom",
+    "date": "2026-04-01",
+    "time": "1:00 PM",
+    "venue": "Hamilton College - Taylor Science Center, SCCT G027",
+    "city": "Clinton",
+    "state": "NY",
+    "country": "United States",
+    "ticketUrl": "",
+    "buttonText": "Free Screening (first-come basis)",
+    "isDisabled": true
+  },
+  {
+    "id": 37,
+    "movieName": "Saffron Kingdom",
+    "date": "2026-03-31",
+    "time": "5:30 PM",
+    "venue": "Physics Building, Stolkin Auditorium",
+    "city": "Syracuse",
+    "state": "NY",
+    "country": "United States",
+    "ticketUrl": "https://www.maxwell.syr.edu/events/2026/03/31/default-calendar/SAC-Film-saffron-mar31",
+    "buttonText": "Free Screening",
+    "isDisabled": false
+  },
+  {
+    "id": 38,
+    "movieName": "Saffron Kingdom",
+    "date": "2026-05-16",
+    "time": "10:30 PM",
+    "venue": "AMC New Brunswick 18",
+    "city": "New Brunswick",
+    "state": "NJ",
+    "country": "United States",
+    "ticketUrl": "https://www.eventbookings.com/b/event/saffron-kingdom-new-brunswick-nj",
+    "buttonText": "Buy Tickets",
+    "isDisabled": false
   }
 ]
