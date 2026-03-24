@@ -244,10 +244,30 @@ const onVideoLoaded = () => {
   }
 }
 
+// Typewriter
+const typedText = ref('')
+const typingComplete = ref(false)
+const typingDone = ref(false)
+const fullText = 'Daffodil Studios'
+
 onMounted(() => {
   if (heroVideo.value && heroVideo.value.readyState >= 3) {
     onVideoLoaded()
   }
+
+  let i = 0
+  const type = () => {
+    if (i < fullText.length) {
+      typedText.value += fullText[i]
+      i++
+      setTimeout(type, 85)
+    } else {
+      typingComplete.value = true
+      setTimeout(() => { typingDone.value = true }, 2000)
+    }
+  }
+  setTimeout(type, 600)
+})
 
 useHead({
   title: 'Daffodil Studios - Home',
