@@ -69,8 +69,8 @@
 
     <!-- Featured Movie Section -->
     <UiBackgroundPattern>
-      <UiSectionHeader 
-        title="Saffron Kingdom Film" 
+      <UiSectionHeader
+        title="Saffron Kingdom Film"
         size="lg"
       />
 
@@ -236,11 +236,6 @@ const { scrollProgress } = useScrollProgress()
 
 const heroVideo = ref<HTMLVideoElement | null>(null)
 
-const fullText = 'Daffodil Studios'
-const typedText = ref('')
-const typingComplete = ref(false)
-const typingDone = ref(false)
-
 const onVideoLoaded = () => {
   if (heroVideo.value) {
     heroVideo.value.play().catch(() => {
@@ -253,21 +248,6 @@ onMounted(() => {
   if (heroVideo.value && heroVideo.value.readyState >= 3) {
     onVideoLoaded()
   }
-
-  const typeNext = (i: number) => {
-    if (i > fullText.length) return
-    typedText.value = fullText.slice(0, i)
-    if (i === fullText.length) {
-      typingComplete.value = true
-      setTimeout(() => { typingDone.value = true }, 1500)
-      return
-    }
-    const delay = 70 + Math.random() * 60
-    setTimeout(() => typeNext(i + 1), delay)
-  }
-
-  setTimeout(() => typeNext(1), 400)
-})
 
 useHead({
   title: 'Daffodil Studios - Home',

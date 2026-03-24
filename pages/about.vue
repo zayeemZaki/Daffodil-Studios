@@ -190,10 +190,6 @@ const submitMessage = ref('')
 const submitSuccess = ref(false)
 let resetTimer: ReturnType<typeof setTimeout> | null = null
 
-if (route.hash === '#request-screening') {
-  formData.subject = 'screening-request'
-}
-
 const handleSubmit = async () => {
   isSubmitting.value = true
   submitMessage.value = ''
