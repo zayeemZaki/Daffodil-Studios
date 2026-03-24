@@ -57,7 +57,7 @@
       
       <!-- Buy Ticket Button -->
       <div class="flex-shrink-0 w-full lg:w-auto">
-        <UiActionButton 
+        <UiActionButton
           v-if="ticketUrl && ticketUrl !== 'stripe'"
           :text="buttonText"
           :href="ticketUrl"
@@ -73,8 +73,8 @@
           @click="handleBuyTicket"
           :disabled="isDisabled || isProcessing"
           :class="[
-            'w-full lg:w-auto px-6 py-3 rounded-full font-bold text-base sm:text-lg transition-all duration-300 shadow-lg min-h-[48px]',
-            isDisabled ? 'bg-gray-600 text-gray-300 cursor-not-allowed' : 
+            'w-full lg:w-auto px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-lg min-h-[48px]',
+            isDisabled ? 'bg-gray-600 text-gray-300 cursor-not-allowed' :
             isProcessing ? 'bg-brand-yellow/70 text-gray-900 cursor-wait' :
             'bg-gradient-to-br from-brand-yellow via-brand-yellow-light to-brand-yellow text-gray-900 hover:scale-105 hover:shadow-glow-yellow'
           ]"
@@ -91,6 +91,38 @@
       </div>
     </div>
   </div>
+
+  <!-- First-Come Basis Popup -->
+  <Teleport to="body">
+    <Transition name="popup">
+      <div
+        v-if="showPopup"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4"
+        @click.self="showPopup = false"
+      >
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="relative glass-card rounded-2xl p-8 max-w-sm w-full shadow-2xl text-center">
+          <!-- Icon -->
+          <div class="w-16 h-16 bg-gradient-to-br from-brand-yellow to-brand-yellow-dark rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg">
+            <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Free Screening</h3>
+          <p class="text-gray-300 mb-6 leading-relaxed">
+            This is a free screening — no tickets required.<br>
+            Seating is <span class="text-brand-yellow font-semibold">first-come, first-served</span>, so arrive early to secure your spot!
+          </p>
+          <button
+            @click="showPopup = false"
+            class="w-full px-6 py-3 rounded-xl font-bold text-gray-900 bg-gradient-to-br from-brand-yellow via-brand-yellow-light to-brand-yellow hover:scale-105 transition-all duration-300 shadow-lg"
+          >
+            Got it!
+          </button>
+        </div>
+      </div>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -130,6 +162,7 @@ const emit = defineEmits<{
 }>()
 
 const isProcessing = ref(false)
+const showPopup = ref(false)
 
 // Shared location string builder
 const buildLocation = (venue: string, city: string, state: string, country: string) => {
@@ -199,6 +232,8 @@ const handleBuyTicket = async () => {
     } finally {
       isProcessing.value = false
     }
+  } else if (!props.ticketUrl) {
+    showPopup.value = true
   } else {
     emit('buy-ticket', {
       movieName: props.movieName,
@@ -209,3 +244,22 @@ const handleBuyTicket = async () => {
   }
 }
 </script>
+
+<style scoped>
+.popup-enter-active,
+.popup-leave-active {
+  transition: opacity 0.2s ease;
+}
+.popup-enter-active .relative,
+.popup-leave-active .relative {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.popup-enter-from,
+.popup-leave-to {
+  opacity: 0;
+}
+.popup-enter-from .relative {
+  transform: scale(0.95);
+  opacity: 0;
+}
+</style>
