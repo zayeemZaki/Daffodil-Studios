@@ -354,22 +354,31 @@ const screeningsByMonth = computed(() => {
   const map = new Map<string, { monthKey: string; label: string; isPast: boolean; screenings: Screening[] }>()
   for (const s of sorted) {
     const monthKey = s.date.substring(0, 7)
-    if (!map.has(monthKey)) {
-      map.set(monthKey, {
+    const sIsPast = s.date < today
+    // Within the current month some screenings may already be past while others
+    // are still upcoming. Split them into two separate groups so the total view
+    // can dim past entries and highlight upcoming ones independently.
+    const groupKey = monthKey === currentMonth && sIsPast ? `${monthKey}-past` : monthKey
+    if (!map.has(groupKey)) {
+      map.set(groupKey, {
         monthKey,
         label: getMonthLabel(s.date),
-        isPast: monthKey < currentMonth,
+        isPast: monthKey < currentMonth || sIsPast,
         screenings: []
       })
     }
-    map.get(monthKey)!.screenings.push(s)
+    map.get(groupKey)!.screenings.push(s)
   }
   return [...map.values()]
 })
 
 const timelineGroups = computed(() => {
   if (activeFilter.value === 'upcoming') {
-    return screeningsByMonth.value.filter(g => !g.isPast)
+    // Filter individual screenings by exact date so past screenings within the
+    // current month (e.g. March 12 when today is March 24) are excluded.
+    return screeningsByMonth.value
+      .map(g => ({ ...g, screenings: g.screenings.filter(s => s.date >= today) }))
+      .filter(g => g.screenings.length > 0)
   }
   const upcoming = screeningsByMonth.value.filter(g => !g.isPast)
   const past = screeningsByMonth.value.filter(g => g.isPast).reverse()
