@@ -3,10 +3,10 @@
     <!-- Background Pattern -->
     <UiBackgroundPattern>
       <!-- Hero Section -->
-      <section class="relative pb-16">
+      <section class="relative pb-8">
         <div class="container mx-auto px-6">
-          <UiSectionHeader 
-            title="About Daffodil Studios" 
+          <UiSectionHeader
+            title="About Daffodil Studios"
             subtitle="We are passionate storytellers dedicated to bringing important narratives to audiences worldwide through powerful documentary filmmaking."
             size="md"
           />
@@ -14,10 +14,10 @@
       </section>
 
       <!-- About Content -->
-      <section class="relative pb-16">
+      <section class="relative pb-8">
         <div class="container mx-auto px-6">
           <div class="max-w-4xl mx-auto">
-            <div class="glass-card rounded-2xl p-8 md:p-12 mb-16">
+            <div class="glass-card rounded-2xl p-8 md:p-12 mb-8">
               <UiSectionHeader title="Our Mission" size="sm" align="center" :level="2" />
               <p class="text-lg text-gray-300 leading-relaxed mb-6">
                 Daffodil Studios is committed to creating documentaries that shed light on untold stories and 
@@ -34,10 +34,10 @@
       </section>
 
       <!-- Contact Form Section -->
-      <section id="request-screening" class="relative pb-24">
+      <section id="request-screening" class="relative pb-12">
         <div class="container mx-auto px-6">
           <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-12">
+            <div class="text-center mb-8">
               <UiSectionHeader 
                 title="Get In Touch" 
                 subtitle="Request a screening or send us a message"
@@ -150,7 +150,7 @@
             </div>
 
             <!-- Contact Info -->
-            <div class="text-center mt-12">
+            <div class="text-center mt-8">
               <p class="text-gray-300 text-lg">
                 Or email us directly at 
                 <a href="mailto:contact@daffodilstudios.org" class="text-brand-yellow hover:text-brand-yellow-light transition-colors font-bold">

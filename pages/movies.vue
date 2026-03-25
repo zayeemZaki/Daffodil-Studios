@@ -3,7 +3,7 @@
     <!-- Background Pattern -->
     <UiBackgroundPattern>
       <!-- Hero Section -->
-      <section class="relative pb-16">
+      <section class="relative pb-6">
         <div class="container mx-auto px-6">
           <UiSectionHeader
             title="Our Films"
@@ -14,9 +14,9 @@
       </section>
 
       <!-- Movies Section -->
-      <section class="relative pb-24">
+      <section class="relative pb-12">
         <div class="container mx-auto px-6">
-          <div class="space-y-16">
+          <div class="space-y-10">
             <!-- Loop through movies -->
             <div
               v-for="(movie, index) in movies"

@@ -3,7 +3,7 @@
     <UiBackgroundPattern film-grain padding="none">
 
       <!-- Hero Section -->
-      <section class="relative pt-20 pb-12 z-[100]">
+      <section class="relative pt-8 pb-8 z-[100]">
         <div class="container mx-auto px-6 text-center">
           <UiSectionHeader
             title="World Screenings"
@@ -253,7 +253,7 @@
           </Transition>
 
           <!-- Request a Screening CTA -->
-          <div class="mt-20 max-w-4xl mx-auto">
+          <div class="mt-12 max-w-4xl mx-auto">
             <div class="glass-card p-8 sm:p-10 relative overflow-hidden text-center">
               <div class="absolute -top-10 -right-10 w-48 h-48 bg-gradient-to-br from-brand-yellow/15 to-transparent rounded-full blur-3xl pointer-events-none"></div>
               <div class="absolute -bottom-10 -left-10 w-36 h-36 bg-gradient-to-tr from-brand-yellow-dark/10 to-transparent rounded-full blur-2xl pointer-events-none"></div>

@@ -3,7 +3,7 @@
     <!-- Background Pattern -->
     <UiBackgroundPattern>
       <!-- Hero Section -->
-      <section class="relative pb-16">
+      <section class="relative pb-6">
         <div class="container mx-auto px-6">
           <UiSectionHeader 
             title="Press & Media Coverage" 
@@ -14,7 +14,7 @@
       </section>
 
       <!-- Daffodil Studios Press Release Section -->
-      <section class="relative pb-12 sm:pb-16">
+      <section class="relative pb-8 sm:pb-10">
         <div class="container mx-auto px-4 sm:px-6">
           <div class="max-w-7xl mx-auto">
             <UiSectionHeader 
@@ -106,7 +106,7 @@
       </section>
 
       <!-- Articles Section -->
-      <section class="relative pb-12">
+      <section class="relative pb-8">
         <div class="container mx-auto px-4 sm:px-6">
           <div class="max-w-7xl mx-auto">
             <UiSectionHeader 
@@ -137,7 +137,7 @@
       </section>
 
       <!-- Podcasts Section -->
-      <section class="relative pb-16 sm:pb-24">
+      <section class="relative pb-10 sm:pb-14">
         <div class="container mx-auto px-4 sm:px-6">
           <div class="max-w-7xl mx-auto">
             <UiSectionHeader 
