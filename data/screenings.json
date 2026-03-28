@@ -492,5 +492,18 @@
     "ticketUrl": "https://www.eventbookings.com/b/event/saffron-kingdom-new-brunswick-nj",
     "buttonText": "Buy Tickets",
     "isDisabled": false
+  },
+  {
+    "id": 39,
+    "movieName": "Saffron Kingdom",
+    "date": "2026-04-09",
+    "time": "3:30 PM",
+    "venue": "UCSD \"Original\" Student Center, Level 1, Dolores Huerta Room",
+    "city": "San Diego",
+    "state": "CA",
+    "country": "United States",
+    "ticketUrl": "https://bit.ly/SaffronKingdomUCSD",
+    "buttonText": "Free Screening",
+    "isDisabled": false
   }
 ]
