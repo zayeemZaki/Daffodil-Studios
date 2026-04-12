@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <!-- Navigation Progress Indicator -->
-    <div class="nav-progress" :style="{ width: scrollProgress + '%' }"></div>
+    <div class="nav-progress" :style="{ transform: 'scaleX(' + scrollProgress / 100 + ')' }"></div>
 
     <!-- Hero Section with Background Video -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden -mt-20 sm:-mt-24 md:-mt-[120px]">
@@ -25,10 +25,10 @@
       <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/75"></div>
 
       <!-- Film Grain Texture -->
-      <div class="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none film-grain"></div>
+      <div class="absolute inset-0 opacity-[0.04] pointer-events-none film-grain"></div>
 
-      <!-- Floating particles -->
-      <div class="absolute inset-0 overflow-hidden">
+      <!-- Floating particles (desktop only) -->
+      <div class="absolute inset-0 overflow-hidden hidden md:block">
         <div class="absolute top-20 left-20 w-1.5 h-1.5 bg-gray-400/20 rounded-full float-animation"></div>
         <div class="absolute top-40 right-32 w-1 h-1 bg-gray-300/25 rounded-full float-animation delay-2s"></div>
         <div class="absolute bottom-32 left-1/4 w-1 h-1 bg-gray-400/15 rounded-full float-animation delay-4s"></div>
@@ -260,13 +260,15 @@ onMounted(() => {
     if (i < fullText.length) {
       typedText.value += fullText[i]
       i++
-      setTimeout(type, 85)
+      // Variable speed: slightly faster on spaces, natural variance otherwise
+      const delay = fullText[i - 1] === ' ' ? 120 : 65 + Math.random() * 55
+      setTimeout(type, delay)
     } else {
       typingComplete.value = true
-      setTimeout(() => { typingDone.value = true }, 2000)
+      setTimeout(() => { typingDone.value = true }, 1500)
     }
   }
-  setTimeout(type, 600)
+  setTimeout(type, 300)
 })
 
 useHead({
