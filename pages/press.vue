@@ -105,6 +105,28 @@
         </div>
       </section>
 
+      <!-- Featured Quote Block -->
+      <section class="relative pb-10">
+        <div class="container mx-auto px-4 sm:px-6">
+          <div class="max-w-3xl mx-auto text-center">
+            <div class="relative py-8 px-6 sm:px-10">
+              <!-- Large decorative quotation mark -->
+              <span class="absolute -top-2 left-4 sm:left-8 text-7xl sm:text-8xl font-black text-brand-yellow/20 leading-none select-none" aria-hidden="true">"</span>
+              <blockquote class="relative z-10">
+                <p class="text-xl sm:text-2xl md:text-3xl font-semibold text-white leading-snug italic">
+                  I wanted to tell a deeply human story that reflects the collective grief Kashmiris feel from misrepresentation, and the strength it takes to keep going.
+                </p>
+                <footer class="mt-5 flex items-center justify-center gap-3">
+                  <div class="w-8 h-px bg-brand-yellow/60"></div>
+                  <cite class="not-italic text-sm font-bold text-brand-yellow tracking-wide uppercase">Arfat Sheikh</cite>
+                  <div class="w-8 h-px bg-brand-yellow/60"></div>
+                </footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Articles Section -->
       <section class="relative pb-8">
         <div class="container mx-auto px-4 sm:px-6">

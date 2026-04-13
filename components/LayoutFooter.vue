@@ -15,7 +15,7 @@
         
         <!-- Quick Links -->
         <div class="text-center">
-          <h3 class="text-base sm:text-lg font-bold mb-2 sm:mb-3 text-white">Quick Links</h3>
+          <h3 class="text-base sm:text-lg font-bold mb-2 sm:mb-3 text-brand-yellow">Quick Links</h3>
           <ul class="space-y-1.5 sm:space-y-2 mb-4">
             <li v-for="item in navItems" :key="item.to">
               <NuxtLink :to="item.to" class="text-gray-400 hover:text-white text-sm font-medium transition-colors duration-300">
@@ -35,7 +35,7 @@
         
         <!-- Contact & Social -->
         <div class="text-center md:text-right">
-          <h3 class="text-base sm:text-lg font-bold mb-2 sm:mb-3 text-white">Connect With Us</h3>
+          <h3 class="text-base sm:text-lg font-bold mb-2 sm:mb-3 text-brand-yellow">Connect With Us</h3>
           <div class="space-y-1.5 sm:space-y-2">
             <p class="text-gray-400 text-xs sm:text-sm break-all">
               <span class="font-semibold">Email:</span> contact@daffodilstudios.org

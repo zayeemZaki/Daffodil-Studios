@@ -4,7 +4,7 @@
     <div class="nav-progress" :style="{ transform: 'scaleX(' + scrollProgress / 100 + ')' }"></div>
 
     <!-- Hero Section with Background Video -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden -mt-20 sm:-mt-24 md:-mt-[120px]">
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden -mt-[120px]">
       <!-- Background Video -->
       <video
         ref="heroVideo"
@@ -40,10 +40,12 @@
 
       <!-- Hero Content -->
       <div class="relative z-10 text-center text-white px-4 sm:px-6 py-16">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 leading-tight">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
           <span class="text-brand-gradient typewriter-text">{{ typedText }}</span>
           <span class="typewriter-cursor" :class="{ blinking: typingComplete && !typingDone, done: typingDone }">|</span>
         </h1>
+        <!-- Branded divider -->
+        <div class="w-14 h-px bg-brand-yellow/60 mx-auto mb-5 opacity-0 fade-in-delay" style="animation-delay: 1.7s;"></div>
         <p class="text-base sm:text-lg md:text-xl mb-6 max-w-2xl mx-auto leading-relaxed opacity-0 fade-in-delay px-4">
           Where stories come to life through the art of cinema. We create compelling narratives
           that inspire, entertain, and connect audiences across the globe.
@@ -76,7 +78,7 @@
 
       <div class="flex flex-col xl:flex-row items-center gap-12 xl:gap-16">
         <!-- Movie Poster -->
-        <div class="xl:w-5/12 w-full max-w-sm xl:max-w-none mx-auto">
+        <div class="xl:w-5/12 w-full max-w-xs sm:max-w-sm md:max-w-md xl:max-w-none mx-auto">
           <div class="relative group">
             <div class="relative overflow-hidden rounded-2xl shadow-cinematic">
               <img

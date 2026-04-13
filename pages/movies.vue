@@ -84,11 +84,11 @@
 
                   <!-- Tags -->
                   <div class="flex flex-wrap gap-3">
-                    <span class="px-4 py-2 bg-white/10 rounded-lg text-sm">{{ movie.year }}</span>
+                    <span class="px-4 py-2 bg-white/10 rounded-lg text-sm text-gray-300 font-semibold">{{ movie.year }}</span>
                     <span
                       v-for="tag in movie.tags"
                       :key="tag"
-                      class="px-4 py-2 bg-white/10 rounded-lg text-sm"
+                      :class="['px-4 py-2 rounded-lg text-sm font-semibold', getTagClass(tag)]"
                     >
                       {{ tag }}
                     </span>
@@ -138,13 +138,22 @@ interface Movie {
   comingSoon: boolean
 }
 
+const tagColors: Record<string, string> = {
+  'Drama':       'bg-yellow-900/40 text-yellow-300 border border-yellow-700/40',
+  'Period':      'bg-amber-900/40 text-amber-300 border border-amber-700/40',
+  'Kashmir':     'bg-slate-800/60 text-slate-300 border border-slate-600/40',
+  'Documentary': 'bg-teal-900/40 text-teal-300 border border-teal-700/40',
+  'Culture':     'bg-purple-900/40 text-purple-300 border border-purple-700/40',
+}
+const getTagClass = (tag: string) => tagColors[tag] ?? 'bg-white/10 text-gray-300'
+
 const movies: Movie[] = [
   {
     id: 1,
     title: "Saffron Kingdom",
     description: "Experience the untold story of Kashmir through powerful narratives and compelling visuals. This documentary explores the complexities of the region's history, culture, and the resilient spirit of its people.",
     year: "2025",
-    tags: ["Drama", "Kashmir", "Period"],
+    tags: ["Drama", "Kashmir"],
     badge: "Feature Film",
     videoSrc: "https://www.youtube.com/embed/Mcz-Ke_W4ow",
     buttonText: "Find Screenings",

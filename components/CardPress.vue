@@ -6,7 +6,7 @@
     class="flex flex-col glass-card rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-300 group h-full"
     :class="{ 'cursor-default': !item.url || item.url === '#' }"
   >
-    <div :class="['w-full h-40 sm:h-36 overflow-hidden relative shadow-lg group-hover:shadow-xl transition-shadow flex items-center justify-center', gradientClass]">
+    <div :class="['w-full h-36 sm:h-32 overflow-hidden relative shadow-lg group-hover:shadow-xl transition-shadow flex items-center justify-center', gradientClass]">
       <img
         v-if="item.image"
         :src="item.image"

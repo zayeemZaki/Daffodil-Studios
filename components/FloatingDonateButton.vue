@@ -123,8 +123,7 @@ const isDonationPage = computed(() => route.path === '/donate')
   }
 
   .floating-donate-button {
-    width: calc(100vw - 1.5rem);
-    justify-content: center;
+    padding: 0.8rem 1.1rem;
   }
 }
 </style>
