@@ -7,7 +7,7 @@
         <div class="container mx-auto px-6 text-center">
           <UiSectionHeader
             title="World Screenings"
-            subtitle="Experience the untold story of Kashmir in theaters worldwide. Select a view to explore every screening."
+            subtitle="Experience the untold story of Kashmir in theaters worldwide."
             size="md"
           />
 
