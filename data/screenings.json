@@ -484,7 +484,7 @@
     "id": 38,
     "movieName": "Saffron Kingdom",
     "date": "2026-05-16",
-    "time": "10:30 PM",
+    "time": "06:30 PM",
     "venue": "AMC New Brunswick 18",
     "city": "New Brunswick",
     "state": "NJ",
@@ -516,6 +516,19 @@
     "state": "",
     "country": "United Kingdom",
     "ticketUrl": "https://www.qmsu.org/ents/event/22127",
+    "buttonText": "Buy Tickets",
+    "isDisabled": false
+  },
+  {
+    "id": 41,
+    "movieName": "Saffron Kingdom",
+    "date": "2026-05-17",
+    "time": "6:00 PM",
+    "venue": "Cineworld Luton",
+    "city": "Luton",
+    "state": "",
+    "country": "United Kingdom",
+    "ticketUrl": "https://www.eventbookings.com/b/event/saffron-kingdom-cineworld-luton",
     "buttonText": "Buy Tickets",
     "isDisabled": false
   }
