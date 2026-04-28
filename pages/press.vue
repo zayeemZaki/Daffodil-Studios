@@ -459,6 +459,14 @@ const pressArticles: PressItem[] = [
     description: "A podcast episode interviewing director Arfat Sheikh about the film by RoughDraft Atlanta. Discusses the Kashmir occupation and the film's themes.",
     url: "https://roughdraftatlanta.com/2025/05/14/crash-zoom-an-interview-with-arfat-sheikh/",
     type: "podcast"
+  },
+  {
+    id: 30,
+    publication: "SEN - South Era Network",
+    title: "Saffron Kingdom | Kashmir's Untold Human Story Beyond Politics",
+    description: "A podcast episode featuring director Arfat Sheikh discussing Saffron Kingdom and the broader context of Kashmir's untold human stories by SEN - South Era Network.",
+    url: "https://www.youtube.com/watch?si=r_C5U-9eLMtxl2w2&v=civjtoeTztE&feature=youtu.be",
+    type: "podcast"
   }
 ]
 </script>
