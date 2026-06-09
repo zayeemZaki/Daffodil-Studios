@@ -531,5 +531,18 @@
     "ticketUrl": "https://www.eventbookings.com/b/event/saffron-kingdom-cineworld-luton",
     "buttonText": "Buy Tickets",
     "isDisabled": false
+  },
+  {
+    "id": 42,
+    "movieName": "Saffron Kingdom",
+    "date": "2026-07-05",
+    "time": "5:00 PM - 7:30 PM",
+    "venue": "Cineworld Bradford, The Leisure Exchange, Vicar Lane, BD1 5LD",
+    "city": "Bradford",
+    "state": "",
+    "country": "United Kingdom",
+    "ticketUrl": "https://www.eventbookings.com/b/event/saffron-kingdom-cineworld-bradford",
+    "buttonText": "Buy Tickets",
+    "isDisabled": false
   }
 ]
