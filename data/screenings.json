@@ -544,5 +544,18 @@
     "ticketUrl": "https://www.eventbookings.com/b/event/saffron-kingdom-cineworld-bradford",
     "buttonText": "Buy Tickets",
     "isDisabled": false
+  },
+  {
+    "id": 43,
+    "movieName": "Saffron Kingdom",
+    "date": "2026-07-12",
+    "time": "5:00 PM - 7:30 PM",
+    "venue": "Cineworld Didsbury, Parrs Wood Entertainment Centre, Wilmslow Road, M20 5PG",
+    "city": "Manchester",
+    "state": "",
+    "country": "United Kingdom",
+    "ticketUrl": "https://www.eventbookings.com/b/event/saffron-kingdom-cineworld-didsbury",
+    "buttonText": "Buy Tickets",
+    "isDisabled": false
   }
 ]
