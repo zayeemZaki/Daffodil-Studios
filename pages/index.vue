@@ -69,6 +69,94 @@
       </div>
     </section>
 
+    <!-- Streaming Spotlight — Watermelon+ -->
+    <section class="streaming-band relative overflow-hidden py-16 sm:py-24">
+      <!-- Film Grain Texture -->
+      <div class="absolute inset-0 opacity-[0.04] pointer-events-none film-grain"></div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="flex flex-col xl:flex-row items-center gap-12 xl:gap-16">
+          <!-- Key Art — same footprint as the Featured Movie poster below -->
+          <div class="xl:w-5/12 w-full max-w-xs sm:max-w-sm md:max-w-md xl:max-w-none mx-auto">
+            <a
+              :href="watermelonUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block relative rounded-2xl overflow-hidden streaming-poster group"
+              aria-label="Stream Saffron Kingdom on Watermelon+"
+            >
+              <img
+                :src="heroPoster"
+                alt="Saffron Kingdom key art"
+                class="w-full h-auto aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              >
+              <!-- Billing block, matching the lockup on the film's key art -->
+              <div class="absolute inset-x-0 bottom-0 streaming-poster-caption px-5 sm:px-7 pt-16 pb-5 sm:pb-7 text-center">
+                <div class="flex items-center gap-3 mb-2">
+                  <div class="streaming-rule flex-1"></div>
+                  <p class="text-[0.65rem] sm:text-xs font-bold text-white uppercase tracking-[0.22em] whitespace-nowrap">
+                    Now Streaming On
+                  </p>
+                  <div class="streaming-rule flex-1"></div>
+                </div>
+                <p class="text-2xl sm:text-3xl lg:text-4xl font-black text-brand-yellow uppercase tracking-tight leading-none mb-3">
+                  Watermelon+
+                </p>
+                <div class="streaming-rule mb-2.5"></div>
+                <p class="text-[0.6rem] sm:text-[0.7rem] font-bold text-white/90 uppercase tracking-[0.1em] leading-snug">
+                  Available in 175+ countries, including Kashmir
+                </p>
+                <div class="streaming-rule mt-2.5"></div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Announcement -->
+          <div class="xl:w-7/12 w-full text-center xl:text-left">
+            <div class="inline-flex items-center gap-2 mb-5">
+              <span class="now-screening-dot" aria-hidden="true"></span>
+              <span class="text-xs font-bold text-brand-yellow uppercase tracking-[0.2em]">Now Streaming</span>
+            </div>
+
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-5">
+              Watch <span class="text-brand-gradient">Saffron Kingdom</span><br class="hidden sm:block">
+              on Watermelon+
+            </h2>
+
+            <p class="text-base sm:text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto xl:mx-0 mb-8">
+              After a festival run across more than six countries, Saffron Kingdom is now
+              streaming worldwide on Watermelon+, the Palestinian-owned home of
+              <em>The Voice of Hind Rajab</em> and <em>Once Upon a Time in Gaza</em>.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center xl:justify-start">
+              <UiActionButton
+                text="Stream on Watermelon+"
+                :href="watermelonUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="gradient"
+                size="lg"
+              >
+                <template #icon-left>
+                  <svg class="w-5 h-5 mr-2.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5.14v14l11-7-11-7z"/>
+                  </svg>
+                </template>
+              </UiActionButton>
+              <UiActionButton
+                text="About the Film"
+                to="/movies"
+                variant="outline"
+                size="lg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Featured Movie Section -->
     <UiBackgroundPattern>
       <UiSectionHeader
@@ -234,6 +322,8 @@
 <script setup lang="ts">
 import heroPoster from '@/assets/images/pages/home/movie-poster.jpg'
 
+const watermelonUrl = 'https://www.watermelonplus.com/saffron-kingdom'
+
 const { scrollProgress } = useScrollProgress()
 
 const heroVideo = ref<HTMLVideoElement | null>(null)
@@ -281,7 +371,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Daffodil Studios creates powerful documentary films. Discover Saffron Kingdom and explore upcoming screenings.'
+      content: 'Daffodil Studios creates powerful documentary films. Saffron Kingdom is now streaming on Watermelon+ in 175+ countries, including Kashmir.'
     },
     {
       property: 'og:title',
@@ -289,7 +379,7 @@ useHead({
     },
     {
       property: 'og:description',
-      content: 'Explore award-winning documentary filmmaking from Daffodil Studios and discover Saffron Kingdom.'
+      content: 'Saffron Kingdom is now streaming on Watermelon+. Explore award-winning filmmaking from Daffodil Studios.'
     }
   ]
 })

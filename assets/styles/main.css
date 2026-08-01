@@ -94,6 +94,36 @@
   }
 }
 
+/* ─── Streaming Spotlight (home) ──────────────────────────────────────── */
+/* Warm saffron wash echoing the Watermelon+ key art, sitting between the
+   hero video and the darker film section below it. */
+.streaming-band {
+  background:
+    radial-gradient(120% 100% at 15% 0%, rgba(253, 185, 19, 0.14) 0%, transparent 60%),
+    radial-gradient(90% 100% at 85% 100%, rgba(229, 167, 18, 0.10) 0%, transparent 65%),
+    linear-gradient(180deg, #060810 0%, #0A0E14 50%, #060810 100%);
+  border-top: 1px solid rgba(253, 185, 19, 0.12);
+  border-bottom: 1px solid rgba(253, 185, 19, 0.12);
+}
+
+.streaming-poster {
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(253, 185, 19, 0.14);
+}
+
+/* Billing block across the poster foot, mirroring the "NOW STREAMING ON
+   WATERMELON+" lockup from the film's key art. The gradient runs tall so the
+   oversized wordmark keeps contrast over whatever frame sits behind it. */
+.streaming-poster-caption {
+  background: linear-gradient(to top, rgba(6, 8, 16, 0.97) 45%, rgba(6, 8, 16, 0.82) 72%, transparent 100%);
+}
+
+.streaming-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(253, 185, 19, 0.55) 50%, transparent 100%);
+}
+
 /* Typewriter Animation - Optimized */
 @keyframes fadeInUp {
   from {

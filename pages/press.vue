@@ -13,93 +13,22 @@
         </div>
       </section>
 
-      <!-- Daffodil Studios Press Release Section -->
+      <!-- Daffodil Studios Press Releases Section -->
       <section class="relative pb-8 sm:pb-10">
         <div class="container mx-auto px-4 sm:px-6">
           <div class="max-w-7xl mx-auto">
-            <UiSectionHeader 
-              title="Daffodil Studios Press Release"
+            <UiSectionHeader
+              title="Daffodil Studios Press Releases"
               size="md"
               :level="2"
             />
-            
-            <div class="glass-card rounded-xl overflow-hidden p-4 sm:p-6 lg:p-8">
-              <div class="space-y-3 sm:space-y-4">
-                <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight">
-                  Saffron Kingdom: Brave Kashmiri Independent Film Sheds Light on Kashmiri Oppression and Strength
-                </h3>
-                
-                <p class="text-xs sm:text-sm text-gray-400 font-semibold">WASHINGTON, DC (4th November 2025)</p>
-                
-                <button
-                  @click="showPressRelease = !showPressRelease"
-                  class="inline-flex items-center gap-2 text-brand-gradient active:text-gray-400 transition-colors font-semibold text-xs min-h-[40px]"
-                >
-                  {{ showPressRelease ? 'Hide' : 'Read' }} Full Press Release
-                  <svg 
-                    class="w-4 h-4 transition-transform" 
-                    :class="{ 'rotate-180': showPressRelease }"
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                  </svg>
-                </button>
-                
-                <div v-show="showPressRelease" class="space-y-4 text-gray-300 leading-relaxed pt-4">
-                  <p>
-                    Saffron Kingdom is a poignant Kashmiri American independent film highlighting one family's fight to find peace after fleeing violence and oppression in their homeland. Inspired by true events, the internationally celebrated and award-winning Saffron Kingdom explores the Kashmir conflict through a family's journey from Srinagar in the 1990s to Atlanta, Georgia in 2019. The film was recently acquired by Watermelon Pictures, the recently launched, Oscar-nominated production and distribution company committed to amplifying the voices of underrepresented filmmakers.
-                  </p>
-                  
-                  <p>
-                    The story follows Masrat, a woman who witnesses insurgency violence as a child and later flees to America after her husband is abducted. Masrat struggles to find a new identity after moving to Atlanta, and her relationship with her son Rizwan is strained while he lives with intergenerational trauma and loss.
-                  </p>
-                  
-                  <p>
-                    For decades, Kashmiri Muslims have faced violence, human rights abuses, and political disenfranchisement, and their stories have been largely kept quiet due to fear of reprisal. Saffron Kingdom is a politically urgent film, and debut director Arfat Sheikh centers humanity and honesty in this intensely dramatic story of love, loss, and resilience.
-                  </p>
-                  
-                  <p>
-                    Sheikh has been announced as the inaugural recipient of the Emerging Filmmaker Activist Award at the 20th annual Teaneck International Film Festival. Saffron Kingdom exposes issues many would like kept in the dark and reflects on identity, justice, and the struggle to reclaim one's narrative amidst turmoil.
-                  </p>
-                  
-                  <div class="bg-gray-800/50 p-4 rounded-lg border-l-4 border-brand-accent my-6">
-                    <p class="italic">
-                      "I wanted to tell a deeply human story that reflects the collective grief Kashmiris feel from misrepresentation, and the strength it takes to keep going."
-                    </p>
-                    <p class="text-sm text-gray-400 mt-2">- Arfat Sheikh, producer and director of Saffron Kingdom</p>
-                  </div>
-                  
-                  <div class="bg-gray-800/50 p-4 rounded-lg border-l-4 border-brand-accent my-6">
-                    <p class="italic">
-                      "As the debut film from Daffodil Studios, Saffron Kingdom is a clear example of how art and storytelling can shed light on dispossession around the world."
-                    </p>
-                    <p class="text-sm text-gray-400 mt-2">- G. Mir, executive producer of Saffron Kingdom and president of Daffodil Studios</p>
-                  </div>
-                  
-                  <p>
-                    Many in the Kashmiri diaspora remain afraid to attend screenings due to fears of surveillance, and few actors or credited participants are Kashmiri, as involvement could jeopardize their return home. Through the courage of its cast and crew, Saffron Kingdom brings untold stories to light and honors those who speak out.
-                  </p>
-                  
-                  <div class="pt-4 space-y-2">
-                    <p>
-                      Daffodil Studios is a nonprofit film studio focused on impact-driven storytelling: 
-                      <a href="https://www.daffodilstudios.org/" target="_blank" rel="noopener noreferrer" class="text-brand-gradient hover:text-gray-400 underline">
-                        https://www.daffodilstudios.org/
-                      </a>
-                    </p>
-                    <p>
-                      <a href="https://www.saffronkingdomfilm.com/" target="_blank" rel="noopener noreferrer" class="text-brand-gradient hover:text-gray-400 underline">
-                        https://www.saffronkingdomfilm.com/
-                      </a>
-                    </p>
-                    <p class="font-semibold text-white pt-2">
-                      Streaming release of Saffron Kingdom on Watermelon+ in May 2026
-                    </p>
-                  </div>
-                </div>
-              </div>
+
+            <div class="space-y-4 sm:space-y-6">
+              <CardPressRelease
+                v-for="release in pressReleases"
+                :key="release.id"
+                :release="release"
+              />
             </div>
           </div>
         </div>
@@ -193,13 +122,12 @@
 </template>
 
 <script setup lang="ts">
-import type { PressItem } from '~/types'
+import type { PressItem, PressRelease } from '~/types'
 // Import custom thumbnails from assets
 import bbcUrduThumb from '@/assets/images/pages/press/bbc-urdu-thumbnail.jpeg'
 import asianSundayThumb from '@/assets/images/pages/press/asian-sunday-thumbnail.jpeg'
 
-// Reactive state for press release toggle
-const showPressRelease = ref(false)
+// Reactive state for press release toggles
 const showAllArticles = ref(false)
 const showAllPodcasts = ref(false)
 
@@ -232,6 +160,103 @@ useHead({
     }
   ]
 })
+
+// Ordered newest first — this is the order they render on the page.
+const pressReleases: PressRelease[] = [
+  {
+    id: 2,
+    title: 'Internationally Acclaimed Kashmiri Film Saffron Kingdom Now Streaming',
+    dateline: 'WASHINGTON, DC (28th July 2026)',
+    blocks: [
+      {
+        type: 'paragraph',
+        text: 'Daffodil Studios is proud to announce that its critically acclaimed feature film Saffron Kingdom is now available on Palestinian-owned streaming platform Watermelon+.'
+      },
+      {
+        type: 'paragraph',
+        text: 'Directed by Arfat Sheikh, Saffron Kingdom follows the story of a Kashmiri family as they navigate decades of trauma and displacement—tracing their journey from 1990s Srinagar, Kashmir to 2019 Atlanta, USA. Through this intimate lens, the film presents an authentic, multifaceted story of Kashmir and its people — one too often overlooked or misrepresented — by weaving together personal narratives and sociopolitical complexities.'
+      },
+      {
+        type: 'paragraph',
+        text: 'Since its world premiere at the Wake Forest International Film Festival in North Carolina, United States, the film has been screened across the United States and in more than six other countries, engaging audiences with its urgent themes and complex narratives, and generating important discussions on identity, representation, and resilience. The film has collaborated with many grassroots and justice-focused organisations, amplifying its impact and fostering dialogue on pressing social issues.'
+      },
+      {
+        type: 'paragraph',
+        text: 'In partnership with Watermelon Pictures, the film is now available to stream on their Watermelon+ platform. Saffron Kingdom joins other critically acclaimed films such as The Voice of Hind Rajab and Once Upon a Time in Gaza as part of the streaming service’s growing collection.'
+      },
+      {
+        type: 'paragraph',
+        text: 'For press inquiries, high-resolution images, or additional materials, please contact:'
+      },
+      {
+        type: 'links',
+        items: [
+          { prefix: 'Email:', label: 'contact@daffodilstudios.org', url: 'mailto:contact@daffodilstudios.org' },
+          { prefix: 'Phone:', label: '+1 (703) 387-8287', url: 'tel:+17033878287' },
+          { prefix: 'Stream Saffron Kingdom:', label: 'Saffron Kingdom - Watermelon+', url: 'https://www.watermelonplus.com/saffron-kingdom' }
+        ]
+      },
+      { type: 'heading', text: 'About Daffodil Studios' },
+      {
+        type: 'paragraph',
+        text: 'Daffodil Studios is a non-profit media organisation dedicated to producing impactful films and multimedia projects that amplify underrepresented voices. Its work spans feature films, documentaries, theatrical releases, and educational collaborations with universities and community organisations globally.'
+      },
+      {
+        type: 'links',
+        items: [{ label: 'https://www.daffodilstudios.org/', url: 'https://www.daffodilstudios.org/' }]
+      }
+    ]
+  },
+  {
+    id: 1,
+    title: 'Saffron Kingdom: Brave Kashmiri Independent Film Sheds Light on Kashmiri Oppression and Strength',
+    dateline: 'WASHINGTON, DC (4th November 2025)',
+    blocks: [
+      {
+        type: 'paragraph',
+        text: 'Saffron Kingdom is a poignant Kashmiri American independent film highlighting one family’s fight to find peace after fleeing violence and oppression in their homeland. Inspired by true events, the internationally celebrated and award-winning Saffron Kingdom explores the Kashmir conflict through a family’s journey from Srinagar in the 1990s to Atlanta, Georgia in 2019. The film was recently acquired by Watermelon Pictures, the recently launched, Oscar-nominated production and distribution company committed to amplifying the voices of underrepresented filmmakers.'
+      },
+      {
+        type: 'paragraph',
+        text: 'The story follows Masrat, a woman who witnesses insurgency violence as a child and later flees to America after her husband is abducted. Masrat struggles to find a new identity after moving to Atlanta, and her relationship with her son Rizwan is strained while he lives with intergenerational trauma and loss.'
+      },
+      {
+        type: 'paragraph',
+        text: 'For decades, Kashmiri Muslims have faced violence, human rights abuses, and political disenfranchisement, and their stories have been largely kept quiet due to fear of reprisal. Saffron Kingdom is a politically urgent film, and debut director Arfat Sheikh centers humanity and honesty in this intensely dramatic story of love, loss, and resilience.'
+      },
+      {
+        type: 'paragraph',
+        text: 'Sheikh has been announced as the inaugural recipient of the Emerging Filmmaker Activist Award at the 20th annual Teaneck International Film Festival. Saffron Kingdom exposes issues many would like kept in the dark and reflects on identity, justice, and the struggle to reclaim one’s narrative amidst turmoil.'
+      },
+      {
+        type: 'quote',
+        text: '"I wanted to tell a deeply human story that reflects the collective grief Kashmiris feel from misrepresentation, and the strength it takes to keep going."',
+        attribution: 'Arfat Sheikh, producer and director of Saffron Kingdom'
+      },
+      {
+        type: 'quote',
+        text: '"As the debut film from Daffodil Studios, Saffron Kingdom is a clear example of how art and storytelling can shed light on dispossession around the world."',
+        attribution: 'G. Mir, executive producer of Saffron Kingdom and president of Daffodil Studios'
+      },
+      {
+        type: 'paragraph',
+        text: 'Many in the Kashmiri diaspora remain afraid to attend screenings due to fears of surveillance, and few actors or credited participants are Kashmiri, as involvement could jeopardize their return home. Through the courage of its cast and crew, Saffron Kingdom brings untold stories to light and honors those who speak out.'
+      },
+      {
+        type: 'links',
+        items: [
+          {
+            prefix: 'Daffodil Studios is a nonprofit film studio focused on impact-driven storytelling:',
+            label: 'https://www.daffodilstudios.org/',
+            url: 'https://www.daffodilstudios.org/'
+          },
+          { label: 'https://www.saffronkingdomfilm.com/', url: 'https://www.saffronkingdomfilm.com/' }
+        ]
+      },
+      { type: 'note', text: 'Streaming release of Saffron Kingdom on Watermelon+ in May 2026' }
+    ]
+  }
+]
 
 const pressArticles: PressItem[] = [
   {
