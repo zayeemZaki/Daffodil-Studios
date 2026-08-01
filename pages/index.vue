@@ -75,6 +75,12 @@
       <div class="absolute inset-0 opacity-[0.04] pointer-events-none film-grain"></div>
 
       <div class="container mx-auto px-4 relative z-10">
+        <!-- Heads both this section and the film details below it -->
+        <UiSectionHeader
+          title="Saffron Kingdom Film"
+          size="lg"
+        />
+
         <div class="flex flex-col xl:flex-row items-center gap-12 xl:gap-16">
           <!-- Key Art — same footprint as the Featured Movie poster below -->
           <div class="xl:w-5/12 w-full max-w-xs sm:max-w-sm md:max-w-md xl:max-w-none mx-auto">
@@ -157,14 +163,9 @@
       </div>
     </section>
 
-    <!-- Featured Movie Section -->
+    <!-- Featured Movie Section — mirrored against the streaming section above -->
     <UiBackgroundPattern>
-      <UiSectionHeader
-        title="Saffron Kingdom Film"
-        size="lg"
-      />
-
-      <div class="flex flex-col xl:flex-row items-center gap-12 xl:gap-16">
+      <div class="flex flex-col xl:flex-row-reverse items-center gap-12 xl:gap-16">
         <!-- Movie Poster -->
         <div class="xl:w-5/12 w-full max-w-xs sm:max-w-sm md:max-w-md xl:max-w-none mx-auto">
           <div class="relative group">
