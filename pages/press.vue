@@ -454,6 +454,30 @@ const pressArticles: PressItem[] = [
     type: "article"
   },
   {
+    id: 31,
+    publication: "SyriacPress",
+    title: "Syriac actress Diana Aras speaks with SyriacPress about her leading role in Saffron Kingdom",
+    description: "An email interview with lead actress Diana Aras by Assyrian/Syriac news outlet SyriacPress. Discusses how she was cast as Masrat, leaving a decade-long finance career in 2023 to act full-time, drawing on her own Syriac heritage for the role, and the film's treatment of transgenerational trauma.",
+    url: "https://syriacpress.com/blog/2025/02/16/syriac-actress-diana-aras-speaks-with-syriacpress-about-her-leading-role-in-saffron-kingdom/",
+    type: "article"
+  },
+  {
+    id: 32,
+    publication: "Minute Mirror",
+    title: "Kashmiri film Saffron Kingdom finds new home on Watermelon+",
+    description: "Report by Pakistani daily Minute Mirror on Saffron Kingdom becoming available worldwide on the Palestinian-owned streaming platform Watermelon+ following its international festival run.",
+    url: "https://minutemirror.com.pk/kashmiri-film-saffron-kingdom-finds-new-home-on-watermelon-606267/",
+    type: "article"
+  },
+  {
+    id: 33,
+    publication: "IMAGES (Dawn)",
+    title: "US-Kashmiri film Saffron Kingdom begins streaming on Palestinian platform Watermelon+",
+    description: "Coverage of the film's streaming release by Pakistani newspaper Dawn's cultural section \"IMAGES\". Reports that Arfat Sheikh's story of a Kashmiri woman and her son fleeing persecution to the United States is now on Watermelon+, joining other acclaimed films about displacement and human rights.",
+    url: "https://images.dawn.com/news/1195631",
+    type: "article"
+  },
+  {
     id: 22,
     publication: "Project Censored",
     title: "Journalism and Free Expression from the US to Kashmir",
