@@ -82,10 +82,37 @@
         </div>
       </div>
     </section>
+
+    <section class="mission-section relative overflow-hidden">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16 lg:py-20 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 xl:gap-14 items-center">
+          <div class="flex flex-col gap-6">
+            <UiSectionHeader
+              title="Who We Are"
+              subtitle="Daffodil Studios is a nonprofit media and cultural organization using cinema, storytelling, and public dialogue to explore histories, communities, and perspectives too often pushed to the margins."
+              size="sm"
+              align="left"
+              :level="2"
+            />
+          </div>
+
+          <div class="flyer-card">
+            <img
+              :src="donationFlyer"
+              alt="Daffodil Studios donation flyer: Who Gets to Tell the Story? Supporting Art as Resistance: Kashmir, Decolonial Dialogues, and Whispers of the Valley."
+              class="flyer-image"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
+import donationFlyer from '@/assets/images/pages/donate/donation-flyer.png'
 
 const DONORBOX_URL = 'https://donorbox.org/embed/daffodil'
 const MAX_IFRAME_HEIGHT = 2000
@@ -153,7 +180,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: 'Support Daffodil Studios in creating meaningful stories that inspire and connect audiences worldwide. Your donation helps bring powerful narratives to life.'
+      content: 'Daffodil Studios is a nonprofit media and cultural organization using cinema, storytelling, and public dialogue to explore histories, communities, and perspectives too often pushed to the margins. Support our work.'
     },
     {
       property: 'og:title',
@@ -176,9 +203,43 @@ useHead({
 }
 
 .hero-section {
-  flex: 1;
   display: flex;
   align-items: center;
+}
+
+.mission-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+}
+
+.flyer-card {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  border-radius: 1.5rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+  border: 1px solid rgba(253, 185, 19, 0.28);
+  box-shadow:
+    0 16px 60px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flyer-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(253, 185, 19, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.flyer-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
 }
 
 .donation-form-wrapper {
