@@ -101,13 +101,32 @@
         @click.self="showPopup = false"
       >
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
-        <div class="relative glass-card rounded-2xl p-8 max-w-sm w-full shadow-2xl text-center">
-          <!-- Icon -->
-          <div class="w-16 h-16 bg-gradient-to-br from-brand-yellow to-brand-yellow-dark rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg">
+        <div
+          :class="[
+            'relative glass-card rounded-2xl shadow-2xl text-center w-full max-h-[90vh] overflow-y-auto',
+            posterImage ? 'max-w-lg p-6 sm:p-8' : 'max-w-sm p-8'
+          ]"
+        >
+          <!-- Event poster -->
+          <img
+            v-if="posterImage"
+            :src="posterImage"
+            :alt="`${movieName} screening poster — ${venue}, ${displayTitle}`"
+            class="w-full h-auto rounded-xl shadow-lg mb-6"
+            loading="lazy"
+            decoding="async"
+          >
+
+          <!-- Icon (poster already carries the visual weight when present) -->
+          <div
+            v-else
+            class="w-16 h-16 bg-gradient-to-br from-brand-yellow to-brand-yellow-dark rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg"
+          >
             <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path>
             </svg>
           </div>
+
           <h3 class="text-xl font-bold text-white mb-2">Free Screening</h3>
           <p class="text-gray-300 mb-6 leading-relaxed">
             This is a free screening — no tickets required.<br>
@@ -123,6 +142,7 @@
       </div>
     </Transition>
   </Teleport>
+
 </template>
 
 <script setup lang="ts">
@@ -140,6 +160,7 @@ interface Props {
   ticketUrl?: string
   ticketPrice?: number
   screeningId?: number
+  posterImage?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -149,7 +170,8 @@ const props = withDefaults(defineProps<Props>(), {
   ticketUrl: '',
   country: '',
   ticketPrice: 0,
-  screeningId: 0
+  screeningId: 0,
+  posterImage: ''
 })
 
 const emit = defineEmits<{

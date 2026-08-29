@@ -89,6 +89,7 @@
                     :ticket-price="(s as any).ticketPrice ?? 0"
                     :button-text="group.isPast ? 'Past Event' : s.buttonText"
                     :is-disabled="group.isPast || s.isDisabled"
+                    :poster-image="getPoster(s)"
                     @buy-ticket="handleBuyTicket"
                   />
                 </div>
@@ -212,6 +213,7 @@
                             :ticket-price="(s as any).ticketPrice ?? 0"
                             :button-text="s.buttonText"
                             :is-disabled="s.isDisabled"
+                            :poster-image="getPoster(s)"
                             @buy-ticket="handleBuyTicket"
                           />
                         </div>
@@ -239,6 +241,7 @@
                             :ticket-url="''"
                             :button-text="'Past Event'"
                             :is-disabled="true"
+                            :poster-image="getPoster(s)"
                             @buy-ticket="handleBuyTicket"
                           />
                         </div>
@@ -285,9 +288,19 @@
 
 <script setup lang="ts">
 import screeningsData from '~/data/screenings.json'
+import isnaDetroit from '@/assets/images/pages/screenings/isna-detroit.jpg'
 
 type Screening = typeof screeningsData[number]
 type FilterType = 'upcoming' | 'all' | 'countries'
+
+// Screening posters live in assets/ so Vite can hash and serve them, which a
+// runtime path string from JSON cannot do. The JSON stores a key instead.
+const screeningPosters: Record<string, string> = {
+  'isna-detroit': isnaDetroit,
+}
+
+const getPoster = (s: Screening) =>
+  'posterImage' in s ? screeningPosters[(s as any).posterImage] ?? '' : ''
 
 const today = new Date().toISOString().split('T')[0]
 const currentMonth = today.substring(0, 7)

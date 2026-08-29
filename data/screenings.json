@@ -609,5 +609,19 @@
     "ticketUrl": "https://www.metrocineema.co.uk",
     "buttonText": "Buy Tickets",
     "isDisabled": false
+  },
+  {
+    "id": 48,
+    "movieName": "Saffron Kingdom",
+    "date": "2026-09-06",
+    "time": "4:00 PM - 5:30 PM",
+    "venue": "ISNA Convention - Room 331B",
+    "city": "Detroit",
+    "state": "MI",
+    "country": "United States",
+    "ticketUrl": "",
+    "buttonText": "Free Screening",
+    "isDisabled": false,
+    "posterImage": "isna-detroit"
   }
 ]
