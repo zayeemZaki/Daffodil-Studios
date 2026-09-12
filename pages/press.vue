@@ -192,7 +192,6 @@ const pressReleases: PressRelease[] = [
         type: 'links',
         items: [
           { prefix: 'Email:', label: 'contact@daffodilstudios.org', url: 'mailto:contact@daffodilstudios.org' },
-          { prefix: 'Phone:', label: '+1 (703) 387-8287', url: 'tel:+17033878287' },
           { prefix: 'Stream Saffron Kingdom:', label: 'Saffron Kingdom - Watermelon+', url: 'https://www.watermelonplus.com/saffron-kingdom' }
         ]
       },
