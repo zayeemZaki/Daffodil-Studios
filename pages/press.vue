@@ -478,6 +478,14 @@ const pressArticles: PressItem[] = [
     type: "article"
   },
   {
+    id: 34,
+    publication: "The Conversation",
+    title: "Streaming now: Kashmiri film 'Saffron Kingdom' offers a rare insider perspective",
+    description: "An analysis of the film by Shambhavi Siddhi, a PhD candidate in Gender, Sexuality, and Women's Studies at Western University. Discusses how the film traces Masrat's family across three generations from Kashmir to Atlanta, its treatment of silence, ritual and inherited grief as intergenerational trauma, director Arfat Sheikh's own family history of enforced disappearance, and why the film had to be shot outside Kashmir.",
+    url: "https://theconversation.com/streaming-now-kashmiri-film-saffron-kingdom-offers-a-rare-insider-perspective-289849",
+    type: "article"
+  },
+  {
     id: 22,
     publication: "Project Censored",
     title: "Journalism and Free Expression from the US to Kashmir",
