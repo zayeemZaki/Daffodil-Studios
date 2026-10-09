@@ -623,5 +623,18 @@
     "buttonText": "Free Screening",
     "isDisabled": false,
     "posterImage": "isna-detroit"
+  },
+  {
+    "id": 49,
+    "movieName": "Saffron Kingdom",
+    "date": "2026-10-27",
+    "time": "3:30 PM - 6:00 PM",
+    "venue": "Light House Cinema, Market Street South, Smithfield, D07 R6YE",
+    "city": "Dublin",
+    "state": "",
+    "country": "Ireland",
+    "ticketUrl": "https://www.eventbrite.ie/e/saffron-kingdom-film-screening-conversation-on-kashmir-tickets-2000902738955",
+    "buttonText": "Buy Tickets",
+    "isDisabled": false
   }
 ]

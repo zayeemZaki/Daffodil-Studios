@@ -164,6 +164,52 @@ useHead({
 // Ordered newest first — this is the order they render on the page.
 const pressReleases: PressRelease[] = [
   {
+    id: 3,
+    title: 'Acclaimed Kashmiri Film Saffron Kingdom Set for Wide Release in UK',
+    dateline: 'LONDON, UK (18th September 2026)',
+    blocks: [
+      {
+        type: 'paragraph',
+        text: 'Daffodil Studios is proud to announce that its critically acclaimed feature film Saffron Kingdom is set for a wide theatrical release in the United Kingdom starting on Friday, September 18th.'
+      },
+      {
+        type: 'paragraph',
+        text: 'The film will screen for 62 shows at Vue Cinemas, ODEON Cinemas, and Forest Cinemas through September 24th. Cities covered include London, Manchester, Birmingham, and Leeds. This is the largest ever screening series of Saffron Kingdom since showings began in 2025.'
+      },
+      {
+        type: 'paragraph',
+        text: 'Directed by Arfat Sheikh, Saffron Kingdom follows the story of a Kashmiri family as they navigate decades of trauma and displacement—tracing their journey from 1990s Srinagar, Kashmir to 2019 Atlanta, USA. Through this intimate lens, the film presents an authentic, multifaceted story of Kashmir and its people — one too often overlooked or misrepresented — by weaving together personal narratives and sociopolitical complexities.'
+      },
+      {
+        type: 'paragraph',
+        text: 'Tickets are available now on the Vue, ODEON, and Forest Cinemas websites. They can also be purchased in the Vue and myODEON apps or at the box office at Forest Cinemas.'
+      },
+      {
+        type: 'paragraph',
+        text: 'For press inquiries, high-resolution images, or additional materials, please contact:'
+      },
+      {
+        type: 'links',
+        items: [
+          { prefix: 'Email:', label: 'contact@daffodilstudios.org', url: 'mailto:contact@daffodilstudios.org' }
+        ]
+      },
+      {
+        type: 'links',
+        items: [
+          { prefix: 'Tickets (via Vue Cinemas):', label: 'Saffron Kingdom at Vue', url: 'https://www.myvue.com/film/saffron-kingdom' },
+          { prefix: 'Tickets (via ODEON Cinemas):', label: 'Saffron Kingdom at ODEON', url: 'https://www.odeon.co.uk/films/saffron-kingdom/HO00009486/' },
+          { prefix: 'Tickets (via Forest Cinemas):', label: 'Saffron Kingdom at Forest Cinemas', url: 'https://www.forestcinema.co.uk/event/114701' }
+        ]
+      },
+      { type: 'heading', text: 'About Daffodil Studios' },
+      {
+        type: 'paragraph',
+        text: 'Daffodil Studios is a non-profit media organisation dedicated to producing impactful films and multimedia projects that amplify underrepresented voices. Its work spans feature films, documentaries, theatrical releases, and educational collaborations with universities and community organisations globally.'
+      }
+    ]
+  },
+  {
     id: 2,
     title: 'Internationally Acclaimed Kashmiri Film Saffron Kingdom Now Streaming',
     dateline: 'WASHINGTON, DC (28th July 2026)',

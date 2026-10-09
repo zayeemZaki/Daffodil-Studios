@@ -326,6 +326,7 @@ const countryIsoCodes: Record<string, string> = {
   'New Zealand': 'NZ',
   'Canada': 'CA',
   'Germany': 'DE',
+  'Ireland': 'IE',
 }
 
 const getFlagEmoji = (countryName: string): string => {
