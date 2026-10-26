@@ -636,5 +636,18 @@
     "ticketUrl": "https://www.eventbrite.ie/e/saffron-kingdom-film-screening-conversation-on-kashmir-tickets-2000902738955",
     "buttonText": "Buy Tickets",
     "isDisabled": false
+  },
+  {
+    "id": 50,
+    "movieName": "Saffron Kingdom",
+    "date": "2026-10-31",
+    "time": "8:00 PM - 10:00 PM",
+    "venue": "AMC Studio 28, 12075 S Strang Line Rd, 66062",
+    "city": "Olathe",
+    "state": "KS",
+    "country": "United States",
+    "ticketUrl": "https://www.eventbookings.com/b/event/saffron-kingdom-kansas-city",
+    "buttonText": "Free Screening",
+    "isDisabled": false
   }
 ]
